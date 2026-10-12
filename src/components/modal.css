@@ -1,0 +1,75 @@
+/* modal：原生 <dialog>，外框來自 pixel-frame（accent） */
+
+.modal {
+  width: calc(100% - var(--gutter) * 2);
+  max-width: var(--modal-width, var(--modal-width-md));
+  max-height: calc(100dvh - var(--space-6) * 2);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  overflow: visible;
+}
+
+.modal[open] {
+  display: flex;
+  animation: modal-in var(--duration-slow) var(--ease-pixel);
+}
+
+.modal::backdrop {
+  background: var(--color-backdrop);
+}
+
+.modal--sm { --modal-width: var(--modal-width-sm); }
+.modal--lg { --modal-width: var(--modal-width-lg); }
+
+.modal__frame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  max-height: calc(100dvh - var(--space-6) * 2);
+  --pixel-border-extra: var(--shadow-pixel-lg);
+}
+
+.modal__header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-2) var(--space-3) var(--space-5);
+  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
+}
+
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-height: 0;
+  padding: var(--space-5);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.modal__actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  border-top: var(--border-width-thin) dashed var(--color-border-muted);
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * 4));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

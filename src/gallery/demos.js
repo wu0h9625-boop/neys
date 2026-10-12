@@ -19,6 +19,7 @@ import { createDialogue } from "../components/dialogue.js";
 import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
+import { createModal, openModal, closeModal } from "../components/modal.js";
 import { createPanel, openPanel } from "../components/panel.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 import { createProgressBadge, setProgress } from "../components/progress-badge.js";
@@ -39,6 +40,47 @@ const sampleThumb = () => {
   ];
   const body = rects.map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`).join("");
   return new DOMParser().parseFromString(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 108" shape-rendering="crispEdges">${body}</svg>`, "image/svg+xml").documentElement;
+};
+
+// modal 展示：每個 variant 是一顆打開 modal 的按鈕
+// modal 只建立一次，重複打開同一個，避免每按一次就多一個 <dialog>
+const modalTrigger = (label, build) => {
+  let modal;
+  return createButton({ label, variant: "secondary", onClick: () => openModal((modal ||= build())) });
+};
+
+const sceneTalkModal = () =>
+  createModal({
+    title: "Scene talk",
+    children: [
+      createDialogue({
+        title: "Borrowing a stapler",
+        highlight: ["stapler"],
+        lines: [
+          { speaker: "A", text: "Hey, do you have a stapler I could borrow?" },
+          { speaker: "B", text: "Sure, it's in the top drawer." },
+          { speaker: "A", text: "Thanks! Mine keeps jamming." },
+          { speaker: "B", text: "Just bring it back when you're done." },
+        ],
+      }),
+    ],
+  });
+
+const completeModal = () => {
+  const modal = createModal({
+    title: "Scene complete!",
+    size: "sm",
+    dismissible: false,
+    children: [
+      el("div", { attrs: { style: "display: flex; align-items: center; gap: 16px; color: var(--color-accent)" } }, [createIcon("star", { scale: 4 }), createProgressBadge({ found: 14, total: 14 })]),
+      el("p", { text: "You named everything in the office. Try saying each one out loud tomorrow at work." }),
+    ],
+    actions: [
+      createButton({ label: "Stay here", variant: "secondary", onClick: () => closeModal(modal) }),
+      createButton({ label: "Next scene", onClick: () => closeModal(modal) }),
+    ],
+  });
+  return modal;
 };
 
 // panel 展示：一個假場景頁，面板裡放實際的作答內容
@@ -150,6 +192,14 @@ export const demos = [
       ...ICON_NAMES.map((name) => ({ label: name, render: () => createIcon(name) })),
       { label: "speaker · scale 3", render: () => createIcon("speaker", { scale: 3 }) },
       { label: "star · accent colour", render: () => el("span", { attrs: { style: "color: var(--color-accent)" } }, [createIcon("star", { scale: 3 })]) },
+    ],
+  },
+  {
+    name: "modal",
+    description: "Full-screen dialog (native <dialog>). Focus stays inside; Escape, the close button or a backdrop click closes it unless dismissible is false.",
+    variants: [
+      { label: "md · Scene talk", render: () => modalTrigger("Open Scene talk", sceneTalkModal) },
+      { label: "sm · not dismissible", render: () => modalTrigger("Open Scene complete", completeModal) },
     ],
   },
   {

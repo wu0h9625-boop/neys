@@ -28,7 +28,7 @@
 | `progress-badge` | 完成 |
 | `scene-card` | 完成 |
 | `panel` | 完成 |
-| `modal` | 未開始 |
+| `modal` | 完成 |
 | `tag` | 完成 |
 | `heading` | 完成 |
 | `icon` | 完成 |
@@ -366,3 +366,33 @@
     openPanel(panel);
 
 注意事項：桌機版是 sticky，外層排版要把面板放在場景旁邊的欄位（例如 `grid-template-columns: 1fr auto`）。手機版底部有 safe-area 內距，避開 iPhone 的 Home 條。
+
+### modal
+
+用途：蓋住整個畫面的對話框，用在 Scene talk 與 Scene complete。用原生 `<dialog>` 的 `showModal()`：焦點鎖在對話框內、Esc 關閉、背景不能操作，都是瀏覽器內建。外框是 `pixel-frame` 的 accent（黃框）。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| title | string | — | 標題，同時是 `aria-labelledby` |
+| children | Node[] | `[]` | 內容，超過螢幕高度時在框內捲動 |
+| actions | Node[] | `[]` | 底部按鈕列，靠右排列 |
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | 最大寬度 400 / 560 / 720px；手機上一律是螢幕寬扣兩側 16px |
+| dismissible | boolean | `true` | `false` 時沒有關閉鈕，Esc 與點背景都不會關，只能按 actions 裡的按鈕 |
+| onClose | function | — | 對話框關閉時呼叫（任何方式） |
+| className | string | `""` | 額外 class |
+
+控制用的函式：`openModal(modal)`（還沒放進頁面時會自動加到 `body`）、`closeModal(modal)`。
+
+範例：
+
+    import { createModal, openModal, closeModal } from "../components/modal.js";
+    const done = createModal({
+      title: "Scene complete!",
+      size: "sm",
+      dismissible: false,
+      children: [message],
+      actions: [createButton({ label: "Next scene", onClick: () => closeModal(done) })],
+    });
+    openModal(done);
+
+注意事項：同一個 modal 建立一次、重複打開，不要每次都 `createModal`，否則頁面上會累積多個 `<dialog>`。

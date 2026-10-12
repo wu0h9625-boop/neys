@@ -54,6 +54,7 @@
   --color-highlight: var(--palette-4);     /* 場景物件 hover 外框 */
   --color-found: var(--palette-5);         /* 已發現物件的標記 */
   --color-shadow: #000000;
+  --color-backdrop: rgb(26 28 44 / 0.85);  /* palette-0 加透明，modal 後面的遮罩 */
 
   /* ---------- 字體 ---------- */
   --font-display: "Press Start 2P", ui-monospace, monospace;
@@ -106,6 +107,9 @@
   --content-max: 1440px;
   --panel-width: 400px;              /* 桌機右側面板寬 */
   --sheet-max-height: 70vh;          /* 手機 bottom sheet 最高 */
+  --modal-width-sm: 400px;
+  --modal-width-md: 560px;
+  --modal-width-lg: 720px;
 
   /* ---------- 圖層 ---------- */
   --z-scene: 0;
