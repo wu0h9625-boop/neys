@@ -4,8 +4,8 @@
 
 ## 目前進度
 
-- 最後完成：M1 元件庫全部完成（14 個元件；speech.js 也已提前完成）
-- 下一步：M2 `src/lib/answer-check.js`
+- 最後完成：M2 邏輯全部完成（答案判定、發音、進度保存；`npm test` 21 項通過）
+- 下一步：M3 `scenes/office.svg`
 
 ## M0 基礎
 
