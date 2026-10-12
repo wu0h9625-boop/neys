@@ -1,0 +1,5 @@
+/* progress-badge：外觀來自 tag，這裡只讓數字等寬，數字變動時寬度不跳 */
+
+.progress-badge {
+  font-variant-numeric: tabular-nums;
+}

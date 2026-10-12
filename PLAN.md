@@ -27,7 +27,7 @@
 - [x] `feedback`
 - [x] `sentence-list`
 - [x] `dialogue`
-- [ ] `progress-badge`
+- [x] `progress-badge`
 - [ ] `scene-card`
 - [ ] `panel`（三種斷點行為）
 - [ ] `modal`

@@ -20,6 +20,7 @@ import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
+import { createProgressBadge, setProgress } from "../components/progress-badge.js";
 import { createSentenceList } from "../components/sentence-list.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
@@ -125,6 +126,24 @@ export const demos = [
       { label: "raised", render: () => createPixelFrame({ variant: "raised", children: [sampleText()] }) },
       { label: "padding sm", render: () => createPixelFrame({ padding: "sm", children: [sampleText("Small padding")] }) },
       { label: "padding lg", render: () => createPixelFrame({ padding: "lg", children: [sampleText("Large padding")] }) },
+    ],
+  },
+  {
+    name: "progress-badge",
+    description: "Found-count for a scene. Turns green when every object is found. Use +1 to count up.",
+    variants: [
+      { label: "none found", render: () => createProgressBadge({ found: 0, total: 14 }) },
+      { label: "in progress", render: () => createProgressBadge({ found: 4, total: 14 }) },
+      { label: "complete", render: () => createProgressBadge({ found: 14, total: 14 }) },
+      {
+        label: "setProgress()",
+        render: () => {
+          let found = 12;
+          const badge = createProgressBadge({ found, total: 14 });
+          const next = createButton({ label: "+1", variant: "secondary", onClick: () => setProgress(badge, { found: (found = found >= 14 ? 0 : found + 1), total: 14 }) });
+          return el("div", { attrs: { style: "display: flex; align-items: center; gap: 12px" } }, [badge, next]);
+        },
+      },
     ],
   },
   {

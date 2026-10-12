@@ -25,7 +25,7 @@
 | `feedback` | 完成 |
 | `sentence-list` | 完成 |
 | `dialogue` | 完成 |
-| `progress-badge` | 未開始 |
+| `progress-badge` | 完成 |
 | `scene-card` | 未開始 |
 | `panel` | 未開始 |
 | `modal` | 未開始 |
@@ -283,3 +283,24 @@
     const talk = createDialogue({ lines: object.dialogue, highlight: object.accept });
 
 注意事項：聲音與顏色依說話者第一次出現的順序分配。Play all 用 `speakSequence()` 在同一次點擊裡把所有句子排進佇列，iOS Safari 才不會擋。三欄用 `subgrid` 對齊，說話者名稱長短不同時文字仍然對齊。瀏覽器不支援發音時 Play all 隱藏。
+
+### progress-badge
+
+用途：場景的進度計數「★ Found 4/14」。建立在 `tag` 上，全部找到時變綠色。數字用等寬數字，變動時寬度不跳。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| found | number | `0` | 已發現數 |
+| total | number | `0` | 總數 |
+| label | string | `"Found"` | 數字前的文字 |
+| className | string | `""` | 額外 class |
+
+更新用的函式：`setProgress(badge, { found, total })`。
+
+範例：
+
+    import { createProgressBadge, setProgress } from "../components/progress-badge.js";
+    const progress = createProgressBadge({ found: 4, total: 14 });
+    setProgress(progress, { found: 5, total: 14 });
+
+注意事項：純展示。要讓螢幕閱讀器知道進度變化，把它放在有 `aria-live` 的區域，或在 `feedback` 裡另外說明。
