@@ -335,7 +335,7 @@
 | 寬度 | 形態 | 關閉時 |
 |---|---|---|
 | < 768px | bottom sheet，貼齊底部，最高 70% 螢幕，上方仍看得到場景 | 移到畫面下方並隱藏 |
-| 768–1023px | 從右側滑出，寬 400px | 移到畫面右側並隱藏 |
+| 768–1023px | bottom sheet，最高 50% 螢幕。從右側滑出會蓋住場景右半邊、看不到正在命名的物件，所以不用 | 移到畫面下方並隱藏 |
 | ≥ 1024px | 固定在場景右側（sticky），一直顯示，沒有關閉鈕 | 不變 |
 
 面板不是 modal，開著時仍可點場景裡的其他物件，換內容用 `setPanelContent`。
@@ -357,7 +357,7 @@
 | `isPanelOpen(panel)` | 是否打開 |
 | `setPanelContent(panel, { title, children })` | 換標題或內容，內容會捲回頂端 |
 
-可覆寫的 CSS 變數：`--panel-sheet-max-height`（手機最高，預設 70vh）、`--panel-desktop-max-height`（桌機最高，預設螢幕高度扣上下 16px）。
+可覆寫的 CSS 變數：`--panel-sheet-max-height`（bottom sheet 最高，預設手機 70vh、平板 50vh）、`--panel-desktop-max-height`（桌機最高，預設螢幕高度扣上下 16px）。
 
 範例：
 

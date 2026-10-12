@@ -1,9 +1,9 @@
 /*
  * panel
- * 手機：bottom sheet ／ 平板：右側滑出 ／ 桌機：場景右側固定欄位（sticky）。
+ * 手機：bottom sheet（最高 70%）／ 平板：bottom sheet（最高 50%）／ 桌機：場景右側固定欄位（sticky）。
  *
  * 可覆寫的變數（主要給元件展示頁的模擬螢幕用）：
- *   --panel-sheet-max-height   手機 bottom sheet 最高，預設 70vh
+ *   --panel-sheet-max-height   bottom sheet 最高，預設手機 70vh、平板 50vh
  *   --panel-desktop-max-height 桌機面板最高，預設螢幕高度扣上下間距
  */
 
@@ -75,23 +75,12 @@
   overscroll-behavior: contain;
 }
 
-/* ---------- 平板：右側滑出 ---------- */
+/* ---------- 平板：一樣是 bottom sheet，但最高只到半個螢幕 ----------
+ * 從右側滑出會蓋住場景右半邊，使用者看不到正在命名的物件（例如右邊的印表機）。
+ * 直式平板的場景約 400px 高，半個螢幕的 sheet 不會蓋到場景。 */
 @media (min-width: 768px) {
   .panel {
-    top: 0;
-    left: auto;
-    width: min(var(--panel-width), calc(100% - var(--gutter) * 2));
-    max-height: none;
-    padding: var(--space-2) var(--space-2) var(--space-2) 0;
-    transform: translateX(calc(100% + var(--space-4)));
-  }
-
-  .panel__frame {
-    --pixel-border-extra: calc(var(--border-width) * -3) 0 0 0 var(--color-shadow);
-  }
-
-  .panel__handle {
-    display: none;
+    max-height: var(--panel-sheet-max-height, var(--sheet-max-height-tablet));
   }
 }
 

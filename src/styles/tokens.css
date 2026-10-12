@@ -105,8 +105,11 @@
   /* ---------- 尺寸 ---------- */
   --hit-min: 44px;                   /* 觸控熱區最小尺寸 */
   --content-max: 1440px;
+  --content-narrow: 40rem;            /* 說明文字段落的最大寬度，避免一行太長 */
   --panel-width: 400px;              /* 桌機右側面板寬 */
+  --card-min-width: 260px;           /* 首頁場景卡片最窄寬度，決定一列放幾張 */
   --sheet-max-height: 70vh;          /* 手機 bottom sheet 最高 */
+  --sheet-max-height-tablet: 50vh;   /* 平板 bottom sheet 最高，留出整張場景 */
   --modal-width-sm: 400px;
   --modal-width-md: 560px;
   --modal-width-lg: 720px;

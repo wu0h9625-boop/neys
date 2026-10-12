@@ -52,7 +52,7 @@ index.html        遊戲入口
 |---|---|
 | `button` | primary / secondary / ghost 三種 variant，可加圖示，`iconOnly` 只顯示圖示。Reveal、Hint、Scene talk、Reset 等所有按鈕都用它 |
 | `pixel-frame` | RPG 風格黑底像素邊框，所有面板和卡片的外框都用它 |
-| `panel` | 響應式容器：≥ 1024px 固定在右側、768–1023px 從右側滑出、< 768px 為 bottom sheet（最高 70% 螢幕） |
+| `panel` | 響應式容器：≥ 1024px 固定在右側、768–1023px 為 bottom sheet（最高 50%）、< 768px 為 bottom sheet（最高 70% 螢幕） |
 | `modal` | 場景對話、Scene complete 畫面 |
 | `text-input` | 作答輸入框，有 default / almost / wrong / correct 狀態 |
 | `speak-button` | 🔊 發音按鈕，瀏覽器不支援 Web Speech API 時自動隱藏 |

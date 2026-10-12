@@ -229,7 +229,7 @@ export const demos = [
   },
   {
     name: "panel",
-    description: "Answer panel for the scene page. Under 768px it is a bottom sheet, 768–1023px it slides in from the right, from 1024px it sits beside the scene. Switch the width to compare. Escape or the close button closes it.",
+    description: "Answer panel for the scene page. Under 768px it is a bottom sheet, 768–1023px it is a half-height bottom sheet, from 1024px it sits beside the scene. Switch the width to compare. Escape or the close button closes it.",
     variants: [{ label: "inside a simulated 480px-tall screen", wide: true, viewport: true, render: panelDemo }],
   },
   {
