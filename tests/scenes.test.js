@@ -24,6 +24,7 @@ const line = (speaker, text) => ({ speaker, text });
 const makeObject = (id) => ({
   id,
   word: id,
+  ipa: "/θɪŋ/",
   accept: [id],
   wordPicture: { looks: ["red", "small", "new"], actions: ["use", "move", "clean"], goesWith: ["desk", "paper", "office"] },
   selfTalk: [
@@ -63,6 +64,15 @@ test("例句太短（少於 10 個字）", () => {
   const scene = makeScene();
   scene.objects[0].selfTalk[1] = `I see a ${scene.objects[0].id}.`;
   assert.match(validateScene(scene).join(), /thinga: selfTalk\[1\] has 4 words, expected at least 10/);
+});
+
+test("IPA 缺少或格式不對", () => {
+  const scene = makeScene();
+  delete scene.objects[0].ipa;
+  scene.objects[1].ipa = "ˈstɪki";
+  const problems = validateScene(scene).join("\n");
+  assert.match(problems, /thinga: ipa must be written/);
+  assert.match(problems, /thingb: ipa must be written/);
 });
 
 test("文字畫面缺少或數量不對", () => {

@@ -32,6 +32,7 @@
       "id": "whiteboard",
       "word": "whiteboard",
       "pos": "noun",
+      "ipa": "/ˈwaɪtˌbɔːrd/",
       "accept": ["whiteboard", "white board", "dry-erase board", "board"],
       "highlight": ["board"],
       "wordPicture": {
@@ -56,6 +57,7 @@
       "id": "window",
       "word": "window",
       "pos": "noun",
+      "ipa": "/ˈwɪndoʊ/",
       "accept": ["window", "office window"],
       "wordPicture": {
         "looks": ["wide", "sunny", "double-paned", "slightly dusty"],
@@ -78,6 +80,7 @@
       "id": "filing-cabinet",
       "word": "filing cabinet",
       "pos": "noun",
+      "ipa": "/ˈfaɪlɪŋ ˈkæbɪnət/",
       "accept": ["filing cabinet", "file cabinet", "cabinet"],
       "highlight": ["cabinet"],
       "wordPicture": {
@@ -102,6 +105,7 @@
       "id": "potted-plant",
       "word": "potted plant",
       "pos": "noun",
+      "ipa": "/ˈpɑːtɪd plænt/",
       "accept": ["potted plant", "plant", "houseplant", "house plant", "office plant", "pot plant"],
       "highlight": ["plant"],
       "wordPicture": {
@@ -125,6 +129,7 @@
       "id": "desk",
       "word": "desk",
       "pos": "noun",
+      "ipa": "/desk/",
       "accept": ["desk", "office desk", "work desk", "workstation"],
       "wordPicture": {
         "looks": ["wooden", "wide", "cluttered", "orange-brown"],
@@ -147,6 +152,7 @@
       "id": "monitor",
       "word": "monitor",
       "pos": "noun",
+      "ipa": "/ˈmɑːnɪtər/",
       "accept": ["monitor", "computer monitor", "screen", "computer screen", "display"],
       "highlight": ["screen"],
       "wordPicture": {
@@ -170,6 +176,7 @@
       "id": "sticky-note",
       "word": "sticky note",
       "pos": "noun",
+      "ipa": "/ˈstɪki noʊt/",
       "accept": ["sticky note", "post-it", "post-it note", "note"],
       "highlight": ["note"],
       "wordPicture": {
@@ -194,6 +201,7 @@
       "id": "keyboard",
       "word": "keyboard",
       "pos": "noun",
+      "ipa": "/ˈkiːbɔːrd/",
       "accept": ["keyboard", "computer keyboard"],
       "wordPicture": {
         "looks": ["light grey", "mechanical", "noisy", "a bit sticky"],
@@ -216,6 +224,7 @@
       "id": "mouse",
       "word": "mouse",
       "pos": "noun",
+      "ipa": "/maʊs/",
       "accept": ["mouse", "computer mouse"],
       "wordPicture": {
         "looks": ["white", "wireless", "small", "smooth"],
@@ -239,6 +248,7 @@
       "id": "headset",
       "word": "headset",
       "pos": "noun",
+      "ipa": "/ˈhedset/",
       "accept": ["headset", "headphones", "headphone"],
       "highlight": ["headphones"],
       "wordPicture": {
@@ -262,6 +272,7 @@
       "id": "mug",
       "word": "mug",
       "pos": "noun",
+      "ipa": "/mʌɡ/",
       "accept": ["mug", "coffee mug", "cup", "coffee cup"],
       "wordPicture": {
         "looks": ["white", "ceramic", "chipped", "half-empty"],
@@ -284,6 +295,7 @@
       "id": "stapler",
       "word": "stapler",
       "pos": "noun",
+      "ipa": "/ˈsteɪplər/",
       "accept": ["stapler"],
       "highlight": ["staple"],
       "wordPicture": {
@@ -308,6 +320,7 @@
       "id": "swivel-chair",
       "word": "swivel chair",
       "pos": "noun",
+      "ipa": "/ˈswɪvəl tʃer/",
       "accept": ["swivel chair", "office chair", "desk chair", "rolling chair", "chair"],
       "highlight": ["chair"],
       "wordPicture": {
@@ -331,6 +344,7 @@
       "id": "water-dispenser",
       "word": "water dispenser",
       "pos": "noun",
+      "ipa": "/ˈwɔːtər dɪˈspensər/",
       "accept": ["water dispenser", "water cooler", "dispenser"],
       "highlight": ["water cooler", "dispenser"],
       "wordPicture": {
@@ -355,6 +369,7 @@
       "id": "printer",
       "word": "printer",
       "pos": "noun",
+      "ipa": "/ˈprɪntər/",
       "accept": ["printer", "copier", "photocopier", "copy machine"],
       "highlight": ["print"],
       "wordPicture": {

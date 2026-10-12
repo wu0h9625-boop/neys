@@ -55,6 +55,10 @@ export function validateScene(data, svgIds) {
     seen.add(object.id);
 
     if (!object.word) problems.push(`${at}: missing word`);
+    // IPA 音標（美式），寫成 /.../
+    if (typeof object.ipa !== "string" || !/^\/[^/]+\/$/.test(object.ipa.trim())) {
+      problems.push(`${at}: ipa must be written like /ˈsteɪplər/`);
+    }
     if (!Array.isArray(object.accept) || object.accept.length === 0) {
       problems.push(`${at}: accept must list at least one answer`);
     } else if (object.word && checkAnswer(object.word, object.accept).result !== "correct") {
