@@ -31,3 +31,6 @@
 
 /* Views */
 @import url("../views/app.css");
+@import url("../views/error.css");
+@import url("../views/home.css");
+@import url("../views/scene.css");

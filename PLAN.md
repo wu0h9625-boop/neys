@@ -4,8 +4,8 @@
 
 ## 目前進度
 
-- 最後完成：M2 邏輯全部完成（答案判定、發音、進度保存；`npm test` 21 項通過）
-- 下一步：M3 `scenes/office.svg`
+- 最後完成：M3 Office 場景完整可玩（`npm test` 34 項通過）
+- 下一步：M4 Sidewalk 場景（SVG + JSON，加進 `scenes/index.json`）
 
 ## M0 基礎
 
@@ -48,11 +48,11 @@
 
 - [x] `scenes/office.svg`：15 個 `<g data-object>` 物件（PRD 的 14 個加上 window）
 - [x] `scenes/office.json`：每個物件 3 句 self-talk、1 段 4–6 句對話；至少 1 段場景對話
-- [ ] `src/views/home.js`：場景卡片列表與進度
-- [ ] `src/views/scene.js`：hover / tap 高亮 → 作答 → 揭曉 → 例句 → 發音
-- [ ] 鍵盤操作：Tab 逐一聚焦物件、Enter 打開
-- [ ] Scene talk 與 Scene complete
-- [ ] 完整流程在三種寬度下跑一次
+- [x] `src/views/home.js`：場景卡片列表與進度（含 hash 路由 `src/app.js` 與錯誤頁 `src/views/error.js`）
+- [x] `src/views/scene.js`：hover / tap 高亮 → 作答 → 揭曉 → 例句 → 發音
+- [x] 鍵盤操作：Tab 逐一聚焦物件、Enter 打開（在 scene-stage 元件內）
+- [x] Scene talk 與 Scene complete（另加 Reset progress 確認框）
+- [x] 完整流程在三種寬度下跑一次（375 / 768 / 1440）
 
 ## M4 其餘場景
 

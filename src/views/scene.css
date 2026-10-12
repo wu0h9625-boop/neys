@@ -1,0 +1,87 @@
+/*
+ * 場景頁版面：只放排版。
+ * 手機與平板：場景滿寬，面板是 bottom sheet / 右側滑出（由 panel 元件處理）。
+ * 桌機：場景在左、面板在右。
+ */
+
+.scene-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.scene-view__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+}
+
+.scene-view__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.scene-view__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.scene-view__main {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.scene-view__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.scene-view__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+/* 面板內 */
+.scene-view__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.scene-view__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.scene-view__word {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+/* Scene complete 的星星與進度 */
+.scene-view__complete {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .scene-view__main {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}

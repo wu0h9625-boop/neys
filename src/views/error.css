@@ -1,0 +1,15 @@
+/* 錯誤頁版面：只放排版 */
+
+.error-view {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: var(--content-narrow);
+}
+
+.error-view__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
