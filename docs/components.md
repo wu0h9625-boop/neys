@@ -208,7 +208,7 @@
     import { createSpeakButton } from "../components/speak-button.js";
     const listen = createSpeakButton({ text: sentence });
 
-注意事項：發音邏輯在 `src/lib/speech.js`。語音不是取清單第一個：`rankVoices()` 會濾掉特效聲（macOS 的 Albert、Bad News、Bubbles 等）與非英文語音，再依「美式、自然人聲、Enhanced / Premium / Natural」排序；A 用第一名，B 用第二名（這台 Mac 是 Samantha 與 Daniel）。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
+注意事項：發音邏輯在 `src/lib/speech.js`。語音不是取清單第一個：`rankVoices()` 會濾掉特效聲（macOS 的 Albert、Bad News、Bubbles 等）與非英文語音，再依「美式、自然人聲、Enhanced / Premium / Natural」排序；有指定語音（`PREFERRED_VOICE`，目前是 Daniel）時，單字、例句、對話 A 與 B 全部用它；裝置上沒有 Daniel 時，A 用第一名、B 用第二名。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
 
 ### text-input
 

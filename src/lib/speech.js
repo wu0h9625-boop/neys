@@ -62,9 +62,34 @@ export function rankVoices(list = []) {
     .map(({ voice }) => voice);
 }
 
+// 指定的語音：有的話所有句子（單字、例句、對話 A 與 B）都用它；沒有才依 rankVoices 的排序挑
+export const PREFERRED_VOICE = "Daniel";
+
+/**
+ * 決定第 index 位說話者用哪個語音與音調。純函式，tests/speech.test.js 測試。
+ * ranked：rankVoices() 的結果。
+ * 有指定語音時一律用它、音調不變；沒有時 A 用第一名、B 用第二名，只有一個語音時 B 調高音調區分。
+ */
+export function pickVoice(ranked, index = 0, preferred = PREFERRED_VOICE) {
+  const wanted = preferred && ranked.find((voice) => String(voice.name ?? "").toLowerCase().startsWith(preferred.toLowerCase()));
+  if (wanted) return { voice: wanted, pitch: 1 };
+  if (ranked.length === 0) return { voice: null, pitch: index > 0 ? 1.25 : 1 };
+  return { voice: ranked[index % ranked.length], pitch: index > 0 && ranked.length < 2 ? 1.25 : 1 };
+}
+
 function loadVoices() {
   if (!isSpeechSupported()) return;
   voices = rankVoices(synth.getVoices());
+}
+
+function createUtterance(text, voiceIndex, rate) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  const { voice, pitch } = pickVoice(voices, voiceIndex);
+  utterance.lang = voice?.lang || LANG;
+  utterance.rate = rate;
+  utterance.pitch = pitch;
+  if (voice) utterance.voice = voice;
+  return utterance;
 }
 
 if (isSpeechSupported()) {
@@ -74,23 +99,14 @@ if (isSpeechSupported()) {
 
 /**
  * speak("stapler", { voice: 0 })
- * voice：0 或 1，對話裡 A、B 兩個人用不同聲音。只有一個英文聲音時，B 改用較高的音調區分。
+ * voice：0 或 1，對話裡的 A、B。有指定語音（PREFERRED_VOICE）時兩人都用它；沒有時才分兩種聲音。
  * 回傳 Promise：唸完回傳 true；被打斷或失敗回傳 false。
  */
 export function speak(text, { voice = 0, rate = 0.95 } = {}) {
   if (!isSpeechSupported() || !text) return Promise.resolve(false);
 
   synth.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = LANG;
-  utterance.rate = rate;
-
-  if (voices.length > 0) {
-    utterance.voice = voices[voice % voices.length];
-  }
-  if (voice > 0 && voices.length < 2) {
-    utterance.pitch = 1.25;
-  }
+  const utterance = createUtterance(text, voice, rate);
 
   const done = new Promise((resolve) => {
     utterance.onend = () => resolve(true);
@@ -111,11 +127,7 @@ export function speakSequence(items, { rate = 0.95, onLineStart } = {}) {
   synth.cancel();
   return new Promise((resolve) => {
     items.forEach(({ text, voice = 0 }, index) => {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = LANG;
-      utterance.rate = rate;
-      if (voices.length > 0) utterance.voice = voices[voice % voices.length];
-      if (voice > 0 && voices.length < 2) utterance.pitch = 1.25;
+      const utterance = createUtterance(text, voice, rate);
 
       utterance.onstart = () => onLineStart?.(index);
       utterance.onerror = () => resolve(false);
