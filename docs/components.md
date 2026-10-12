@@ -195,7 +195,7 @@
 |---|---|---|---|
 | text | string | — | 要唸的文字 |
 | label | string | `Play "<text>"` | 螢幕閱讀器讀的說明；`showLabel` 時也是按鈕文字 |
-| voice | `0` \| `1` | `0` | 對話的 A / B 用不同聲音；只有一個英文聲音時 B 改用較高音調 |
+| voice | `0` \| `1` | `0` | 對話的 A / B；目前兩人用同一個聲音，保留參數給之後區分 |
 | variant | 同 `button` | `"secondary"` | secondary 是米白底、橘色喇叭（例句旁）；單字卡用 `"ink"` |
 | size | 同 `button` | `"sm"` | sm 是 40px 方形；單字卡用 `"lg"`（52px） |
 | showLabel | boolean | `false` | 顯示文字，預設只顯示圖示 |
@@ -208,7 +208,7 @@
     import { createSpeakButton } from "../components/speak-button.js";
     const listen = createSpeakButton({ text: sentence });
 
-注意事項：發音邏輯在 `src/lib/speech.js`。語音不是取清單第一個：`rankVoices()` 會濾掉特效聲（macOS 的 Albert、Bad News、Bubbles 等）與非英文語音，再依「美式、自然人聲、Enhanced / Premium / Natural」排序；A 用第一名，B 用第二名（這台 Mac 是 Samantha 與 Daniel）。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
+注意事項：發音邏輯在 `src/lib/speech.js`。不指定語音名稱，只設 `en-US`，使用作業系統預設的美式聲音（通常是高品質的 Siri 聲音）；網頁能用名稱選到的語音（例如 macOS 的 Samantha）品質較差，清單前面還混有 Albert、Bad News 這類特效聲。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
 
 ### text-input
 
@@ -283,7 +283,7 @@
 
 ### dialogue
 
-用途：兩人一來一往的對話，聊天泡泡樣式（建立在 `card` 上）。第一位說話者靠右、青色泡泡、青色名稱；第二位靠左、米色泡泡、橘色名稱。整個泡泡是按鈕，點了播放那一句。標題列右邊的 Play all 用兩種聲音連續唸完，唸到哪句那個泡泡的框線就變橘色，播放中按鈕變成 Stop。
+用途：兩人一來一往的對話，聊天泡泡樣式（建立在 `card` 上）。第一位說話者靠右、青色泡泡、青色名稱；第二位靠左、米色泡泡、橘色名稱。整個泡泡是按鈕，點了播放那一句。標題列右邊的 Play all 連續唸完，唸到哪句那個泡泡的框線就變橘色，播放中按鈕變成 Stop。
 
 | 參數 | 型別 | 預設 | 說明 |
 |---|---|---|---|
@@ -299,7 +299,7 @@
     import { createDialogue } from "../components/dialogue.js";
     const talk = createDialogue({ lines: object.dialogue, speakers: scene.speakers, highlight: object.accept });
 
-注意事項：聲音、左右邊與顏色依說話者第一次出現的順序分配。Play all 用 `speakSequence()` 在同一次點擊裡把所有句子排進佇列，iOS Safari 才不會擋。泡泡的 `aria-label` 是「說話者: 句子. Play this line.」。瀏覽器不支援發音時，Play all 隱藏、泡泡停用但文字照常顯示。
+注意事項：左右邊與顏色依說話者第一次出現的順序分配；兩人用同一個聲音（見 speak-button 的說明）。Play all 用 `speakSequence()` 在同一次點擊裡把所有句子排進佇列，iOS Safari 才不會擋。泡泡的 `aria-label` 是「說話者: 句子. Play this line.」。瀏覽器不支援發音時，Play all 隱藏、泡泡停用但文字照常顯示。
 
 ### progress-badge
 

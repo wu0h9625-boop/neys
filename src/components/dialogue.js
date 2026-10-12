@@ -1,6 +1,6 @@
 // dialogue：兩人一來一往的對話，聊天泡泡樣式。
 // 第一位說話者（通常是 A = You）靠右、青色；第二位靠左、米色。點泡泡播放那一句；
-// 標題列的 Play all 用兩種聲音連續唸完，唸到哪句就標出那一句。
+// 標題列的 Play all 連續唸完，唸到哪句就標出那一句。兩人用同一個聲音（系統預設的美式聲音）。
 
 import { el, highlightWords } from "../lib/dom.js";
 import { speak, speakSequence, stopSpeaking, isSpeechSupported } from "../lib/speech.js";
