@@ -14,12 +14,25 @@
 // 給 panel 這類 position: fixed 的元件用。
 
 import { el } from "../lib/dom.js";
+import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
 
 export const demos = [
+  {
+    name: "heading",
+    description: "Pixel-font titles. level sets the HTML tag (h1–h4); size sets the look.",
+    variants: [
+      { label: "xl (24px on mobile, 32px from 768px)", wide: true, render: () => createHeading({ text: "Office", level: 1, size: "xl" }) },
+      { label: "lg", render: () => createHeading({ text: "Scene complete!", size: "lg" }) },
+      { label: "md", render: () => createHeading({ text: "Stapler", size: "md" }) },
+      { label: "sm · accent", render: () => createHeading({ text: "Say it to yourself", size: "sm", tone: "accent" }) },
+      { label: "sm · muted", render: () => createHeading({ text: "Mini dialogue", size: "sm", tone: "muted" }) },
+      { label: "long title wraps", render: () => el("div", { attrs: { style: "max-width: 240px" } }, [createHeading({ text: "Convenience store sign", size: "lg" })]) },
+    ],
+  },
   {
     name: "icon",
     description: "Pixel icons drawn from character grids. Colour follows the text colour; size is grid × scale.",

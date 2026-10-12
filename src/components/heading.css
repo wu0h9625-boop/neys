@@ -1,0 +1,22 @@
+/* heading */
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--heading-size, var(--text-display-md));
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  color: var(--heading-color, var(--color-text));
+  overflow-wrap: anywhere;
+}
+
+.heading--sm { --heading-size: var(--text-display-sm); }
+.heading--lg { --heading-size: var(--text-display-lg); }
+/* xl 在手機上是 24px，768px 以上才放大到 32px，避免長標題換太多行 */
+.heading--xl { --heading-size: var(--text-display-lg); }
+
+.heading--accent { --heading-color: var(--color-accent); }
+.heading--muted { --heading-color: var(--color-text-muted); }
+
+@media (min-width: 768px) {
+  .heading--xl { --heading-size: var(--text-display-xl); }
+}

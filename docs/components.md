@@ -29,6 +29,7 @@
 | `scene-card` | 未開始 |
 | `panel` | 未開始 |
 | `modal` | 未開始 |
+| `heading` | 完成 |
 | `icon` | 完成 |
 
 ## 元件說明
@@ -99,3 +100,22 @@
     button.append(createIcon("speaker"));
 
 注意事項：SVG 一律加 `aria-hidden="true"`，文字說明由外層元件（例如 button 的 label）提供。新增圖示時在 `ICONS` 加一組點陣，並在本節的 name 清單補上。
+
+### heading
+
+用途：像素字體（Press Start 2P）標題。`level` 決定 HTML 標籤（語意層級），`size` 決定外觀大小，兩者分開設定，避免為了字級改錯標題層級。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| text | string | — | 標題文字 |
+| level | 1–4 | `2` | 輸出 `h1`–`h4` |
+| size | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` | `"md"` | 12 / 16 / 24 / 32px；`xl` 在 768px 以下是 24px |
+| tone | `"default"` \| `"accent"` \| `"muted"` | `"default"` | 文字顏色 |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createHeading } from "../components/heading.js";
+    const title = createHeading({ text: "Say it to yourself", level: 3, size: "sm", tone: "accent" });
+
+注意事項：一頁只用一個 `level: 1`。長單字（例如 `refrigerator`）在窄欄會在任意位置斷行，不會撐破版面。

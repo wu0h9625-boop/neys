@@ -31,6 +31,7 @@
 - [ ] `scene-card`
 - [ ] `panel`（三種斷點行為）
 - [ ] `modal`
+- [x] `heading`（新增，原清單外）
 - [x] `icon`（新增，原清單外）
 
 ## M2 邏輯
