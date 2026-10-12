@@ -20,7 +20,7 @@
   gap: var(--space-4);
   padding: var(--space-3) var(--gutter);
   background: var(--color-surface);
-  border-bottom: var(--border-width) solid var(--color-shadow);
+  border-bottom: var(--border-width) solid var(--color-border);
 }
 
 .gallery-shell__title {

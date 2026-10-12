@@ -39,7 +39,7 @@ h4 {
   font-family: var(--font-display);
   font-weight: 400;
   -webkit-font-smoothing: none; /* 像素字體關掉反鋸齒才會銳利 */
-  line-height: var(--leading-tight);
+  line-height: var(--leading-heading);
 }
 
 img,
@@ -76,14 +76,14 @@ ol {
 /* 例句與對話裡的目標單字（由 highlightWords 產生） */
 mark {
   background: none;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   font-weight: var(--weight-bold);
 }
 
 /* 鍵盤焦點：像素風的方形外框，滑鼠點擊時不顯示 */
 :focus-visible {
   outline: var(--border-width) solid var(--color-focus);
-  outline-offset: var(--border-width-thin);
+  outline-offset: var(--border-width);
 }
 
 :focus:not(:focus-visible) {
