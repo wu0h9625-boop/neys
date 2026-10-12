@@ -29,6 +29,7 @@
 | `scene-card` | 未開始 |
 | `panel` | 未開始 |
 | `modal` | 未開始 |
+| `tag` | 完成 |
 | `heading` | 完成 |
 | `icon` | 完成 |
 
@@ -119,3 +120,24 @@
     const title = createHeading({ text: "Say it to yourself", level: 3, size: "sm", tone: "accent" });
 
 注意事項：一頁只用一個 `level: 1`。長單字（例如 `refrigerator`）在窄欄會在任意位置斷行，不會撐破版面。
+
+### tag
+
+用途：小標籤，可帶一個圖示。對話的說話者（A / B）、例句類型（Describe / Act / Feel）、`progress-badge` 都用它。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| text | string | — | 標籤文字 |
+| tone | `"default"` \| `"accent"` \| `"info"` \| `"success"` \| `"danger"` | `"default"` | 底色 |
+| icon | string | — | `icon` 元件的圖示名稱 |
+| className | string | `""` | 額外 class |
+| attrs | object | — | 額外 HTML 屬性，例如 `aria-label` |
+
+更新用的函式：`setTagTone(tag, tone)`、`setTagText(tag, text)`。
+
+範例：
+
+    import { createTag } from "../components/tag.js";
+    const speaker = createTag({ text: "A", tone: "info" });
+
+注意事項：tag 是純展示，不能點。要可以點的請用 `button`。

@@ -17,6 +17,7 @@ import { el } from "../lib/dom.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
+import { createTag } from "../components/tag.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
 
@@ -52,6 +53,18 @@ export const demos = [
       { label: "raised", render: () => createPixelFrame({ variant: "raised", children: [sampleText()] }) },
       { label: "padding sm", render: () => createPixelFrame({ padding: "sm", children: [sampleText("Small padding")] }) },
       { label: "padding lg", render: () => createPixelFrame({ padding: "lg", children: [sampleText("Large padding")] }) },
+    ],
+  },
+  {
+    name: "tag",
+    description: "Small label. Used for dialogue speakers, sentence types and progress counts.",
+    variants: [
+      { label: "default", render: () => createTag({ text: "Describe" }) },
+      { label: "accent", render: () => createTag({ text: "B", tone: "accent" }) },
+      { label: "info", render: () => createTag({ text: "A", tone: "info" }) },
+      { label: "success", render: () => createTag({ text: "14/14", tone: "success", icon: "star" }) },
+      { label: "danger", render: () => createTag({ text: "Missed", tone: "danger" }) },
+      { label: "with icon", render: () => createTag({ text: "Found 4/14", icon: "star" }) },
     ],
   },
 ];

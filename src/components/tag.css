@@ -1,0 +1,22 @@
+/* tag */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--tag-fg, var(--color-text-inverse));
+  background: var(--tag-bg, var(--color-text-muted));
+}
+
+.tag--accent { --tag-bg: var(--color-accent); }
+.tag--info { --tag-bg: var(--color-info); }
+.tag--success { --tag-bg: var(--color-success); }
+.tag--danger {
+  --tag-bg: var(--color-danger);
+  --tag-fg: var(--color-text);
+}
