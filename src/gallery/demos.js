@@ -20,8 +20,15 @@ import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
+import { createTextInput, setTextInputState, setTextInputReadOnly } from "../components/text-input.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
+
+const withState = (state, value) => {
+  const input = createTextInput({ value });
+  setTextInputState(input, state);
+  return input;
+};
 
 export const demos = [
   {
@@ -91,6 +98,17 @@ export const demos = [
       { label: "success", render: () => createTag({ text: "14/14", tone: "success", icon: "star" }) },
       { label: "danger", render: () => createTag({ text: "Missed", tone: "danger" }) },
       { label: "with icon", render: () => createTag({ text: "Found 4/14", icon: "star" }) },
+    ],
+  },
+  {
+    name: "text-input",
+    description: "Answer field. Press Enter to submit. Wrong answers shake the field.",
+    variants: [
+      { label: "default (focus it)", render: () => createTextInput({ onSubmit: (value) => console.log("submit", value) }) },
+      { label: "almost", render: () => withState("almost", "refrigerater") },
+      { label: "wrong (shakes when set)", render: () => withState("wrong", "freezer") },
+      { label: "correct + read-only", render: () => { const input = withState("correct", "fridge"); setTextInputReadOnly(input, true); return input; } },
+      { label: "hidden label", render: () => createTextInput({ hideLabel: true }) },
     ],
   },
 ];

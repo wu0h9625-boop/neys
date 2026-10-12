@@ -1,0 +1,68 @@
+/*
+ * text-input
+ * 外框來自 .pixel-border，狀態只改 --text-input-border 的顏色。
+ */
+
+.text-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.text-input__label {
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.text-input__field {
+  --pixel-border-color: var(--text-input-border, var(--color-border));
+  width: calc(100% - var(--border-width) * 2);
+  min-height: var(--hit-min);
+  margin: var(--border-width);
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  /* 16px 以上，iOS Safari 才不會在聚焦時自動放大畫面 */
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  transition: box-shadow var(--duration-fast) var(--ease-pixel);
+}
+
+.text-input__field::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* 外框本身就是焦點提示，不再疊 outline */
+.text-input__field:focus-visible,
+.text-input__field:focus {
+  outline: none;
+}
+
+/* 聚焦用藍色，不用全域的黃色焦點色，避免跟 almost 狀態的黃色框混淆 */
+.text-input[data-state="default"] .text-input__field:focus {
+  --text-input-border: var(--color-primary-hover);
+}
+
+.text-input__field:read-only {
+  background: var(--color-surface);
+}
+
+/* States */
+.text-input[data-state="almost"] { --text-input-border: var(--color-almost); }
+.text-input[data-state="wrong"] { --text-input-border: var(--color-danger-text); }
+.text-input[data-state="correct"] { --text-input-border: var(--color-success); }
+
+.text-input--shake .text-input__field {
+  animation: text-input-shake 320ms var(--ease-pixel);
+}
+
+@keyframes text-input-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(calc(var(--px) * -2)); }
+  50% { transform: translateX(calc(var(--px) * 2)); }
+  75% { transform: translateX(calc(var(--px) * -1)); }
+}

@@ -23,7 +23,7 @@
 - [x] `pixel-frame`
 - [x] `button`（primary / secondary / ghost，加上 iconOnly、block）
 - [x] `speak-button`
-- [ ] `text-input`（default / almost / wrong / correct）
+- [x] `text-input`（default / almost / wrong / correct）
 - [ ] `feedback`
 - [ ] `sentence-list`
 - [ ] `dialogue`

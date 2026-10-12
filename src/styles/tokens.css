@@ -46,7 +46,8 @@
 
   --color-success: var(--palette-6);
   --color-almost: var(--palette-4);
-  --color-danger: var(--palette-2);
+  --color-danger: var(--palette-2);       /* 只當底色用；在深色背景上當文字對比只有約 2.7:1 */
+  --color-danger-text: var(--palette-3);  /* 錯誤的文字與框線，深色背景上約 6:1 */
   --color-info: var(--palette-11);
 
   --color-focus: var(--palette-4);

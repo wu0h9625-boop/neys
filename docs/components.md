@@ -21,7 +21,7 @@
 | `pixel-frame` | 完成 |
 | `button` | 完成 |
 | `speak-button` | 完成 |
-| `text-input` | 未開始 |
+| `text-input` | 完成 |
 | `feedback` | 未開始 |
 | `sentence-list` | 未開始 |
 | `dialogue` | 未開始 |
@@ -192,3 +192,34 @@
     const listen = createSpeakButton({ text: object.word });
 
 注意事項：發音邏輯在 `src/lib/speech.js`。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
+
+### text-input
+
+用途：作答輸入框。外框來自 `.pixel-border`，聚焦時框線變藍色（避開 almost 的黃色）；狀態改變框線顏色：almost 黃、wrong 橘（並搖晃）、correct 綠。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| label | string | `"What's this called?"` | 輸入框上方的標籤 |
+| placeholder | string | `"Type the English word"` | 提示文字 |
+| name | string | `"answer"` | input 的 name |
+| value | string | `""` | 初始值 |
+| hideLabel | boolean | `false` | 標籤只給螢幕閱讀器讀 |
+| autofocus | boolean | `false` | 自動聚焦 |
+| onSubmit | function(value) | — | 按 Enter 時呼叫；輸入法選字中的 Enter 不算 |
+| className | string | `""` | 額外 class |
+
+更新用的函式：
+
+| 函式 | 說明 |
+|---|---|
+| `setTextInputState(input, state)` | `"default"` \| `"almost"` \| `"wrong"` \| `"correct"`；wrong 會重播搖晃動畫並設 `aria-invalid` |
+| `getTextInputValue(input)` / `setTextInputValue(input, value)` | 讀寫內容 |
+| `setTextInputReadOnly(input, readOnly)` | 揭曉後鎖住輸入框 |
+| `focusTextInput(input)` | 聚焦 |
+
+範例：
+
+    import { createTextInput, setTextInputState } from "../components/text-input.js";
+    const answer = createTextInput({ onSubmit: (value) => setTextInputState(answer, check(value)) });
+
+注意事項：字級 20px，避免 iOS Safari 聚焦時自動放大畫面。關閉了自動大寫、自動修正、拼字檢查，避免瀏覽器幫使用者改答案。
