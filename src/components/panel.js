@@ -4,7 +4,7 @@
 //   ≥ 1024px     固定在場景右側，一直顯示，沒有關閉鈕
 // 面板不是 modal：開著的時候還是可以點場景裡的其他物件。
 
-import { el } from "../lib/dom.js";
+import { append, el } from "../lib/dom.js";
 import { createButton } from "./button.js";
 import { createHeading } from "./heading.js";
 import { createPixelFrame } from "./pixel-frame.js";
@@ -80,7 +80,9 @@ export function setPanelContent(panel, { title, children } = {}) {
   if (title !== undefined) panel.querySelector(".panel__header .heading").textContent = title;
   if (children !== undefined) {
     const body = panel.querySelector(".panel__body");
-    body.replaceChildren(...(Array.isArray(children) ? children : [children]));
+    body.replaceChildren();
+    // 跟 el() 一樣略過 null / false，方便用條件式組內容（replaceChildren 會把 null 變成文字 "null"）
+    append(body, children);
     body.scrollTop = 0;
   }
 }
