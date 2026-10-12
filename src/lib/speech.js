@@ -52,6 +52,31 @@ export function speak(text, { voice = 0, rate = 0.95 } = {}) {
   return done;
 }
 
+/**
+ * 連續唸多句（對話的 Play all）。所有句子在同一個點擊事件裡一次排進佇列，iOS Safari 才不會擋。
+ * speakSequence([{ text, voice }], { onLineStart: (index) => {} })
+ * 全部唸完回傳 true；被打斷回傳 false。
+ */
+export function speakSequence(items, { rate = 0.95, onLineStart } = {}) {
+  if (!isSpeechSupported() || items.length === 0) return Promise.resolve(false);
+
+  synth.cancel();
+  return new Promise((resolve) => {
+    items.forEach(({ text, voice = 0 }, index) => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = LANG;
+      utterance.rate = rate;
+      if (voices.length > 0) utterance.voice = voices[voice % voices.length];
+      if (voice > 0 && voices.length < 2) utterance.pitch = 1.25;
+
+      utterance.onstart = () => onLineStart?.(index);
+      utterance.onerror = () => resolve(false);
+      if (index === items.length - 1) utterance.onend = () => resolve(true);
+      synth.speak(utterance);
+    });
+  });
+}
+
 export function stopSpeaking() {
   if (isSpeechSupported()) synth.cancel();
 }

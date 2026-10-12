@@ -24,7 +24,7 @@
 | `text-input` | 完成 |
 | `feedback` | 完成 |
 | `sentence-list` | 完成 |
-| `dialogue` | 未開始 |
+| `dialogue` | 完成 |
 | `progress-badge` | 未開始 |
 | `scene-card` | 未開始 |
 | `panel` | 未開始 |
@@ -263,3 +263,23 @@
     const selfTalk = createSentenceList({ sentences: object.selfTalk, highlight: object.accept });
 
 注意事項：例句字級 20px，方便跟著唸。標色用全域的 `mark` 樣式（`base.css`），由 `src/lib/dom.js` 的 `highlightWords()` 產生。
+
+### dialogue
+
+用途：兩人一來一往的對話。每句左邊是說話者標籤（第一位青色、第二位黃色），右邊是發音按鈕。標題旁的 Play all 會用兩種聲音連續唸完，唸到哪句就標底色，播放中按鈕變成 Stop。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| title | string | `"Mini dialogue"` | 標題，空字串則不顯示 |
+| lines | `{ speaker, text }[]` | `[]` | 對話內容；speaker 通常是 `"A"`、`"B"` |
+| speakers | object | `{}` | 說話者顯示名稱，例如 `{ A: "You", B: "Coworker" }`；沒給就顯示代號 |
+| highlight | string[] | `[]` | 要標色的單字 |
+| headingLevel | 1–4 | `3` | 標題的 HTML 層級 |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createDialogue } from "../components/dialogue.js";
+    const talk = createDialogue({ lines: object.dialogue, highlight: object.accept });
+
+注意事項：聲音與顏色依說話者第一次出現的順序分配。Play all 用 `speakSequence()` 在同一次點擊裡把所有句子排進佇列，iOS Safari 才不會擋。三欄用 `subgrid` 對齊，說話者名稱長短不同時文字仍然對齊。瀏覽器不支援發音時 Play all 隱藏。

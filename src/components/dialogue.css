@@ -1,0 +1,51 @@
+/* dialogue */
+
+.dialogue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.dialogue__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* 每句共用同一組欄位（subgrid），說話者名稱長短不同時，對話文字仍然對齊 */
+.dialogue__lines {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: var(--space-3);
+}
+
+.dialogue__line {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
+  transition: background-color var(--duration-fast) var(--ease-pixel);
+}
+
+.dialogue__line:last-child {
+  border-bottom: 0;
+}
+
+/* Play all 唸到哪一句就標底色 */
+.dialogue__line--playing {
+  background: var(--color-surface);
+}
+
+.dialogue__speaker {
+  justify-self: start;
+}
+
+.dialogue__text {
+  min-width: 0;
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body);
+}

@@ -26,7 +26,7 @@
 - [x] `text-input`（default / almost / wrong / correct）
 - [x] `feedback`
 - [x] `sentence-list`
-- [ ] `dialogue`
+- [x] `dialogue`
 - [ ] `progress-badge`
 - [ ] `scene-card`
 - [ ] `panel`（三種斷點行為）

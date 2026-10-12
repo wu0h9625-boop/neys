@@ -13,6 +13,7 @@
 
 /* Components（依字母排序）*/
 @import url("../components/button.css");
+@import url("../components/dialogue.css");
 @import url("../components/feedback.css");
 @import url("../components/heading.css");
 @import url("../components/icon.css");

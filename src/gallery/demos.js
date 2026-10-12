@@ -15,6 +15,7 @@
 
 import { el } from "../lib/dom.js";
 import { createButton } from "../components/button.js";
+import { createDialogue } from "../components/dialogue.js";
 import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
@@ -45,6 +46,40 @@ export const demos = [
       { label: "icon-only ghost", render: () => createButton({ label: "Play pronunciation", variant: "ghost", icon: "speaker", iconOnly: true }) },
       { label: "disabled", render: () => createButton({ label: "Check", disabled: true }) },
       { label: "block (full width)", wide: true, render: () => el("div", { attrs: { style: "width: 100%; max-width: 360px" } }, [createButton({ label: "Scene talk", icon: "chat", block: true })]) },
+    ],
+  },
+  {
+    name: "dialogue",
+    description: "Two-person dialogue. Each line has a speak button; Play all reads every line with two voices and marks the current line.",
+    variants: [
+      {
+        label: "default speakers A / B",
+        wide: true,
+        render: () =>
+          createDialogue({
+            highlight: ["stapler"],
+            lines: [
+              { speaker: "A", text: "Hey, do you have a stapler I could borrow?" },
+              { speaker: "B", text: "Sure, it's in the top drawer." },
+              { speaker: "A", text: "Thanks! Mine keeps jamming." },
+              { speaker: "B", text: "Just bring it back when you're done." },
+            ],
+          }),
+      },
+      {
+        label: "named speakers (different widths stay aligned)",
+        wide: true,
+        render: () =>
+          createDialogue({
+            title: "At the crosswalk",
+            speakers: { A: "You", B: "Stranger" },
+            highlight: ["crosswalk"],
+            lines: [
+              { speaker: "A", text: "Excuse me, is this crosswalk safe to use?" },
+              { speaker: "B", text: "Yes, just wait for the green light." },
+            ],
+          }),
+      },
     ],
   },
   {
