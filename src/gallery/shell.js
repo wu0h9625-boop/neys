@@ -37,12 +37,18 @@ function fitHeight() {
   frame.style.height = `${doc.documentElement.scrollHeight}px`;
 }
 
-frame.addEventListener("load", () => {
+function watchFrame() {
   const doc = frame.contentDocument;
-  if (!doc) return;
+  if (!doc || !doc.body) return;
   new ResizeObserver(fitHeight).observe(doc.body);
   fitHeight();
-});
+}
+
+frame.addEventListener("load", watchFrame);
+// iframe 有快取時可能在這支 module 執行前就載完，load 事件已經錯過
+if (frame.contentDocument?.readyState === "complete" && frame.contentDocument.body?.childElementCount) {
+  watchFrame();
+}
 
 select.addEventListener("change", () => {
   applyWidth(select.value);
