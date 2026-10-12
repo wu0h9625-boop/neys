@@ -41,7 +41,7 @@
   --outline-color: var(--color-border);
 }
 
-/* ---------- 物件右上角的「?」與星星 ---------- */
+/* ---------- 物件右上角的「?」（未找到）與 ✓（已找到），只在 hover / 聚焦 / 選取時出現 ---------- */
 
 .scene-stage__markers {
   position: absolute;

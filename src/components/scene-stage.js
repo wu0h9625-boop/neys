@@ -4,7 +4,8 @@
 //   滑鼠      hover 出現黃色外框與「?」，點擊選取
 //   觸控      第一次點出現外框與「?」，再點一次同一個物件才選取
 //   鍵盤      Tab 逐一聚焦物件（外框與「?」），Enter / 空白鍵選取
-// 已找到的物件右上角一直顯示星星。
+// 平常場景上不顯示任何標記，保持畫面乾淨；hover、聚焦或選取時，
+// 右上角顯示黃色「?」（還沒找到）或綠色 ✓（已找到）。
 // 太小的物件會加一塊透明的點擊範圍，換算成螢幕上至少 24×24px（WCAG 2.2 AA 最小目標尺寸）。
 
 import { el } from "../lib/dom.js";
@@ -178,14 +179,12 @@ function render(state) {
     object.group.setAttribute("aria-label", state.getLabel(id, isFound));
     object.group.setAttribute("aria-pressed", String(isSelected));
 
-    const show = isFound || isActive || isSelected;
-    object.marker.classList.toggle("scene-stage__marker--visible", show);
+    object.marker.classList.toggle("scene-stage__marker--visible", isActive || isSelected);
     object.marker.classList.toggle("scene-stage__marker--found", isFound);
-    object.marker.classList.toggle("scene-stage__marker--active", isActive || isSelected);
     const kind = isFound ? "found" : "unknown";
     if (object.marker.dataset.kind !== kind) {
       object.marker.dataset.kind = kind;
-      object.marker.replaceChildren(isFound ? createIcon("star") : "?");
+      object.marker.replaceChildren(isFound ? createIcon("check") : "?");
     }
   });
 }

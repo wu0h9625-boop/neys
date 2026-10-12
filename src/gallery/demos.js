@@ -264,7 +264,7 @@ export const demos = [
   },
   {
     name: "scene-stage",
-    description: "Interactive scene art (office). Selecting an object here also marks it as found so you can see the star.",
+    description: "Interactive scene art (office). Selecting an object here also marks it as found; hover it again to see the green check instead of the ?.",
     variants: [{ label: "office · mug already found", wide: true, render: stageDemo }],
   },
   {

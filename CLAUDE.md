@@ -65,7 +65,7 @@ index.html        遊戲入口
 | `heading` | 像素字體標題，level（h1–h4 語意）和 size（sm / md / lg / xl 外觀）分開設定。所有標題都用它 |
 | `tag` | 小標籤，可帶圖示。對話說話者、例句類型、progress-badge 都用它 |
 | `text` | 一般段落文字（default / muted / accent，sm / md / lg）。頁面的說明、副標、灰色補充文字都用它 |
-| `scene-stage` | 可互動的場景圖：hover / 第一次 tap 顯示外框與「?」，再點選取；鍵盤 Tab + Enter；已找到的物件顯示星星；小物件自動加大點擊範圍到 24px |
+| `scene-stage` | 可互動的場景圖：hover / 第一次 tap 顯示外框與「?」，再點選取；鍵盤 Tab + Enter；hover 或選取已找到的物件時顯示綠色 ✓（平常不標示）；小物件自動加大點擊範圍到 24px |
 
 清單以外的新元件，先確認現有元件加 variant 做不到，再新增並補進這張表。
 
