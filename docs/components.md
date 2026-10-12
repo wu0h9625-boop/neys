@@ -325,3 +325,44 @@
     const card = createSceneCard({ title: "Office", href: "#/scene/office", thumbnail: officeSvg, found: 4, total: 14 });
 
 注意事項：卡片寬度由外層排版決定（例如首頁的 grid），卡片本身會撐滿。整張卡片只有一個連結，裡面不要再放按鈕。
+
+### panel
+
+用途：場景頁的作答面板。同一個元件依寬度變成三種形態，全部由 CSS 處理：
+
+| 寬度 | 形態 | 關閉時 |
+|---|---|---|
+| < 768px | bottom sheet，貼齊底部，最高 70% 螢幕，上方仍看得到場景 | 移到畫面下方並隱藏 |
+| 768–1023px | 從右側滑出，寬 400px | 移到畫面右側並隱藏 |
+| ≥ 1024px | 固定在場景右側（sticky），一直顯示，沒有關閉鈕 | 不變 |
+
+面板不是 modal，開著時仍可點場景裡的其他物件，換內容用 `setPanelContent`。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| title | string | `""` | 標題，同時是面板的 `aria-labelledby` |
+| children | Node[] | `[]` | 內容，放在可捲動的 body |
+| open | boolean | `false` | 初始是否打開 |
+| onClose | function | — | 使用者按關閉鈕或 Esc 時呼叫 |
+| className | string | `""` | 額外 class |
+
+控制用的函式：
+
+| 函式 | 說明 |
+|---|---|
+| `openPanel(panel, { focus })` | 打開，預設把焦點移到面板 |
+| `closePanel(panel)` | 關閉並呼叫 `onClose` |
+| `isPanelOpen(panel)` | 是否打開 |
+| `setPanelContent(panel, { title, children })` | 換標題或內容，內容會捲回頂端 |
+
+可覆寫的 CSS 變數：`--panel-sheet-max-height`（手機最高，預設 70vh）、`--panel-desktop-max-height`（桌機最高，預設螢幕高度扣上下 16px）。
+
+範例：
+
+    import { createPanel, openPanel, setPanelContent } from "../components/panel.js";
+    const panel = createPanel({ title: "Object 3 of 14", children: [answerInput, feedback] });
+    sceneLayout.append(sceneElement, panel);
+    setPanelContent(panel, { title: "Object 4 of 14", children: [...] });
+    openPanel(panel);
+
+注意事項：桌機版是 sticky，外層排版要把面板放在場景旁邊的欄位（例如 `grid-template-columns: 1fr auto`）。手機版底部有 safe-area 內距，避開 iPhone 的 Home 條。

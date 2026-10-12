@@ -29,7 +29,7 @@
 - [x] `dialogue`
 - [x] `progress-badge`
 - [x] `scene-card`
-- [ ] `panel`（三種斷點行為）
+- [x] `panel`（三種斷點行為）
 - [ ] `modal`
 - [x] `tag`（新增，原清單外）
 - [x] `heading`（新增，原清單外）

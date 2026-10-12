@@ -136,3 +136,35 @@
 .gallery__error {
   color: var(--color-danger-text);
 }
+
+/* panel 展示用的假場景頁：手機與平板只有場景，桌機場景在左、面板在右 */
+.gallery__viewport {
+  --panel-sheet-max-height: 70%;
+  --panel-desktop-max-height: calc(480px - var(--space-4) * 2);
+}
+
+.gallery-demo-layout {
+  display: grid;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-4);
+  overflow-y: auto;
+}
+
+.gallery-demo-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-height: 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 1024px) {
+  .gallery-demo-layout {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+}

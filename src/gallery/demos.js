@@ -19,6 +19,7 @@ import { createDialogue } from "../components/dialogue.js";
 import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
+import { createPanel, openPanel } from "../components/panel.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 import { createProgressBadge, setProgress } from "../components/progress-badge.js";
 import { createSceneCard } from "../components/scene-card.js";
@@ -38,6 +39,29 @@ const sampleThumb = () => {
   ];
   const body = rects.map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`).join("");
   return new DOMParser().parseFromString(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 108" shape-rendering="crispEdges">${body}</svg>`, "image/svg+xml").documentElement;
+};
+
+// panel 展示：一個假場景頁，面板裡放實際的作答內容
+const panelDemo = () => {
+  const answer = createTextInput({});
+  const panel = createPanel({
+    title: "Object 3 of 14",
+    children: [
+      answer,
+      el("div", { attrs: { style: "display: flex; flex-wrap: wrap; gap: 8px" } }, [
+        createButton({ label: "Check" }),
+        createButton({ label: "Hint", variant: "secondary", icon: "bulb" }),
+        createButton({ label: "Reveal", variant: "secondary" }),
+      ]),
+      createFeedback({ tone: "hint", message: "s _ _ _ _ _ _ (7)" }),
+      createSentenceList({ highlight: ["stapler"], sentences: ["There's a stapler on my desk.", "Let me staple these pages together.", "This stapler keeps jamming."] }),
+    ],
+  });
+  const scene = el("div", { className: "gallery-demo-scene" }, [
+    el("p", { text: "Scene area. Below 1024px the panel is hidden until opened." }),
+    createButton({ label: "Open panel", onClick: () => openPanel(panel) }),
+  ]);
+  return el("div", { className: "gallery-demo-layout" }, [scene, panel]);
 };
 
 const withState = (state, value) => {
@@ -127,6 +151,11 @@ export const demos = [
       { label: "speaker · scale 3", render: () => createIcon("speaker", { scale: 3 }) },
       { label: "star · accent colour", render: () => el("span", { attrs: { style: "color: var(--color-accent)" } }, [createIcon("star", { scale: 3 })]) },
     ],
+  },
+  {
+    name: "panel",
+    description: "Answer panel for the scene page. Under 768px it is a bottom sheet, 768–1023px it slides in from the right, from 1024px it sits beside the scene. Switch the width to compare. Escape or the close button closes it.",
+    variants: [{ label: "inside a simulated 480px-tall screen", wide: true, viewport: true, render: panelDemo }],
   },
   {
     name: "pixel-frame",

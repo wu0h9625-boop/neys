@@ -1,0 +1,120 @@
+/*
+ * panel
+ * 手機：bottom sheet ／ 平板：右側滑出 ／ 桌機：場景右側固定欄位（sticky）。
+ *
+ * 可覆寫的變數（主要給元件展示頁的模擬螢幕用）：
+ *   --panel-sheet-max-height   手機 bottom sheet 最高，預設 70vh
+ *   --panel-desktop-max-height 桌機面板最高，預設螢幕高度扣上下間距
+ */
+
+/* ---------- 手機：bottom sheet ---------- */
+.panel {
+  position: fixed;
+  z-index: var(--z-panel);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: var(--panel-sheet-max-height, var(--sheet-max-height));
+  transform: translateY(calc(100% + var(--space-4)));
+  visibility: hidden;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    visibility 0s linear var(--duration-base);
+}
+
+.panel[data-open="true"] {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    visibility 0s;
+}
+
+.panel__frame {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* 往上投一層陰影，跟場景分開 */
+  --pixel-border-extra: 0 calc(var(--border-width) * -3) 0 0 var(--color-shadow);
+}
+
+.panel__frame:focus {
+  outline: none;
+}
+
+.panel__handle {
+  flex-shrink: 0;
+  width: var(--space-7);
+  height: var(--border-width);
+  margin: var(--space-2) auto 0;
+  background: var(--color-border-muted);
+}
+
+.panel__header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--hit-min);
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
+}
+
+.panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-height: 0;
+  padding: var(--space-4);
+  padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ---------- 平板：右側滑出 ---------- */
+@media (min-width: 768px) {
+  .panel {
+    top: 0;
+    left: auto;
+    width: min(var(--panel-width), calc(100% - var(--gutter) * 2));
+    max-height: none;
+    padding: var(--space-2) var(--space-2) var(--space-2) 0;
+    transform: translateX(calc(100% + var(--space-4)));
+  }
+
+  .panel__frame {
+    --pixel-border-extra: calc(var(--border-width) * -3) 0 0 0 var(--color-shadow);
+  }
+
+  .panel__handle {
+    display: none;
+  }
+}
+
+/* ---------- 桌機：固定在場景右側 ---------- */
+@media (min-width: 1024px) {
+  .panel,
+  .panel[data-open="true"] {
+    position: sticky;
+    top: var(--space-4);
+    z-index: auto;
+    width: var(--panel-width);
+    max-height: var(--panel-desktop-max-height, calc(100vh - var(--space-4) * 2));
+    padding: 0;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .panel__frame {
+    --pixel-border-extra: 0 0 0 0 transparent;
+  }
+
+  .panel__close {
+    display: none;
+  }
+}
