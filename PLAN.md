@@ -4,8 +4,8 @@
 
 ## 目前進度
 
-- 最後完成：資料夾結構、`CLAUDE.md`、`PLAN.md`
-- 下一步：M0 第一項 `src/styles/tokens.css`
+- 最後完成：M0 基礎全部完成
+- 下一步：M1 第一項 `pixel-frame`
 
 ## M0 基礎
 
@@ -13,7 +13,7 @@
 - [x] `src/styles/base.css`：reset、Google Fonts、body 背景（字體由 `main.css` 載入）
 - [x] `index.html` 骨架：載入 `main.css` 與 `src/app.js`
 - [x] `components.html` 展示頁骨架：每個元件一區，可切換 375 / 768 / 1440 寬度預覽
-- [ ] `docs/components.md` 骨架
+- [x] `docs/components.md` 骨架
 
 ## M1 元件庫
 
