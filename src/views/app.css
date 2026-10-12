@@ -15,3 +15,10 @@
     padding: var(--space-6);
   }
 }
+
+/* 桌機：設計稿的頁面內距 28px 40px 40px */
+@media (min-width: 1024px) {
+  .app {
+    padding: var(--page-padding-desktop);
+  }
+}

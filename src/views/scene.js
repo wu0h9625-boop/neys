@@ -12,6 +12,7 @@ import { loadScene, parseSvg, termsFor } from "../lib/scenes.js";
 import { speak, stopSpeaking } from "../lib/speech.js";
 import { createButton } from "../components/button.js";
 import { createDialogue } from "../components/dialogue.js";
+import { createDivider } from "../components/divider.js";
 import { createFeedback, setFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon } from "../components/icon.js";
@@ -21,10 +22,10 @@ import { createPixelFrame } from "../components/pixel-frame.js";
 import { createProgressBadge, setProgress } from "../components/progress-badge.js";
 import { createSceneStage, setStageFound, setStageSelected, resetStageFound } from "../components/scene-stage.js";
 import { createSentenceList } from "../components/sentence-list.js";
-import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
 import { createText } from "../components/text.js";
 import { createTextInput, setTextInputState, getTextInputValue, focusTextInput } from "../components/text-input.js";
+import { createWordCard } from "../components/word-card.js";
 
 export async function renderScene(root, sceneId) {
   const { data, svgText } = await loadScene(sceneId);
@@ -53,12 +54,16 @@ export async function renderScene(root, sceneId) {
 
   // ---------- 頁首 ----------
 
-  const progress = createProgressBadge({ found: found.size, total });
+  // 進度格依物件順序：已找到青色、目前選取黃色、還沒找到米灰色
+  const cellStates = () => ids.map((id) => (id === selected ? "current" : found.has(id) ? "found" : "empty"));
+  const progress = createProgressBadge({ found: found.size, total, cells: cellStates() });
+  const updateProgress = () => setProgress(progress, { found: found.size, total, cells: cellStates() });
 
   const header = el("header", { className: "scene-view__header" }, [
     el("div", { className: "scene-view__title-row" }, [
       createButton({ label: "Scenes", variant: "ghost", icon: "arrow-left", onClick: () => (location.hash = "#/") }),
-      createHeading({ text: data.title, level: 1, size: "lg" }),
+      createDivider(),
+      createHeading({ text: data.title, level: 1, size: "xl" }),
     ]),
     el("div", { className: "scene-view__tools" }, [
       progress,
@@ -74,6 +79,7 @@ export async function renderScene(root, sceneId) {
     onClose: () => {
       selected = null;
       setStageSelected(stage, null);
+      updateProgress();
       stopSpeaking();
     },
   });
@@ -93,6 +99,7 @@ export async function renderScene(root, sceneId) {
   function showEmpty() {
     selected = null;
     setStageSelected(stage, null);
+    updateProgress();
     setPanelContent(panel, { title: "Pick something", children: emptyContent() });
   }
 
@@ -102,6 +109,7 @@ export async function renderScene(root, sceneId) {
     selected = id;
     stopSpeaking();
     setStageSelected(stage, id);
+    updateProgress();
     if (found.has(id)) showRevealed(object, { result: "found" });
     else showQuestion(object, { focusInput });
     openPanel(panel, { focus: !focusInput || found.has(id) });
@@ -172,7 +180,7 @@ export async function renderScene(root, sceneId) {
       found.add(object.id);
       markFound(sceneId, object.id);
       setStageFound(stage, object.id);
-      setProgress(progress, { found: found.size, total });
+      updateProgress();
     }
 
     showRevealed(object, { result, typed, match });
@@ -197,12 +205,7 @@ export async function renderScene(root, sceneId) {
     setPanelContent(panel, {
       title: `Object ${numberOf(object.id)} of ${total}`,
       children: [
-        el("div", { className: "scene-view__word" }, [
-          createHeading({ text: object.word, level: 3, size: "lg", tone: "accent" }),
-          createSpeakButton({ text: object.word, variant: "secondary" }),
-          object.pos ? createTag({ text: object.pos }) : null,
-        ]),
-        others.length > 0 ? createText({ text: `Also OK: ${others.join(", ")}`, size: "sm", tone: "muted" }) : null,
+        createWordCard({ word: object.word, pos: object.pos, ipa: object.ipa, alternatives: others }),
         message ? createFeedback(message) : null,
         object.wordPicture ? createSentenceList({ title: "Word picture", sentences: wordPictureRows(object.wordPicture) }) : null,
         createSentenceList({ sentences: object.selfTalk, highlight: terms }),
@@ -276,7 +279,7 @@ export async function renderScene(root, sceneId) {
           resetScene(sceneId);
           found.clear();
           resetStageFound(stage);
-          setProgress(progress, { found: 0, total });
+          updateProgress();
           closePanel(panel);
           showEmpty();
           closeModal(resetModal);
@@ -295,8 +298,15 @@ export async function renderScene(root, sceneId) {
           createPixelFrame({ padding: "none", children: [stage] }),
           // 重設很少用，放在場景下方，手機上頁首才不會多佔一行
           el("div", { className: "scene-view__footer" }, [
-            createText({ text: "Hover or tap something, say its name, then open it.", size: "sm", tone: "muted" }),
-            createButton({ label: "Reset progress", variant: "ghost", onClick: () => openModal(resetModal) }),
+            el("div", { className: "scene-view__steps-row" }, [
+              el("span", { className: "scene-view__step-tags" }, [
+                createTag({ text: "1 Tap", kind: "pixel", tone: "ink" }),
+                createTag({ text: "2 Say it", kind: "pixel", tone: "ink" }),
+                createTag({ text: "3 Open", kind: "pixel", tone: "ink" }),
+              ]),
+              createText({ text: "Tap an object, say its name, then open it.", tone: "muted", tag: "span" }),
+            ]),
+            createButton({ label: "Reset progress", variant: "secondary", onClick: () => openModal(resetModal) }),
           ]),
         ]),
         panel,
