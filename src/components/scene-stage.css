@@ -1,0 +1,76 @@
+/*
+ * scene-stage
+ * 外框用 drop-shadow 往四個方向各推一格，沿著物件的輪廓描邊。
+ * SVG 元素上的 filter 長度是 SVG 自己的單位，1px = 場景圖的 1 個像素，會跟著場景一起縮放。
+ */
+
+.scene-stage {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scene-stage__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.scene-stage__object {
+  cursor: pointer;
+  outline: none;
+  --outline-color: var(--color-highlight);
+}
+
+.scene-stage__object.is-active,
+.scene-stage__object.is-selected {
+  filter:
+    drop-shadow(1px 0 0 var(--outline-color))
+    drop-shadow(-1px 0 0 var(--outline-color))
+    drop-shadow(0 1px 0 var(--outline-color))
+    drop-shadow(0 -1px 0 var(--outline-color));
+}
+
+/* 已選取但滑鼠移到別處時用白色外框，跟 hover 的黃色區分 */
+.scene-stage__object.is-selected:not(.is-active) {
+  --outline-color: var(--color-border);
+}
+
+/* ---------- 物件右上角的「?」與星星 ---------- */
+
+.scene-stage__markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scene-stage__marker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  min-width: var(--space-5);
+  height: var(--space-5);
+  padding: 0 var(--space-1);
+  transform: translate(-50%, -50%) scale(0);
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  line-height: 1;
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 var(--border-width-thin) var(--color-shadow);
+  transition: transform var(--duration-fast) var(--ease-pixel);
+}
+
+.scene-stage__marker--visible {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.scene-stage__marker--found {
+  color: var(--color-found);
+  background: var(--color-bg);
+}

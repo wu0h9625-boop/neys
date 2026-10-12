@@ -24,6 +24,8 @@ import { createPanel, openPanel } from "../components/panel.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 import { createProgressBadge, setProgress } from "../components/progress-badge.js";
 import { createSceneCard } from "../components/scene-card.js";
+import { createSceneStage, setStageFound, setStageSelected } from "../components/scene-stage.js";
+import { loadScene, parseSvg } from "../lib/scenes.js";
 import { createSentenceList } from "../components/sentence-list.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
@@ -82,6 +84,28 @@ const completeModal = () => {
     ],
   });
   return modal;
+};
+
+// scene-stage 展示：載入實際的 office 場景。點選後標成已找到，模擬答對
+const stageDemo = () => {
+  const status = createText({ text: "Hover, tap or Tab to an object, then click / tap again / press Enter.", size: "sm", tone: "muted" });
+  const wrap = el("div", { attrs: { style: "display: flex; flex-direction: column; gap: 12px; width: 100%" } }, [status]);
+  loadScene("office").then(({ data, svgText }) => {
+    const ids = data.objects.map((o) => o.id);
+    const stage = createSceneStage({
+      svg: parseSvg(svgText),
+      objectIds: ids,
+      found: new Set(["mug"]),
+      getLabel: (id, isFound) => `Object ${ids.indexOf(id) + 1} of ${ids.length}${isFound ? `: ${id}` : ""}`,
+      onSelect: (id) => {
+        setStageSelected(stage, id);
+        setStageFound(stage, id);
+        status.textContent = `Selected: ${id}`;
+      },
+    });
+    wrap.append(stage);
+  });
+  return wrap;
 };
 
 // panel 展示：一個假場景頁，面板裡放實際的作答內容
@@ -237,6 +261,11 @@ export const demos = [
         },
       },
     ],
+  },
+  {
+    name: "scene-stage",
+    description: "Interactive scene art (office). Selecting an object here also marks it as found so you can see the star.",
+    variants: [{ label: "office · mug already found", wide: true, render: stageDemo }],
   },
   {
     name: "scene-card",

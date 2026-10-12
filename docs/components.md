@@ -29,6 +29,7 @@
 | `scene-card` | 完成 |
 | `panel` | 完成 |
 | `modal` | 完成 |
+| `scene-stage` | 完成 |
 | `text` | 完成 |
 | `tag` | 完成 |
 | `heading` | 完成 |
@@ -415,3 +416,38 @@
 
     import { createText } from "../components/text.js";
     const note = createText({ text: "Progress is saved in this browser.", size: "sm", tone: "muted" });
+
+### scene-stage
+
+用途：可互動的場景圖。把 SVG 裡每個 `<g data-object="id">` 變成可以點的物件：
+
+| 操作 | 行為 |
+|---|---|
+| 滑鼠 hover | 物件出現 1 格像素的黃色外框，右上角出現「?」 |
+| 滑鼠點擊 | 選取（呼叫 `onSelect`） |
+| 觸控第一次點 | 出現外框與「?」，不選取；點空白處取消 |
+| 觸控再點同一個 | 選取；已選取的物件點一次就會再選取 |
+| 鍵盤 | Tab 依 SVG 順序聚焦物件，Enter 或空白鍵選取 |
+
+已找到的物件右上角一直有綠色星星。已選取但滑鼠移開的物件是白色外框。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| svg | SVGElement | — | 場景圖，用 `lib/scenes.js` 的 `parseSvg()` 產生 |
+| objectIds | string[] | `[]` | 要變成可點的物件 id；SVG 裡找不到的會在 console 警告 |
+| found | Set | 空 | 已找到的物件 |
+| getLabel | `(id, isFound) => string` | 回傳 id | 物件的 `aria-label`。未找到前不能寫出答案，例如 `"Object 3 of 15"` |
+| onSelect | `(id) => void` | — | 選取物件時呼叫 |
+| className | string | `""` | 額外 class |
+
+控制用的函式：`setStageSelected(stage, id \| null)`、`setStageFound(stage, id)`、`resetStageFound(stage)`、`focusStageObject(stage, id)`。
+
+範例：
+
+    import { createSceneStage, setStageSelected } from "../components/scene-stage.js";
+    const stage = createSceneStage({ svg, objectIds, found, getLabel, onSelect: (id) => setStageSelected(stage, id) });
+
+注意事項：
+- 小物件會在群組最底層加一塊透明的 `rect`，換算成螢幕上至少 24×24px（WCAG 2.2 AA 的最小目標尺寸），視窗縮放時重算。手機寬度下整張場景只有約 343×193px，PRD 原本的 44px 會讓相鄰物件的點擊範圍幾乎完全重疊，所以採 24px。
+- 外框用 SVG 上的 CSS `drop-shadow`，長度單位是 SVG 自己的座標：`1px` 就是場景圖的 1 個像素，會跟著場景縮放。
+- Tab 順序、「Object N of M」的編號都依 SVG 裡的群組順序，`npm test` 會檢查它跟 JSON 一致。
