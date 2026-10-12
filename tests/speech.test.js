@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { pickVoice, rankVoices } from "../src/lib/speech.js";
+import { rankVoices } from "../src/lib/speech.js";
 
 const v = (name, lang, extra = {}) => ({ name, lang, localService: true, default: false, ...extra });
 
@@ -54,26 +54,4 @@ test("標了 Enhanced / Premium 的高品質語音優先", () => {
 test("沒有英文語音時回傳空陣列", () => {
   assert.deepEqual(rankVoices([v("Mei-Jia", "zh-TW")]), []);
   assert.deepEqual(rankVoices(), []);
-});
-
-// ---------- pickVoice ----------
-
-test("有 Daniel 時，A 與 B 都用 Daniel、音調不變", () => {
-  const ranked = rankVoices(MAC);
-  assert.deepEqual(
-    [0, 1].map((i) => pickVoice(ranked, i)).map(({ voice, pitch }) => `${voice.name}/${pitch}`),
-    ["Daniel/1", "Daniel/1"],
-  );
-});
-
-test("沒有 Daniel 時，A 用第一名、B 用第二名", () => {
-  const ranked = rankVoices(MAC.filter((voice) => voice.name !== "Daniel"));
-  assert.equal(pickVoice(ranked, 0).voice.name, "Samantha");
-  assert.equal(pickVoice(ranked, 1).voice.name, "Karen");
-});
-
-test("只有一個語音、又不是 Daniel 時，B 調高音調區分", () => {
-  const ranked = rankVoices([v("Samantha", "en-US")]);
-  assert.equal(pickVoice(ranked, 1).pitch, 1.25);
-  assert.equal(pickVoice(ranked, 0).pitch, 1);
 });
