@@ -66,4 +66,6 @@ index.html        遊戲入口
 ## 工作習慣
 
 - 每完成 `PLAN.md` 的一個項目就打勾，並更新「目前進度」。
+- 每完成 `PLAN.md` 的一個項目就 commit 一次，`PLAN.md` 的勾選要包含在同一個 commit 裡。commit 訊息用英文祈使句，開頭寫里程碑，例如 `M1: add button component`。
+- 一個 commit 只放一個項目。做到一半發現要改別的元件，先 commit 目前的項目，再另外 commit。
 - 每個元件做完後，在 375px、768px、1440px 三種寬度下檢查展示頁。
