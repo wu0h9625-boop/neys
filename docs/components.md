@@ -29,6 +29,7 @@
 | `scene-card` | 未開始 |
 | `panel` | 未開始 |
 | `modal` | 未開始 |
+| `icon` | 完成 |
 
 ## 元件說明
 
@@ -81,3 +82,20 @@
     const box = createPixelFrame({ variant: "accent", children: [title, body] });
 
 注意事項：外框畫在元素外側 4px，不佔版面。`.pixel-frame` 自帶 4px 外距；單獨使用 `.pixel-border` 的元素要自己留外距。
+
+### icon
+
+用途：像素圖示。點陣用字元寫在 `icon.js` 的 `ICONS` 裡，`#` 是實心格。顏色跟著 `currentColor`，大小是點陣尺寸乘以 `scale`，一定是整數倍，放大後不會糊。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| name | string | — | `speaker`、`close`、`star`、`check`、`play`、`stop`、`arrow-left`、`bulb`、`chat` |
+| scale | number | `2` | 每個點陣格幾個 CSS px，用整數 |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createIcon } from "../components/icon.js";
+    button.append(createIcon("speaker"));
+
+注意事項：SVG 一律加 `aria-hidden="true"`，文字說明由外層元件（例如 button 的 label）提供。新增圖示時在 `ICONS` 加一組點陣，並在本節的 name 清單補上。

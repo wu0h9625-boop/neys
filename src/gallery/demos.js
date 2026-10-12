@@ -14,11 +14,21 @@
 // 給 panel 這類 position: fixed 的元件用。
 
 import { el } from "../lib/dom.js";
+import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
 
 export const demos = [
+  {
+    name: "icon",
+    description: "Pixel icons drawn from character grids. Colour follows the text colour; size is grid × scale.",
+    variants: [
+      ...ICON_NAMES.map((name) => ({ label: name, render: () => createIcon(name) })),
+      { label: "speaker · scale 3", render: () => createIcon("speaker", { scale: 3 }) },
+      { label: "star · accent colour", render: () => el("span", { attrs: { style: "color: var(--color-accent)" } }, [createIcon("star", { scale: 3 })]) },
+    ],
+  },
   {
     name: "pixel-frame",
     description: "Notched pixel border box. Panels, cards and dialogs are built on it. Also provides the .pixel-border class.",

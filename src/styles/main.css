@@ -12,6 +12,7 @@
 @import url("./base.css");
 
 /* Components（依字母排序）*/
+@import url("../components/icon.css");
 @import url("../components/pixel-frame.css");
 
 /* Views */

@@ -1,0 +1,8 @@
+/* icon：大小由 SVG 的 width / height 屬性決定（點陣尺寸 × scale），顏色跟著文字色 */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  fill: currentColor;
+  vertical-align: middle;
+}

@@ -57,6 +57,7 @@ index.html        遊戲入口
 | `progress-badge` | `Found 4/14` 計數 |
 | `scene-card` | 首頁場景卡片 |
 | `feedback` | 答對、答錯、提示的訊息列 |
+| `icon` | 像素圖示（speaker、close、star、check、play、stop、arrow-left、bulb、chat）。所有圖示都從這裡取，不另外畫 |
 
 清單以外的新元件，先確認現有元件加 variant 做不到，再新增並補進這張表。
 
