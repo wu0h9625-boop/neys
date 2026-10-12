@@ -19,6 +19,7 @@
 
 每個元件完成的定義：`.js` + `.css` 寫好、加進 `src/gallery/demos.js`、`docs/components.md` 補上用法、三種寬度檢查過。
 
+- [x] 共用 helper `src/lib/dom.js`（`el()`、`highlightWords()`）
 - [ ] `pixel-frame`
 - [ ] `button`（primary / secondary / ghost / icon-only）
 - [ ] `speak-button`（依賴 `lib/speech.js`，可先用 stub）

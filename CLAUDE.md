@@ -17,7 +17,7 @@
 ```
 src/components/   元件庫，每個元件一組 <name>.js + <name>.css
 src/views/        頁面，只負責組裝元件和排版
-src/lib/          純邏輯，不碰 DOM：答案判定、發音、進度保存
+src/lib/          邏輯與共用工具：答案判定、發音、進度保存；dom.js 是建立元素的 helper，所有地方都用它
 src/styles/       main.css（樣式總入口，HTML 只載入這支）、tokens.css（設計變數）、base.css（reset 與全域字體）
 scenes/           每個場景一組 <id>.json + <id>.svg
 src/gallery/      元件展示頁的程式；demos.js 是展示清單

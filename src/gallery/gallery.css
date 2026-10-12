@@ -111,6 +111,23 @@
   align-items: flex-start;
 }
 
+.gallery__variant--wide {
+  flex-basis: 100%;
+}
+
+/*
+ * 模擬一個小螢幕：transform 讓裡面 position: fixed 的元件（panel）
+ * 以這個框為定位基準，而不是整個 iframe。
+ */
+.gallery__viewport {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  transform: translateZ(0);
+  outline: var(--border-width-thin) dashed var(--color-border-muted);
+}
+
 .gallery__error {
   color: var(--color-danger);
 }
