@@ -1,0 +1,54 @@
+/*
+ * pixel-frame
+ *
+ * .pixel-border：像素外框線。四邊各用一層 box-shadow 畫在元素外側，
+ * 四個角留空，形成缺角的像素邊框。外框不佔版面，使用的元素要自己留 --border-width 的外距。
+ *   --pixel-border-color  外框顏色
+ *   --pixel-border-extra  額外疊加的一層陰影（例如按鈕底部的厚度）
+ *
+ * .pixel-frame：外框 + 底色 + 內距的容器。
+ *   --frame-bg、--frame-border、--frame-padding、--frame-margin 可由外部覆寫。
+ *   這支檔案只在 variant class 上宣告這些變數，基礎 class 用 var() 預設值，
+ *   所以先載入的元件 CSS 設定的值不會被蓋掉。
+ *
+ * 其他元件要改外框外觀時，覆寫上面的變數，不要直接覆寫 box-shadow / padding / margin，
+ * 因為 main.css 依字母排序載入，這支檔案排在多數元件後面，直接覆寫屬性會被蓋掉。
+ */
+
+/* 這裡不宣告變數本身，只用 var() 的預設值，避免蓋掉先載入的元件設定的值 */
+.pixel-border {
+  box-shadow:
+    0 calc(var(--border-width) * -1) 0 0 var(--pixel-border-color, var(--color-border)),
+    0 var(--border-width) 0 0 var(--pixel-border-color, var(--color-border)),
+    calc(var(--border-width) * -1) 0 0 0 var(--pixel-border-color, var(--color-border)),
+    var(--border-width) 0 0 0 var(--pixel-border-color, var(--color-border)),
+    var(--pixel-border-extra, 0 0 0 0 transparent);
+}
+
+.pixel-frame {
+  --pixel-border-color: var(--frame-border, var(--color-border));
+  position: relative;
+  margin: var(--frame-margin, var(--border-width));
+  padding: var(--frame-padding, var(--space-4));
+  background: var(--frame-bg, var(--color-bg));
+  color: var(--color-text);
+}
+
+/* Variants */
+.pixel-frame--muted {
+  --frame-bg: var(--color-surface);
+  --frame-border: var(--color-border-muted);
+}
+
+.pixel-frame--accent {
+  --frame-border: var(--color-accent);
+}
+
+.pixel-frame--raised {
+  --frame-bg: var(--color-surface-raised);
+}
+
+/* Padding（md 是預設值，不另外宣告，讓外部可以覆寫） */
+.pixel-frame--pad-none { --frame-padding: 0; }
+.pixel-frame--pad-sm { --frame-padding: var(--space-2); }
+.pixel-frame--pad-lg { --frame-padding: var(--space-5); }

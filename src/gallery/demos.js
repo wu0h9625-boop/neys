@@ -13,4 +13,22 @@
 // variant 可加 wide: true 佔滿一整列；viewport: true 會放進一個 480px 高的模擬螢幕框，
 // 給 panel 這類 position: fixed 的元件用。
 
-export const demos = [];
+import { el } from "../lib/dom.js";
+import { createPixelFrame } from "../components/pixel-frame.js";
+
+const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
+
+export const demos = [
+  {
+    name: "pixel-frame",
+    description: "Notched pixel border box. Panels, cards and dialogs are built on it. Also provides the .pixel-border class.",
+    variants: [
+      { label: "default", render: () => createPixelFrame({ children: [sampleText()] }) },
+      { label: "muted", render: () => createPixelFrame({ variant: "muted", children: [sampleText()] }) },
+      { label: "accent", render: () => createPixelFrame({ variant: "accent", children: [sampleText()] }) },
+      { label: "raised", render: () => createPixelFrame({ variant: "raised", children: [sampleText()] }) },
+      { label: "padding sm", render: () => createPixelFrame({ padding: "sm", children: [sampleText("Small padding")] }) },
+      { label: "padding lg", render: () => createPixelFrame({ padding: "lg", children: [sampleText("Large padding")] }) },
+    ],
+  },
+];
