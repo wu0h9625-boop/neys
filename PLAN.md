@@ -4,8 +4,8 @@
 
 ## 目前進度
 
-- 最後完成：M0 基礎全部完成
-- 下一步：M1 第一項 `pixel-frame`
+- 最後完成：M1 元件庫全部完成（14 個元件；speech.js 也已提前完成）
+- 下一步：M2 `src/lib/answer-check.js`
 
 ## M0 基礎
 
