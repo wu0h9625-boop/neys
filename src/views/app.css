@@ -1,0 +1,17 @@
+/* App 外層版面：只放排版，不放外觀 */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-5) var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .app {
+    padding: var(--space-6);
+  }
+}
