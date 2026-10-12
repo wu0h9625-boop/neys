@@ -40,7 +40,7 @@
 - [x] `src/lib/answer-check.js`：忽略大小寫、前後空白、開頭 a/an/the；接受同義詞；編輯距離 ≤ 1 回傳 almost
 - [x] `answer-check` 測試（`tests/answer-check.test.js`，`npm test`）：`Fridge`、`a fridge`、`refrigerater` 都判定為答對 refrigerator
 - [x] `src/lib/speech.js`：en-US 發音、偵測是否支援（M1 製作 speak-button 時提前完成）
-- [ ] `src/lib/progress.js`：localStorage 讀寫加 try/catch、reset
+- [x] `src/lib/progress.js`：localStorage 讀寫加 try/catch、reset；不能用 localStorage 時改存記憶體（`tests/progress.test.js`）
 
 ## M3 單一場景跑通（Office）
 
