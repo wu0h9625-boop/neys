@@ -27,7 +27,7 @@
 | `dialogue` | 完成 |
 | `progress-badge` | 完成 |
 | `scene-card` | 完成 |
-| `panel` | 未開始 |
+| `panel` | 完成 |
 | `modal` | 未開始 |
 | `tag` | 完成 |
 | `heading` | 完成 |
@@ -83,7 +83,7 @@
     import { createPixelFrame } from "../components/pixel-frame.js";
     const box = createPixelFrame({ variant: "accent", children: [title, body] });
 
-注意事項：外框畫在元素外側 4px，不佔版面。`.pixel-frame` 自帶 4px 外距；單獨使用 `.pixel-border` 的元素要自己留外距。
+注意事項：外框畫在元素外側 4px，不佔版面。`.pixel-frame` 自帶 4px 外距；單獨使用 `.pixel-border` 的元素要自己留外距。上表的變數都用 `@property` 設為不繼承，只對設定它的元素本身有效；要改某個外框，就在那個元素上設定，不能設在祖先元素上。
 
 ### icon
 

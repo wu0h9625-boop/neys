@@ -15,6 +15,17 @@
  * 因為 main.css 依字母排序載入，這支檔案排在多數元件後面，直接覆寫屬性會被蓋掉。
  */
 
+/*
+ * 外框變數設為不繼承：CSS 變數預設會傳給子元素，面板設定的陰影或外框色
+ * 會跑到面板裡的輸入框、按鈕上。不設 initial-value，var() 的預設值才會生效。
+ */
+@property --pixel-border-color { syntax: "*"; inherits: false; }
+@property --pixel-border-extra { syntax: "*"; inherits: false; }
+@property --frame-bg { syntax: "*"; inherits: false; }
+@property --frame-border { syntax: "*"; inherits: false; }
+@property --frame-padding { syntax: "*"; inherits: false; }
+@property --frame-margin { syntax: "*"; inherits: false; }
+
 /* 這裡不宣告變數本身，只用 var() 的預設值，避免蓋掉先載入的元件設定的值 */
 .pixel-border {
   box-shadow:
