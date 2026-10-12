@@ -69,7 +69,7 @@
 ## 5. 介面與視覺
 
 - **像素風**：場景用 SVG 繪製，邏輯解析度 192×108（16:9），`shape-rendering: crispEdges`，以整數倍放大。每個物件是一個 `<g>` 群組，群組本身就是點擊熱區，不需另外標座標。
-- **視覺規格**：依 Claude Design 的 Office 視覺提案（`design_handoff_office_scene/`）。
+- **視覺規格**：依 Claude Design 的 Office 視覺提案（`docs/design/design_handoff_office_scene/`）。
 - **頁面主題**：淺色米白。頁面 `#f3ead6`、面板 `#fffaf0`、卡片白底；主要文字 `#1b1e2e`，強調色是黃 `#ffc94d`、橘字 `#b3440a`、青 `#1f7383`。沒有陰影、沒有圓角、沒有粗黑框，框線一律 2px。
 - **字體**：像素標題與小標籤用 Silkscreen（頁面標題 32px、卡片標題 13px、標籤 10–12px）；單字與所有閱讀文字用易讀的 Atkinson Hyperlegible（14–34px）。
 - **場景圖色盤**：場景圖本身維持深色 Sweetie 16（16 色，配色像 GBA / SNES 時代），放在 2px 米色框裡。

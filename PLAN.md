@@ -58,7 +58,7 @@
 
 - [ ] 收集使用者試玩意見（頁面介面與版面、例句與對話內容）
 - [ ] 頁面介面與版面調整
-  - [x] 套用 Claude Design 的 Office 視覺提案（`design_handoff_office_scene/`）：淺色米白主題、Silkscreen、2px 平面框線、黃色單字卡、15 格進度條、聊天泡泡對話、步驟標籤；新增 card / word-card / divider 元件
+  - [x] 套用 Claude Design 的 Office 視覺提案（`docs/design/design_handoff_office_scene/`）：淺色米白主題、Silkscreen、2px 平面框線、黃色單字卡、15 格進度條、聊天泡泡對話、步驟標籤；新增 card / word-card / divider 元件
   - [x] 每個物件加 IPA 美式音標（`ipa` 欄位，`npm test` 檢查格式）
   - [ ] 使用者確認設計稿沒畫、依同一套 tokens 延伸的部分：作答狀態、面板空狀態、modal、首頁、手機 bottom sheet
 - [ ] 例句與對話內容調整
