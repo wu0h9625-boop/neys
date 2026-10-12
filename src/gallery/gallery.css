@@ -115,6 +115,11 @@
   flex-basis: 100%;
 }
 
+.gallery__variant--wide .gallery__variant-stage > * {
+  flex: 1;
+  min-width: 0;
+}
+
 /*
  * 模擬一個小螢幕：transform 讓裡面 position: fixed 的元件（panel）
  * 以這個框為定位基準，而不是整個 iframe。

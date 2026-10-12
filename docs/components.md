@@ -23,7 +23,7 @@
 | `speak-button` | 完成 |
 | `text-input` | 完成 |
 | `feedback` | 完成 |
-| `sentence-list` | 未開始 |
+| `sentence-list` | 完成 |
 | `dialogue` | 未開始 |
 | `progress-badge` | 未開始 |
 | `scene-card` | 未開始 |
@@ -244,3 +244,22 @@
     setFeedback(result, { tone: "almost", message: "Almost!", detail: "It's spelled refrigerator." });
 
 注意事項：error 用 `--color-danger-text`（橘色），不用 `--color-danger`，因為紅色在深色背景上對比不足。hint 的主訊息用等寬字（`--font-mono`）加字距，字母格 `s _ _ _ _ _ _` 才數得出幾個字母。
+
+### sentence-list
+
+用途：self-talk 例句列表。每句一列，右邊有發音按鈕；句子裡的目標單字會標成黃色粗體（含 -s / -es / -ed / -ing 變化）。可在句子上方加類型標籤（Describe / Act / Feel）。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| title | string | `"Say it to yourself"` | 標題，空字串則不顯示 |
+| sentences | `(string \| { text, tag })[]` | `[]` | 例句；`tag` 會顯示成 `tag` 元件 |
+| highlight | string[] | `[]` | 要標色的單字 |
+| headingLevel | 1–4 | `3` | 標題的 HTML 層級 |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createSentenceList } from "../components/sentence-list.js";
+    const selfTalk = createSentenceList({ sentences: object.selfTalk, highlight: object.accept });
+
+注意事項：例句字級 20px，方便跟著唸。標色用全域的 `mark` 樣式（`base.css`），由 `src/lib/dom.js` 的 `highlightWords()` 產生。

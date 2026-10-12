@@ -25,7 +25,7 @@
 - [x] `speak-button`
 - [x] `text-input`（default / almost / wrong / correct）
 - [x] `feedback`
-- [ ] `sentence-list`
+- [x] `sentence-list`
 - [ ] `dialogue`
 - [ ] `progress-badge`
 - [ ] `scene-card`

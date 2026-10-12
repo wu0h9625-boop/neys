@@ -73,6 +73,13 @@ ol {
   list-style: none;
 }
 
+/* 例句與對話裡的目標單字（由 highlightWords 產生） */
+mark {
+  background: none;
+  color: var(--color-accent);
+  font-weight: var(--weight-bold);
+}
+
 /* 鍵盤焦點：像素風的方形外框，滑鼠點擊時不顯示 */
 :focus-visible {
   outline: var(--border-width) solid var(--color-focus);

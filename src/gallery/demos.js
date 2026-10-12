@@ -19,6 +19,7 @@ import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
+import { createSentenceList } from "../components/sentence-list.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
 import { createTextInput, setTextInputState, setTextInputReadOnly } from "../components/text-input.js";
@@ -89,6 +90,30 @@ export const demos = [
       { label: "raised", render: () => createPixelFrame({ variant: "raised", children: [sampleText()] }) },
       { label: "padding sm", render: () => createPixelFrame({ padding: "sm", children: [sampleText("Small padding")] }) },
       { label: "padding lg", render: () => createPixelFrame({ padding: "lg", children: [sampleText("Large padding")] }) },
+    ],
+  },
+  {
+    name: "sentence-list",
+    description: "Self-talk sentences with a speak button each. The target word is highlighted.",
+    variants: [
+      {
+        label: "with type tags",
+        wide: true,
+        render: () =>
+          createSentenceList({
+            highlight: ["stapler", "staple"],
+            sentences: [
+              { tag: "Describe", text: "There's a stapler on the edge of my desk." },
+              { tag: "Act", text: "Let me staple these pages together." },
+              { tag: "Feel", text: "I should get a new stapler; this one keeps jamming." },
+            ],
+          }),
+      },
+      {
+        label: "plain strings, no title",
+        wide: true,
+        render: () => createSentenceList({ title: "", highlight: ["crosswalk"], sentences: ["I'm waiting at the crosswalk.", "The crosswalks here are really wide."] }),
+      },
     ],
   },
   {
