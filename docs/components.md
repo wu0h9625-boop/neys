@@ -20,7 +20,7 @@
 |---|---|
 | `pixel-frame` | 完成 |
 | `button` | 完成 |
-| `speak-button` | 未開始 |
+| `speak-button` | 完成 |
 | `text-input` | 未開始 |
 | `feedback` | 未開始 |
 | `sentence-list` | 未開始 |
@@ -170,3 +170,25 @@
     const close = createButton({ label: "Close", variant: "ghost", icon: "close", iconOnly: true, onClick: closePanel });
 
 注意事項：最小點擊範圍 44×44。非 ghost 的按鈕外側有 4px 外框與底部 8px 厚度，按鈕自帶外距，排版時不用另外留。
+
+### speak-button
+
+用途：發音按鈕，用瀏覽器內建的英文語音（en-US）唸出文字。建立在 `button` 上，唸的時候圖示會閃爍。瀏覽器不支援 Web Speech API 時，回傳的按鈕是 `hidden`，其他功能不受影響。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| text | string | — | 要唸的文字 |
+| label | string | `Play "<text>"` | 螢幕閱讀器讀的說明；`showLabel` 時也是按鈕文字 |
+| voice | `0` \| `1` | `0` | 對話的 A / B 用不同聲音；只有一個英文聲音時 B 改用較高音調 |
+| variant | 同 `button` | `"ghost"` | 外觀 |
+| showLabel | boolean | `false` | 顯示文字，預設只顯示圖示 |
+| className | string | `""` | 額外 class |
+
+更新用的函式：`setSpeakText(button, text, label)`，讓同一顆按鈕改唸別的字。
+
+範例：
+
+    import { createSpeakButton } from "../components/speak-button.js";
+    const listen = createSpeakButton({ text: object.word });
+
+注意事項：發音邏輯在 `src/lib/speech.js`。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。

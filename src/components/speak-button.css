@@ -1,0 +1,11 @@
+/* speak-button：外觀來自 button，這裡只加唸的時候的動畫 */
+
+.speak-button[aria-pressed="true"] .icon {
+  animation: speak-button-pulse 480ms var(--ease-pixel) infinite;
+}
+
+@keyframes speak-button-pulse {
+  0%,
+  100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}

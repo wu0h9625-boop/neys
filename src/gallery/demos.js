@@ -18,6 +18,7 @@ import { createButton } from "../components/button.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
+import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
@@ -68,6 +69,16 @@ export const demos = [
       { label: "raised", render: () => createPixelFrame({ variant: "raised", children: [sampleText()] }) },
       { label: "padding sm", render: () => createPixelFrame({ padding: "sm", children: [sampleText("Small padding")] }) },
       { label: "padding lg", render: () => createPixelFrame({ padding: "lg", children: [sampleText("Large padding")] }) },
+    ],
+  },
+  {
+    name: "speak-button",
+    description: "Plays the text with the browser voice (en-US). Hidden when the browser cannot speak. Click to hear it.",
+    variants: [
+      { label: "icon-only ghost (default)", render: () => createSpeakButton({ text: "stapler" }) },
+      { label: "secondary", render: () => createSpeakButton({ text: "refrigerator", variant: "secondary" }) },
+      { label: "with label", render: () => createSpeakButton({ text: "There's a stapler on my desk.", label: "Listen", showLabel: true, variant: "secondary" }) },
+      { label: "voice B", render: () => createSpeakButton({ text: "Sure, here you go.", voice: 1 }) },
     ],
   },
   {
