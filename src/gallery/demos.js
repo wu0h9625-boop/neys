@@ -13,7 +13,7 @@
 // variant 可加 wide: true 佔滿一整列；viewport: true 會放進一個 480px 高的模擬螢幕框，
 // 給 panel 這類 position: fixed 的元件用。
 
-import { el } from "../lib/dom.js";
+import { el, highlightWords } from "../lib/dom.js";
 import { createButton } from "../components/button.js";
 import { createDialogue } from "../components/dialogue.js";
 import { createFeedback } from "../components/feedback.js";
@@ -27,6 +27,7 @@ import { createSceneCard } from "../components/scene-card.js";
 import { createSentenceList } from "../components/sentence-list.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
+import { createText } from "../components/text.js";
 import { createTextInput, setTextInputState, setTextInputReadOnly } from "../components/text-input.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
@@ -290,6 +291,17 @@ export const demos = [
       { label: "success", render: () => createTag({ text: "14/14", tone: "success", icon: "star" }) },
       { label: "danger", render: () => createTag({ text: "Missed", tone: "danger" }) },
       { label: "with icon", render: () => createTag({ text: "Found 4/14", icon: "star" }) },
+    ],
+  },
+  {
+    name: "text",
+    description: "Body text. Pages use it for descriptions and secondary notes instead of setting colours themselves.",
+    variants: [
+      { label: "md (default)", render: () => createText({ text: "Tap anything in the scene and say its name out loud first." }) },
+      { label: "lg", render: () => createText({ text: "Also accepted: fridge", size: "lg" }) },
+      { label: "sm · muted", render: () => createText({ text: "Progress is saved in this browser.", size: "sm", tone: "muted" }) },
+      { label: "accent", render: () => createText({ text: "New words found today: 5", tone: "accent" }) },
+      { label: "with children (highlighted word)", render: () => createText({ children: [highlightWords("Let me staple these pages.", ["staple"])] }) },
     ],
   },
   {

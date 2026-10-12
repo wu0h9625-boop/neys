@@ -1,0 +1,14 @@
+/* text */
+
+.text {
+  font-family: var(--font-body);
+  font-size: var(--text-size, var(--text-body-md));
+  line-height: var(--leading-body);
+  color: var(--text-color, var(--color-text));
+}
+
+.text--sm { --text-size: var(--text-body-sm); }
+.text--lg { --text-size: var(--text-body-lg); }
+
+.text--muted { --text-color: var(--color-text-muted); }
+.text--accent { --text-color: var(--color-accent); }

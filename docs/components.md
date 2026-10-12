@@ -29,6 +29,7 @@
 | `scene-card` | 完成 |
 | `panel` | 完成 |
 | `modal` | 完成 |
+| `text` | 完成 |
 | `tag` | 完成 |
 | `heading` | 完成 |
 | `icon` | 完成 |
@@ -396,3 +397,21 @@
     openModal(done);
 
 注意事項：同一個 modal 建立一次、重複打開，不要每次都 `createModal`，否則頁面上會累積多個 `<dialog>`。
+
+### text
+
+用途：一般段落文字。頁面上的說明、副標、灰色補充文字都用它，頁面 CSS 不另外設定字色與字級。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| text | string | — | 文字內容 |
+| children | Node[] | — | 要放元素（例如標色的單字）時用，會取代 `text` |
+| tone | `"default"` \| `"muted"` \| `"accent"` | `"default"` | 白、灰、黃 |
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | 14 / 16 / 20px |
+| tag | string | `"p"` | HTML 標籤，例如 `"span"` |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createText } from "../components/text.js";
+    const note = createText({ text: "Progress is saved in this browser.", size: "sm", tone: "muted" });

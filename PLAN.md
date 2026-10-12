@@ -31,6 +31,7 @@
 - [x] `scene-card`
 - [x] `panel`（三種斷點行為）
 - [x] `modal`
+- [x] `text`（新增，原清單外）
 - [x] `tag`（新增，原清單外）
 - [x] `heading`（新增，原清單外）
 - [x] `icon`（新增，原清單外）

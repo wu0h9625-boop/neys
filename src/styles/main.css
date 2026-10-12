@@ -26,6 +26,7 @@
 @import url("../components/speak-button.css");
 @import url("../components/tag.css");
 @import url("../components/text-input.css");
+@import url("../components/text.css");
 
 /* Views */
 @import url("../views/app.css");
