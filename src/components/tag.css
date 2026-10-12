@@ -1,23 +1,77 @@
-/* tag */
+/*
+ * tag
+ * kind：
+ *   chip   一般字體的小標籤（Also OK 的替代答案）
+ *   pixel  Silkscreen 小標籤（場景下方的步驟「1 Tap」）
+ *   label  沒有底色的 Silkscreen 文字標籤（例句類型 Describe、對話說話者）
+ * tone 決定顏色：chip / pixel 是底色 + 字色，label 只有字色。
+ */
 
 .tag {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  padding: var(--space-1) var(--space-2);
+  padding: var(--border-width) var(--space-2);
   font-family: var(--font-ui);
   font-size: var(--text-body-sm);
-  font-weight: var(--weight-bold);
-  line-height: 1;
+  line-height: 1.3;
   white-space: nowrap;
-  color: var(--tag-fg, var(--color-text-inverse));
-  background: var(--tag-bg, var(--color-text-muted));
+  color: var(--tag-fg, var(--color-text-muted));
+  background: var(--tag-bg, var(--color-surface-soft));
 }
 
-.tag--accent { --tag-bg: var(--color-accent); }
-.tag--info { --tag-bg: var(--color-info); }
-.tag--success { --tag-bg: var(--color-success); }
+.tag--pixel {
+  padding: var(--tag-pixel-padding);
+  font-family: var(--font-display);
+  font-size: var(--text-display-label);
+  -webkit-font-smoothing: none;
+}
+
+.tag--label {
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--tag-size, var(--text-display-xs));
+  -webkit-font-smoothing: none;
+  background: transparent;
+}
+
+/* Tones */
+.tag--ink {
+  --tag-bg: var(--color-ink);
+  --tag-fg: var(--color-text-inverse);
+}
+
+.tag--ink-accent {
+  --tag-bg: var(--color-ink);
+  --tag-fg: var(--color-accent);
+}
+
+.tag--accent {
+  --tag-bg: var(--color-accent);
+  --tag-fg: var(--color-ink);
+}
+
+.tag--teal {
+  --tag-bg: var(--color-teal);
+  --tag-fg: var(--color-text-inverse);
+}
+
+.tag--orange {
+  --tag-bg: var(--color-accent-text);
+  --tag-fg: var(--color-text-inverse);
+}
+
+.tag--success {
+  --tag-bg: var(--color-success);
+  --tag-fg: var(--color-text-inverse);
+}
+
 .tag--danger {
   --tag-bg: var(--color-danger);
-  --tag-fg: var(--color-text);
+  --tag-fg: var(--color-text-inverse);
 }
+
+/* label 只用字色：teal 青色、orange 橘色 */
+.tag--label.tag--teal { --tag-fg: var(--color-teal); }
+.tag--label.tag--orange { --tag-fg: var(--color-accent-text); }
+.tag--label.tag--default { --tag-fg: var(--color-text-muted); }

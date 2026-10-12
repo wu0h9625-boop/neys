@@ -1,4 +1,4 @@
-/* scene-card：外框來自 pixel-frame，hover / 聚焦時框線變黃色並往上浮 4px */
+/* scene-card：外框來自 pixel-frame，hover / 聚焦時框線變橘色並往上浮 4px */
 
 .scene-card {
   display: block;
@@ -12,27 +12,27 @@
   transform: translateY(calc(var(--border-width) * -1));
 }
 
-/* 黃色框線本身就是焦點提示，不再疊 outline */
+/* 橘色框線本身就是焦點提示，不再疊 outline */
 .scene-card:focus-visible {
   outline: none;
 }
 
 .scene-card:hover .scene-card__frame,
 .scene-card:focus-visible .scene-card__frame {
-  --frame-border: var(--color-accent);
+  --frame-border: var(--color-accent-text);
 }
 
 .scene-card__frame {
   display: flex;
   flex-direction: column;
-  height: calc(100% - var(--border-width) * 2);
+  height: 100%;
   overflow: hidden;
 }
 
 .scene-card__thumb {
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--color-bg);
+  background: var(--stage-bg);
 }
 
 .scene-card__thumb > svg,

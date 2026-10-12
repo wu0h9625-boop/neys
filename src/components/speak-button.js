@@ -7,11 +7,13 @@ import { createButton } from "./button.js";
  * createSpeakButton({ text: "stapler" })
  * label：給螢幕閱讀器的說明，預設 `Play "<text>"`。
  * showLabel：true 時顯示文字（例如 "Listen"），預設只顯示圖示。
+ * 預設是例句旁的 40px 方形鈕（secondary、sm）；單字卡用 variant: "ink", size: "lg"（52px）。
  */
-export function createSpeakButton({ text, label, voice = 0, variant = "ghost", showLabel = false, className = "" } = {}) {
+export function createSpeakButton({ text, label, voice = 0, variant = "secondary", size = "sm", showLabel = false, className = "" } = {}) {
   const button = createButton({
     label: label || `Play "${text}"`,
     variant,
+    size,
     icon: "speaker",
     iconOnly: !showLabel,
     className: ["speak-button", className].filter(Boolean).join(" "),

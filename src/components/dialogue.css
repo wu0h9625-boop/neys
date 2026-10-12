@@ -1,51 +1,50 @@
-/* dialogue */
+/* dialogue：卡片外框來自 card，這裡排聊天泡泡 */
 
-.dialogue {
+.dialogue__lines {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-}
-
-.dialogue__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-/* 每句共用同一組欄位（subgrid），說話者名稱長短不同時，對話文字仍然對齊 */
-.dialogue__lines {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  column-gap: var(--space-3);
+  gap: var(--space-2-5);
+  padding: var(--space-3-5) var(--space-4);
 }
 
 .dialogue__line {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-2);
-  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
-  transition: background-color var(--duration-fast) var(--ease-pixel);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
-.dialogue__line:last-child {
-  border-bottom: 0;
-}
-
-/* Play all 唸到哪一句就標底色 */
-.dialogue__line--playing {
-  background: var(--color-surface);
-}
+.dialogue__line--start { align-items: flex-start; }
+.dialogue__line--end { align-items: flex-end; }
 
 .dialogue__speaker {
-  justify-self: start;
+  --tag-size: var(--text-display-2xs);
 }
 
-.dialogue__text {
-  min-width: 0;
-  font-size: var(--text-body-lg);
-  line-height: var(--leading-body);
+.dialogue__bubble {
+  max-width: var(--bubble-max-width);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  line-height: var(--leading-bubble);
+  text-align: left;
+  text-wrap: pretty;
+  color: var(--color-text);
+  background: var(--bubble-bg, var(--color-surface-soft));
+  border: var(--border-width) solid var(--bubble-border, var(--color-border-control));
+  transition: border-color var(--duration-fast) var(--ease-pixel);
+}
+
+.dialogue__line--end .dialogue__bubble {
+  --bubble-bg: var(--color-you-bg);
+  --bubble-border: var(--color-you-border);
+}
+
+.dialogue__bubble:hover:not(:disabled),
+.dialogue__bubble[aria-pressed="true"],
+.dialogue__bubble--playing {
+  --bubble-border: var(--color-accent-text);
+}
+
+.dialogue__bubble:disabled {
+  cursor: default;
 }

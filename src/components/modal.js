@@ -23,7 +23,7 @@ export function createModal({ title, children = [], actions = [], size = "md", d
     : null;
 
   const frame = createPixelFrame({
-    variant: "accent",
+    variant: "default",
     padding: "none",
     className: "modal__frame",
     children: [

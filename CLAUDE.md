@@ -11,7 +11,7 @@
 - 本機預覽要開伺服器，因為 `fetch` 和 ES modules 不能用雙擊開檔的方式執行：`python3 -m http.server 8000`
 - 跑測試：`npm test`（需要 Node 18 以上）。`package.json` 只用來宣告 ES module 與測試指令，沒有任何相依套件。
 - `src/lib/` 的純邏輯改動都要補測試，commit 前跑過 `npm test`。
-- 外部資源只用 Google Fonts（標題 Press Start 2P、內文 Atkinson Hyperlegible）。其他資源都放在 repo 內。
+- 外部資源只用 Google Fonts（像素標題與標籤 Silkscreen、內文 Atkinson Hyperlegible）。其他資源都放在 repo 內。
 - 部署目標：GitHub Pages，所以路徑一律用相對路徑。
 
 ## 資料夾
@@ -50,22 +50,25 @@ index.html        遊戲入口
 
 | 元件 | 用途 |
 |---|---|
-| `button` | primary / secondary / ghost 三種 variant，可加圖示，`iconOnly` 只顯示圖示。Reveal、Hint、Scene talk、Reset 等所有按鈕都用它 |
-| `pixel-frame` | RPG 風格黑底像素邊框，所有面板和卡片的外框都用它 |
+| `button` | primary（黃底）/ secondary（線框）/ ghost（橘字）/ ink（深底）四種 variant，size sm / md / lg，可加圖示，`iconOnly` 只顯示圖示。所有按鈕都用它 |
+| `pixel-frame` | 2px 平面框線容器（名稱沿用早期的像素框），所有面板和卡片的框線都用它；`.pixel-border` 給只需要框線的元素 |
 | `panel` | 響應式容器：≥ 1024px 固定在右側、768–1023px 為 bottom sheet（最高 50%）、< 768px 為 bottom sheet（最高 70% 螢幕） |
 | `modal` | 場景對話、Scene complete 畫面 |
 | `text-input` | 作答輸入框，有 default / almost / wrong / correct 狀態 |
-| `speak-button` | 🔊 發音按鈕，瀏覽器不支援 Web Speech API 時自動隱藏 |
-| `dialogue` | A/B 兩人對話列表，每句帶 speak-button |
-| `sentence-list` | self-talk 例句列表，每句帶 speak-button |
-| `progress-badge` | `Found 4/14` 計數 |
+| `speak-button` | 發音按鈕，預設是例句旁的 40px 方形鈕；瀏覽器不支援 Web Speech API 時自動隱藏 |
+| `dialogue` | 聊天泡泡對話卡片（You 靠右青色、Coworker 靠左米色），點泡泡播放，Play all 連續播放 |
+| `sentence-list` | 例句卡片（Say it to yourself、Word picture），每列類型標籤 + 句子 + 40px 發音鈕 |
+| `progress-badge` | `FOUND 4/15` 加每個物件一格的進度條（已找到青、目前選取黃、未找到米灰） |
 | `scene-card` | 首頁場景卡片 |
 | `feedback` | 答對、答錯、提示的訊息列 |
 | `icon` | 像素圖示（speaker、close、star、check、play、stop、arrow-left、bulb、chat）。所有圖示都從這裡取，不另外畫 |
-| `heading` | 像素字體標題，level（h1–h4 語意）和 size（sm / md / lg / xl 外觀）分開設定。所有標題都用它 |
-| `tag` | 小標籤，可帶圖示。對話說話者、例句類型、progress-badge 都用它 |
+| `heading` | Silkscreen 像素字標題，level（h1–h4 語意）和 size（sm / md / lg / xl 外觀）分開設定。所有標題都用它 |
+| `tag` | 小標籤：chip（替代答案）、pixel（步驟標籤）、label（例句類型、說話者）三種 kind |
 | `text` | 一般段落文字（default / muted / accent，sm / md / lg）。頁面的說明、副標、灰色補充文字都用它 |
 | `scene-stage` | 可互動的場景圖：hover / 第一次 tap 顯示外框與「?」，再點選取；鍵盤 Tab + Enter；hover 或選取已找到的物件時顯示綠色 ✓（平常不標示）；小物件自動加大點擊範圍到 24px |
+| `card` | 面板裡的白底卡片：標題列（標題 + 右側按鈕）與內容區。sentence-list、dialogue 都建立在它上面 |
+| `word-card` | 揭曉後的黃色單字卡：詞性、單字、IPA、52px 發音鈕、Also OK 替代答案 |
+| `divider` | 分隔線（vertical / horizontal），頁首「Scenes ｜ Office」之間用它 |
 
 清單以外的新元件，先確認現有元件加 variant 做不到，再新增並補進這張表。
 

@@ -1,5 +1,36 @@
-/* progress-badge：外觀來自 tag，這裡只讓數字等寬，數字變動時寬度不跳 */
+/* progress-badge：Silkscreen 文字 + 進度格（每格 8×12px，間距 2px） */
 
 .progress-badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.progress-badge__label {
+  font-family: var(--font-display);
+  font-size: var(--text-body-sm);
+  -webkit-font-smoothing: none;
+  color: var(--color-text-muted);
+  white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
+
+.progress-badge__number {
+  color: var(--color-accent-text);
+}
+
+.progress-badge__cells {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--progress-cell-width);
+  gap: var(--border-width);
+}
+
+.progress-badge__cell {
+  height: var(--progress-cell-height);
+  background: var(--color-border-control);
+}
+
+.progress-badge__cell--found { background: var(--color-teal); }
+.progress-badge__cell--current { background: var(--color-accent); }

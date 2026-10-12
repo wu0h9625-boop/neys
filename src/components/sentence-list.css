@@ -1,10 +1,4 @@
-/* sentence-list */
-
-.sentence-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
+/* sentence-list：卡片外框來自 card，這裡只排每一列 */
 
 .sentence-list__items {
   display: flex;
@@ -12,11 +6,12 @@
 }
 
 .sentence-list__item {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--play-size);
+  align-items: start;
   gap: var(--space-3);
-  padding: var(--space-2) 0;
-  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
+  padding: var(--space-3-5) var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-surface-soft);
 }
 
 .sentence-list__item:last-child {
@@ -27,12 +22,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-1);
-  flex: 1;
+  gap: var(--space-1-5);
   min-width: 0;
 }
 
 .sentence-list__text {
   font-size: var(--text-body-lg);
   line-height: var(--leading-body);
+  color: var(--color-text);
+  text-wrap: pretty;
 }

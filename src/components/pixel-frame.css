@@ -1,26 +1,25 @@
 /*
  * pixel-frame
  *
- * .pixel-border：像素外框線。四邊各用一層 box-shadow 畫在元素外側，
- * 四個角留空，形成缺角的像素邊框。外框不佔版面，使用的元素要自己留 --border-width 的外距。
- *   --pixel-border-color  外框顏色
- *   --pixel-border-extra  額外疊加的一層陰影（例如按鈕底部的厚度）
+ * .pixel-border：2px 平面框線（設計稿：沒有陰影、沒有圓角）。
+ * 用 inset box-shadow 畫在元素內側，不佔版面、不影響尺寸，使用的元素不用另外留外距。
+ *   --pixel-border-color  框線顏色
  *
- * .pixel-frame：外框 + 底色 + 內距的容器。
+ * .pixel-frame：框線 + 底色 + 內距的容器。
  *   --frame-bg、--frame-border、--frame-padding、--frame-margin 可由外部覆寫。
  *   這支檔案只在 variant class 上宣告這些變數，基礎 class 用 var() 預設值，
  *   所以先載入的元件 CSS 設定的值不會被蓋掉。
  *
- * 其他元件要改外框外觀時，覆寫上面的變數，不要直接覆寫 box-shadow / padding / margin，
+ * 其他元件要改框線外觀時，覆寫上面的變數，不要直接覆寫 box-shadow / padding / margin，
  * 因為 main.css 依字母排序載入，這支檔案排在多數元件後面，直接覆寫屬性會被蓋掉。
+ * （名稱沿用早期的像素缺角框，現在是平面框線。）
  */
 
 /*
- * 外框變數設為不繼承：CSS 變數預設會傳給子元素，面板設定的陰影或外框色
+ * 框線變數設為不繼承：CSS 變數預設會傳給子元素，面板設定的框線色
  * 會跑到面板裡的輸入框、按鈕上。不設 initial-value，var() 的預設值才會生效。
  */
 @property --pixel-border-color { syntax: "*"; inherits: false; }
-@property --pixel-border-extra { syntax: "*"; inherits: false; }
 @property --frame-bg { syntax: "*"; inherits: false; }
 @property --frame-border { syntax: "*"; inherits: false; }
 @property --frame-padding { syntax: "*"; inherits: false; }
@@ -28,20 +27,15 @@
 
 /* 這裡不宣告變數本身，只用 var() 的預設值，避免蓋掉先載入的元件設定的值 */
 .pixel-border {
-  box-shadow:
-    0 calc(var(--border-width) * -1) 0 0 var(--pixel-border-color, var(--color-border)),
-    0 var(--border-width) 0 0 var(--pixel-border-color, var(--color-border)),
-    calc(var(--border-width) * -1) 0 0 0 var(--pixel-border-color, var(--color-border)),
-    var(--border-width) 0 0 0 var(--pixel-border-color, var(--color-border)),
-    var(--pixel-border-extra, 0 0 0 0 transparent);
+  box-shadow: inset 0 0 0 var(--border-width) var(--pixel-border-color, var(--color-border));
 }
 
 .pixel-frame {
   --pixel-border-color: var(--frame-border, var(--color-border));
   position: relative;
-  margin: var(--frame-margin, var(--border-width));
+  margin: var(--frame-margin, 0);
   padding: var(--frame-padding, var(--space-4));
-  background: var(--frame-bg, var(--color-bg));
+  background: var(--frame-bg, var(--color-surface));
   color: var(--color-text);
 }
 
@@ -52,11 +46,13 @@
 }
 
 .pixel-frame--accent {
+  --frame-bg: var(--color-surface);
   --frame-border: var(--color-accent);
 }
 
 .pixel-frame--raised {
   --frame-bg: var(--color-surface-raised);
+  --frame-border: var(--color-border-muted);
 }
 
 /* Padding（md 是預設值，不另外宣告，讓外部可以覆寫） */

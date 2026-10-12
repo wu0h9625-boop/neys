@@ -1,7 +1,8 @@
-// sentence-list：self-talk 例句列表，每句後面有發音按鈕，目標單字會標色。
+// sentence-list：例句列表卡片。每句一列：類型標籤 + 句子 + 40px 發音鈕，目標單字會標色。
+// Say it to yourself 與 Word picture 都用它。
 
 import { el, highlightWords } from "../lib/dom.js";
-import { createHeading } from "./heading.js";
+import { createCard } from "./card.js";
 import { createSpeakButton } from "./speak-button.js";
 import { createTag } from "./tag.js";
 
@@ -16,15 +17,17 @@ export function createSentenceList({ title = "Say it to yourself", sentences = [
     const { text, tag } = typeof sentence === "string" ? { text: sentence } : sentence;
     return el("li", { className: "sentence-list__item" }, [
       el("div", { className: "sentence-list__content" }, [
-        tag ? createTag({ text: tag }) : null,
+        tag ? createTag({ text: tag, kind: "label", tone: "teal" }) : null,
         el("p", { className: "sentence-list__text" }, [highlightWords(text, highlight)]),
       ]),
       createSpeakButton({ text }),
     ]);
   });
 
-  return el("section", { className: ["sentence-list", className].filter(Boolean).join(" ") }, [
-    title ? createHeading({ text: title, level: headingLevel, size: "sm", tone: "accent" }) : null,
-    el("ol", { className: "sentence-list__items" }, items),
-  ]);
+  return createCard({
+    title,
+    headingLevel,
+    className: ["sentence-list", className].filter(Boolean).join(" "),
+    children: [el("ol", { className: "sentence-list__items" }, items)],
+  });
 }

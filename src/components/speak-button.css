@@ -1,4 +1,14 @@
-/* speak-button：外觀來自 button，這裡只加唸的時候的動畫 */
+/*
+ * speak-button：外觀來自 button，這裡只調整發音鈕自己的顏色與唸的時候的動畫。
+ * secondary（例句旁的 40px 鈕）：米白底、橘色喇叭，hover 時框線變橘色。
+ */
+
+.speak-button.button--secondary {
+  --button-bg: var(--color-surface);
+  --button-bg-hover: var(--color-surface);
+  --button-fg: var(--color-accent-text);
+  --button-fg-hover: var(--color-accent-text);
+}
 
 .speak-button[aria-pressed="true"] .icon {
   animation: speak-button-pulse 480ms var(--ease-pixel) infinite;

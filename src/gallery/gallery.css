@@ -81,7 +81,7 @@
 
 .gallery__name {
   font-size: var(--text-display-md);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .gallery__description,
@@ -140,7 +140,8 @@
 /* panel 展示用的假場景頁：手機與平板只有場景，桌機場景在左、面板在右 */
 .gallery__viewport {
   --panel-sheet-max-height: 70%;
-  --panel-desktop-max-height: calc(480px - var(--space-4) * 2);
+  --panel-desktop-height: calc(480px - var(--space-4) * 2);
+  --panel-desktop-min-height: 0;
 }
 
 .gallery-demo-layout {

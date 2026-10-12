@@ -1,88 +1,111 @@
 /*
  * button
- * 外框來自 .pixel-border（pixel-frame.css）。底部厚度用 --pixel-border-extra 疊一層陰影，
- * 按下時按鈕往下移 4px、厚度消失，看起來像實體按鍵被壓下去。
+ * 平面按鈕：沒有陰影、沒有圓角。框線來自 .pixel-border（pixel-frame.css），只有 secondary 有框線。
+ *
+ * 尺寸：md 是 44px。sm 與 icon-only 的 sm / lg 照設計稿的 32 / 40 / 52px，
+ * 在觸控裝置（pointer: coarse）上把點擊範圍補到 44px，外觀不變。
  */
 
 .button {
-  --button-depth-offset: calc(var(--border-width) * 2);
-  --pixel-border-color: var(--button-border, var(--color-border));
-  --pixel-border-extra: 0 var(--button-depth-offset) 0 0 var(--button-depth, var(--color-shadow));
-
+  --pixel-border-color: var(--button-border, transparent);
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-width: var(--hit-min);
-  min-height: var(--hit-min);
-  /* 外框在元素外側 4px、底部厚度 8px，所以外距要留出來 */
-  margin: var(--border-width) var(--border-width) calc(var(--border-width) * 2);
-  padding: var(--space-2) var(--space-4);
+  min-width: var(--button-height, var(--hit-min));
+  min-height: var(--button-height, var(--hit-min));
+  padding: 0 var(--button-padding-x, var(--space-3-5));
   font-family: var(--font-ui);
-  font-size: var(--text-body-md);
+  font-size: var(--button-font-size, var(--text-body-md));
   font-weight: var(--weight-bold);
   line-height: 1.2;
   text-align: center;
-  color: var(--button-fg, var(--color-text));
+  color: var(--button-fg, var(--color-ink));
   background: var(--button-bg, var(--color-primary));
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition:
-    transform var(--duration-fast) var(--ease-pixel),
-    background-color var(--duration-fast) var(--ease-pixel);
+    background-color var(--duration-fast) var(--ease-pixel),
+    color var(--duration-fast) var(--ease-pixel),
+    box-shadow var(--duration-fast) var(--ease-pixel);
 }
 
 .button:hover:not(:disabled) {
-  background: var(--button-bg-hover, var(--color-primary-hover));
-}
-
-.button:active:not(:disabled) {
-  --button-depth-offset: var(--border-width);
-  transform: translateY(var(--border-width));
+  --button-bg: var(--button-bg-hover, var(--color-primary-hover));
+  --button-fg: var(--button-fg-hover, var(--color-ink));
+  --button-border: var(--button-border-hover, transparent);
 }
 
 .button:disabled {
   cursor: not-allowed;
-  --button-bg: var(--color-surface);
-  --button-bg-hover: var(--color-surface);
-  --button-fg: var(--color-text-muted);
-  --button-border: var(--color-border-muted);
+  opacity: 0.5;
 }
 
-/* Variants */
+/* ---------- Variants ---------- */
+
 .button--secondary {
-  --button-bg: var(--color-surface);
-  --button-bg-hover: var(--color-surface-raised);
+  --button-bg: transparent;
+  --button-bg-hover: transparent;
+  --button-fg: var(--color-text-muted);
+  --button-fg-hover: var(--color-accent-text);
+  --button-border: var(--color-border-control);
+  --button-border-hover: var(--color-accent-text);
 }
 
 .button--ghost {
   --button-bg: transparent;
-  --button-bg-hover: var(--color-surface);
-  --button-fg: var(--color-accent);
-  margin: 0;
-}
-
-.button--ghost:active:not(:disabled) {
-  transform: none;
-}
-
-.button--ghost:disabled {
-  --button-bg: transparent;
   --button-bg-hover: transparent;
+  --button-fg: var(--color-accent-text);
+  --button-fg-hover: var(--color-accent-text-hover);
+  --button-padding-x: var(--space-1);
 }
 
-/* Shapes */
-.button--icon-only {
-  width: var(--hit-min);
-  padding: 0;
+.button--ink {
+  --button-bg: var(--color-ink);
+  --button-bg-hover: var(--color-ink);
+  --button-fg: var(--color-accent);
+  --button-fg-hover: var(--color-text-inverse);
 }
+
+/* ---------- Sizes ---------- */
+
+.button--sm {
+  --button-height: var(--button-height-sm);
+  --button-padding-x: var(--space-2-5);
+  --button-font-size: var(--text-body-sm);
+}
+
+.button--icon-only {
+  --button-padding-x: 0;
+  width: var(--button-height, var(--hit-min));
+}
+
+.button--icon-only.button--sm {
+  --button-height: var(--play-size);
+}
+
+.button--icon-only.button--lg {
+  --button-height: var(--play-size-lg);
+}
+
+/* 觸控裝置：外觀維持設計稿尺寸，用透明的 ::after 把點擊範圍補到 44px */
+@media (pointer: coarse) {
+  .button--sm::after,
+  .button--icon-only.button--sm::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, var(--hit-min));
+    height: max(100%, var(--hit-min));
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ---------- Shapes ---------- */
 
 .button--block {
   display: flex;
-  width: calc(100% - var(--border-width) * 2);
-}
-
-.button--ghost.button--block {
   width: 100%;
 }

@@ -11,4 +11,4 @@
 .text--lg { --text-size: var(--text-body-lg); }
 
 .text--muted { --text-color: var(--color-text-muted); }
-.text--accent { --text-color: var(--color-accent); }
+.text--accent { --text-color: var(--color-accent-text); }

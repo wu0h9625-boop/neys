@@ -1,13 +1,15 @@
-// dialogue：兩人一來一往的對話。每句有發音按鈕；標題旁的 Play all 會用兩種聲音連續唸完。
+// dialogue：兩人一來一往的對話，聊天泡泡樣式。
+// 第一位說話者（通常是 A = You）靠右、青色；第二位靠左、米色。點泡泡播放那一句；
+// 標題列的 Play all 用兩種聲音連續唸完，唸到哪句就標出那一句。
 
 import { el, highlightWords } from "../lib/dom.js";
-import { speakSequence, stopSpeaking, isSpeechSupported } from "../lib/speech.js";
+import { speak, speakSequence, stopSpeaking, isSpeechSupported } from "../lib/speech.js";
 import { createButton, setButtonIcon, setButtonLabel } from "./button.js";
-import { createHeading } from "./heading.js";
-import { createSpeakButton } from "./speak-button.js";
+import { createCard } from "./card.js";
 import { createTag } from "./tag.js";
 
-const SPEAKER_TONES = ["info", "accent"];
+const SIDES = ["end", "start"];
+const LABEL_TONES = ["teal", "orange"];
 
 /**
  * createDialogue({
@@ -18,27 +20,43 @@ const SPEAKER_TONES = ["info", "accent"];
  * })
  */
 export function createDialogue({ title = "Mini dialogue", lines = [], speakers = {}, highlight = [], headingLevel = 3, className = "" } = {}) {
-  // 依出現順序決定每個說話者用第幾種聲音與顏色
+  // 依出現順序決定每個說話者用第幾種聲音、靠哪一邊
   const order = [...new Set(lines.map((line) => line.speaker))];
-  const voiceOf = (speaker) => Math.max(order.indexOf(speaker), 0);
+  const indexOf = (speaker) => Math.max(order.indexOf(speaker), 0);
+  const canSpeak = isSpeechSupported();
 
+  const bubbles = [];
   const items = lines.map((line) => {
-    const voice = voiceOf(line.speaker);
-    return el("li", { className: "dialogue__line", dataset: { speaker: line.speaker } }, [
-      createTag({ text: speakers[line.speaker] || line.speaker, tone: SPEAKER_TONES[voice % SPEAKER_TONES.length], className: "dialogue__speaker" }),
-      el("p", { className: "dialogue__text" }, [highlightWords(line.text, highlight)]),
-      createSpeakButton({ text: line.text, voice }),
+    const index = indexOf(line.speaker);
+    const name = speakers[line.speaker] || line.speaker;
+    const bubble = el(
+      "button",
+      {
+        className: "dialogue__bubble",
+        attrs: { type: "button", "aria-label": `${name}: ${line.text}. Play this line.`, "aria-pressed": "false", disabled: !canSpeak },
+        on: {
+          click: async () => {
+            bubble.setAttribute("aria-pressed", "true");
+            await speak(line.text, { voice: index });
+            bubble.setAttribute("aria-pressed", "false");
+          },
+        },
+      },
+      [highlightWords(line.text, highlight)],
+    );
+    bubbles.push(bubble);
+    return el("li", { className: `dialogue__line dialogue__line--${SIDES[index % SIDES.length]}`, dataset: { speaker: line.speaker } }, [
+      createTag({ text: name, kind: "label", tone: LABEL_TONES[index % LABEL_TONES.length], className: "dialogue__speaker" }),
+      bubble,
     ]);
   });
 
-  const list = el("ol", { className: "dialogue__lines" }, items);
-
   let playing = false;
-  const markLine = (index) => items.forEach((item, i) => item.classList.toggle("dialogue__line--playing", i === index));
+  const markLine = (index) => bubbles.forEach((bubble, i) => bubble.classList.toggle("dialogue__bubble--playing", i === index));
 
   const playAll = createButton({
     label: "Play all",
-    variant: "ghost",
+    size: "sm",
     icon: "play",
     className: "dialogue__play",
     onClick: async () => {
@@ -50,7 +68,7 @@ export function createDialogue({ title = "Mini dialogue", lines = [], speakers =
       setButtonLabel(playAll, "Stop");
       setButtonIcon(playAll, "stop");
       await speakSequence(
-        lines.map((line) => ({ text: line.text, voice: voiceOf(line.speaker) })),
+        lines.map((line) => ({ text: line.text, voice: indexOf(line.speaker) })),
         { onLineStart: markLine },
       );
       playing = false;
@@ -59,13 +77,13 @@ export function createDialogue({ title = "Mini dialogue", lines = [], speakers =
       setButtonIcon(playAll, "play");
     },
   });
-  playAll.hidden = !isSpeechSupported() || lines.length === 0;
+  playAll.hidden = !canSpeak || lines.length === 0;
 
-  return el("section", { className: ["dialogue", className].filter(Boolean).join(" ") }, [
-    el("div", { className: "dialogue__header" }, [
-      title ? createHeading({ text: title, level: headingLevel, size: "sm", tone: "accent" }) : null,
-      playAll,
-    ]),
-    list,
-  ]);
+  return createCard({
+    title,
+    headingLevel,
+    actions: [playAll],
+    className: ["dialogue", className].filter(Boolean).join(" "),
+    children: [el("ol", { className: "dialogue__lines" }, items)],
+  });
 }

@@ -1,0 +1,17 @@
+/* divider */
+
+.divider {
+  display: block;
+  flex: none;
+  background: var(--color-border);
+}
+
+.divider--vertical {
+  width: var(--border-width);
+  height: var(--divider-length, var(--space-5-5));
+}
+
+.divider--horizontal {
+  width: 100%;
+  height: var(--border-width);
+}

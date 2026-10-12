@@ -15,6 +15,7 @@
 
 import { el, highlightWords } from "../lib/dom.js";
 import { createButton } from "../components/button.js";
+import { createCard } from "../components/card.js";
 import { createDialogue } from "../components/dialogue.js";
 import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
@@ -31,6 +32,7 @@ import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
 import { createText } from "../components/text.js";
 import { createTextInput, setTextInputState, setTextInputReadOnly } from "../components/text-input.js";
+import { createWordCard } from "../components/word-card.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
 
@@ -144,17 +146,35 @@ export const demos = [
     variants: [
       { label: "primary", render: () => createButton({ label: "Check" }) },
       { label: "secondary", render: () => createButton({ label: "Reveal", variant: "secondary" }) },
-      { label: "ghost", render: () => createButton({ label: "Reset progress", variant: "ghost" }) },
+      { label: "ghost", render: () => createButton({ label: "Scenes", variant: "ghost", icon: "arrow-left" }) },
+      { label: "ink", render: () => createButton({ label: "Next object", variant: "ink" }) },
+      { label: "sm (32px)", render: () => createButton({ label: "Play all", size: "sm", icon: "play" }) },
+      { label: "icon-only · sm (40px)", render: () => createButton({ label: "Play", variant: "secondary", icon: "speaker", iconOnly: true, size: "sm" }) },
+      { label: "icon-only · lg (52px) · ink", render: () => createButton({ label: "Play", variant: "ink", icon: "speaker", iconOnly: true, size: "lg" }) },
       { label: "with icon", render: () => createButton({ label: "Hint", variant: "secondary", icon: "bulb" }) },
       { label: "icon-only", render: () => createButton({ label: "Close", variant: "secondary", icon: "close", iconOnly: true }) },
-      { label: "icon-only ghost", render: () => createButton({ label: "Play pronunciation", variant: "ghost", icon: "speaker", iconOnly: true }) },
+      { label: "icon-only ghost", render: () => createButton({ label: "Close", variant: "ghost", icon: "close", iconOnly: true }) },
       { label: "disabled", render: () => createButton({ label: "Check", disabled: true }) },
       { label: "block (full width)", wide: true, render: () => el("div", { attrs: { style: "width: 100%; max-width: 360px" } }, [createButton({ label: "Scene talk", icon: "chat", block: true })]) },
     ],
   },
   {
+    name: "card",
+    description: "White card with a title bar. Say it to yourself, Word picture and Mini dialogue are built on it.",
+    variants: [
+      { label: "title only", render: () => el("div", { attrs: { style: "width: 320px" } }, [createCard({ title: "Say it to yourself", children: [el("p", { attrs: { style: "padding: 16px" }, text: "Card body" })] })]) },
+      {
+        label: "title + action",
+        render: () =>
+          el("div", { attrs: { style: "width: 320px" } }, [
+            createCard({ title: "Mini dialogue", actions: [createButton({ label: "Play all", size: "sm", icon: "play" })], children: [el("p", { attrs: { style: "padding: 16px" }, text: "Card body" })] }),
+          ]),
+      },
+    ],
+  },
+  {
     name: "dialogue",
-    description: "Two-person dialogue. Each line has a speak button; Play all reads every line with two voices and marks the current line.",
+    description: "Chat-bubble dialogue. The first speaker is on the right (teal), the second on the left. Click a bubble to hear it; Play all reads every line with two voices and outlines the current bubble.",
     variants: [
       {
         label: "default speakers A / B",
@@ -246,17 +266,27 @@ export const demos = [
   },
   {
     name: "progress-badge",
-    description: "Found-count for a scene. Turns green when every object is found. Use +1 to count up.",
+    description: "Found count plus one cell per object: teal = found, yellow = currently selected, beige = not found. Use +1 to count up.",
     variants: [
-      { label: "none found", render: () => createProgressBadge({ found: 0, total: 14 }) },
-      { label: "in progress", render: () => createProgressBadge({ found: 4, total: 14 }) },
-      { label: "complete", render: () => createProgressBadge({ found: 14, total: 14 }) },
+      { label: "none found", render: () => createProgressBadge({ found: 0, total: 15 }) },
+      { label: "by count", render: () => createProgressBadge({ found: 4, total: 15 }) },
+      {
+        label: "cells in object order, one selected",
+        render: () =>
+          createProgressBadge({
+            found: 3,
+            total: 15,
+            cells: ["found", "empty", "found", "empty", "current", "empty", "empty", "found", "empty", "empty", "empty", "empty", "empty", "empty", "empty"],
+          }),
+      },
+      { label: "complete", render: () => createProgressBadge({ found: 15, total: 15 }) },
+      { label: "count only (showCells: false)", render: () => createProgressBadge({ found: 4, total: 15, showCells: false }) },
       {
         label: "setProgress()",
         render: () => {
-          let found = 12;
-          const badge = createProgressBadge({ found, total: 14 });
-          const next = createButton({ label: "+1", variant: "secondary", onClick: () => setProgress(badge, { found: (found = found >= 14 ? 0 : found + 1), total: 14 }) });
+          let found = 13;
+          const badge = createProgressBadge({ found, total: 15 });
+          const next = createButton({ label: "+1", variant: "secondary", onClick: () => setProgress(badge, { found: (found = found >= 15 ? 0 : found + 1), total: 15 }) });
           return el("div", { attrs: { style: "display: flex; align-items: center; gap: 12px" } }, [badge, next]);
         },
       },
@@ -304,9 +334,9 @@ export const demos = [
     name: "speak-button",
     description: "Plays the text with the browser voice (en-US). Hidden when the browser cannot speak. Click to hear it.",
     variants: [
-      { label: "icon-only ghost (default)", render: () => createSpeakButton({ text: "stapler" }) },
-      { label: "secondary", render: () => createSpeakButton({ text: "refrigerator", variant: "secondary" }) },
-      { label: "with label", render: () => createSpeakButton({ text: "There's a stapler on my desk.", label: "Listen", showLabel: true, variant: "secondary" }) },
+      { label: "default (40px, sentence rows)", render: () => createSpeakButton({ text: "stapler" }) },
+      { label: "ink · lg (52px, word card)", render: () => createSpeakButton({ text: "refrigerator", variant: "ink", size: "lg" }) },
+      { label: "with label", render: () => createSpeakButton({ text: "There's a stapler on my desk.", label: "Listen", showLabel: true, size: "md" }) },
       { label: "voice B", render: () => createSpeakButton({ text: "Sure, here you go.", voice: 1 }) },
     ],
   },
@@ -314,12 +344,12 @@ export const demos = [
     name: "tag",
     description: "Small label. Used for dialogue speakers, sentence types and progress counts.",
     variants: [
-      { label: "default", render: () => createTag({ text: "Describe" }) },
-      { label: "accent", render: () => createTag({ text: "B", tone: "accent" }) },
-      { label: "info", render: () => createTag({ text: "A", tone: "info" }) },
-      { label: "success", render: () => createTag({ text: "14/14", tone: "success", icon: "star" }) },
-      { label: "danger", render: () => createTag({ text: "Missed", tone: "danger" }) },
-      { label: "with icon", render: () => createTag({ text: "Found 4/14", icon: "star" }) },
+      { label: "chip · ink-accent (Also OK)", render: () => createTag({ text: "water cooler", tone: "ink-accent" }) },
+      { label: "chip · default", render: () => createTag({ text: "noun" }) },
+      { label: "pixel · ink (steps)", render: () => createTag({ text: "1 Tap", kind: "pixel", tone: "ink" }) },
+      { label: "label · teal", render: () => createTag({ text: "Describe", kind: "label", tone: "teal" }) },
+      { label: "label · orange", render: () => createTag({ text: "Coworker", kind: "label", tone: "orange" }) },
+      { label: "chip · success / danger", render: () => el("span", { attrs: { style: "display: flex; gap: 8px" } }, [createTag({ text: "Found", tone: "success" }), createTag({ text: "Missed", tone: "danger" })]) },
     ],
   },
   {
@@ -342,6 +372,17 @@ export const demos = [
       { label: "wrong (shakes when set)", render: () => withState("wrong", "freezer") },
       { label: "correct + read-only", render: () => { const input = withState("correct", "fridge"); setTextInputReadOnly(input, true); return input; } },
       { label: "hidden label", render: () => createTextInput({ hideLabel: true }) },
+    ],
+  },
+  {
+    name: "word-card",
+    description: "Yellow word card shown after the answer is revealed: part of speech, word, IPA, 52px play button and other accepted answers.",
+    variants: [
+      {
+        label: "with IPA and alternatives",
+        render: () => el("div", { attrs: { style: "width: 380px; max-width: 100%" } }, [createWordCard({ word: "water dispenser", pos: "noun", ipa: "/ˈwɔːtər dɪˈspensər/", alternatives: ["water cooler", "dispenser"] })]),
+      },
+      { label: "short word, no alternatives", render: () => el("div", { attrs: { style: "width: 380px; max-width: 100%" } }, [createWordCard({ word: "mug", pos: "noun", ipa: "/mʌɡ/" })]) },
     ],
   },
 ];

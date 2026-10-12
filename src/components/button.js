@@ -3,17 +3,20 @@
 import { el } from "../lib/dom.js";
 import { createIcon } from "./icon.js";
 
-const VARIANTS = ["primary", "secondary", "ghost"];
+const VARIANTS = ["primary", "secondary", "ghost", "ink"];
+const SIZES = ["sm", "md", "lg"];
 
 /**
  * createButton({ label: "Reveal", variant: "secondary", icon: "bulb", onClick })
  * iconOnly: true 時只顯示圖示，label 會變成 aria-label 給螢幕閱讀器讀。
+ * size：md 是 44px；sm 是 32px（icon-only 時 40px）；lg 只用在 icon-only（52px）。
  */
 export function createButton({
   label,
   variant = "primary",
   icon,
   iconOnly = false,
+  size = "md",
   block = false,
   disabled = false,
   type = "button",
@@ -24,10 +27,12 @@ export function createButton({
   if (!label) throw new Error("createButton needs a label (also used as aria-label for icon-only buttons).");
 
   const v = VARIANTS.includes(variant) ? variant : "primary";
+  const s = SIZES.includes(size) ? size : "md";
   const classes = [
     "button",
     `button--${v}`,
-    v === "ghost" ? "" : "pixel-border",
+    "pixel-border",
+    s === "md" ? "" : `button--${s}`,
     iconOnly ? "button--icon-only" : "",
     block ? "button--block" : "",
     className,

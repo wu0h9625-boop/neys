@@ -7,7 +7,7 @@
 .scene-stage {
   position: relative;
   width: 100%;
-  background: var(--color-bg);
+  background: var(--stage-bg);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -24,7 +24,7 @@
 .scene-stage__object {
   cursor: pointer;
   outline: none;
-  --outline-color: var(--color-highlight);
+  --outline-color: var(--stage-highlight);
 }
 
 .scene-stage__object.is-active,
@@ -38,7 +38,7 @@
 
 /* 已選取但滑鼠移到別處時用白色外框，跟 hover 的黃色區分 */
 .scene-stage__object.is-selected:not(.is-active) {
-  --outline-color: var(--color-border);
+  --outline-color: var(--stage-selected);
 }
 
 /* ---------- 物件右上角的「?」（未找到）與 ✓（已找到），只在 hover / 聚焦 / 選取時出現 ---------- */
@@ -60,9 +60,9 @@
   font-family: var(--font-display);
   font-size: var(--text-display-sm);
   line-height: 1;
-  color: var(--color-text-inverse);
-  background: var(--color-accent);
-  box-shadow: 0 0 0 var(--border-width-thin) var(--color-shadow);
+  color: var(--stage-marker-text);
+  background: var(--stage-marker-bg);
+  box-shadow: 0 0 0 var(--border-width) var(--stage-marker-outline);
   transition: transform var(--duration-fast) var(--ease-pixel);
 }
 
@@ -71,6 +71,6 @@
 }
 
 .scene-stage__marker--found {
-  color: var(--color-found);
-  background: var(--color-bg);
+  color: var(--stage-found-text);
+  background: var(--stage-found-bg);
 }

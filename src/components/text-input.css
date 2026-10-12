@@ -16,7 +16,7 @@
 }
 
 .text-input__field {
-  --pixel-border-color: var(--text-input-border, var(--color-border));
+  --pixel-border-color: var(--text-input-border, var(--color-border-strong));
   width: calc(100% - var(--border-width) * 2);
   min-height: var(--hit-min);
   margin: var(--border-width);
@@ -42,9 +42,9 @@
   outline: none;
 }
 
-/* 聚焦用藍色，不用全域的黃色焦點色，避免跟 almost 狀態的黃色框混淆 */
+/* 聚焦用藍色，跟 almost（金色）、correct（青色）、wrong（紅色）區分 */
 .text-input[data-state="default"] .text-input__field:focus {
-  --text-input-border: var(--color-primary-hover);
+  --text-input-border: var(--color-info);
 }
 
 .text-input__field:read-only {

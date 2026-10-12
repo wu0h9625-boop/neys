@@ -1,0 +1,32 @@
+/* card：白底、2px 卡片框線（來自 pixel-frame raised），標題列下方一條分隔線 */
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border-muted);
+}
+
+/* 右邊有按鈕時上下內距縮小，標題列高度跟沒有按鈕的卡片接近 */
+.card__header--with-actions {
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}

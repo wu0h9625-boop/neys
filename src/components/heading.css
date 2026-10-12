@@ -1,21 +1,27 @@
-/* heading */
+/* heading：Silkscreen 像素字。sm 是卡片標題（13px），xl 是頁面標題（32px，粗體） */
 
 .heading {
   font-family: var(--font-display);
   font-size: var(--heading-size, var(--text-display-md));
-  font-weight: 400;
+  font-weight: var(--heading-weight, var(--weight-regular));
   -webkit-font-smoothing: none;
-  line-height: var(--leading-tight);
+  line-height: var(--leading-heading);
   color: var(--heading-color, var(--color-text));
   overflow-wrap: anywhere;
 }
 
 .heading--sm { --heading-size: var(--text-display-sm); }
-.heading--lg { --heading-size: var(--text-display-lg); }
+.heading--lg {
+  --heading-size: var(--text-display-lg);
+  --heading-weight: var(--weight-bold);
+}
 /* xl 在手機上是 24px，768px 以上才放大到 32px，避免長標題換太多行 */
-.heading--xl { --heading-size: var(--text-display-lg); }
+.heading--xl {
+  --heading-size: var(--text-display-lg);
+  --heading-weight: var(--weight-bold);
+}
 
-.heading--accent { --heading-color: var(--color-accent); }
+.heading--accent { --heading-color: var(--color-accent-text); }
 .heading--muted { --heading-color: var(--color-text-muted); }
 
 @media (min-width: 768px) {

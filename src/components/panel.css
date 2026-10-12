@@ -1,10 +1,12 @@
 /*
  * panel
  * 手機：bottom sheet（最高 70%）／ 平板：bottom sheet（最高 50%）／ 桌機：場景右側固定欄位（sticky）。
+ * 外觀：米白底、2px 框線、沒有陰影（框線來自 pixel-frame）。
  *
  * 可覆寫的變數（主要給元件展示頁的模擬螢幕用）：
- *   --panel-sheet-max-height   bottom sheet 最高，預設手機 70vh、平板 50vh
- *   --panel-desktop-max-height 桌機面板最高，預設螢幕高度扣上下間距
+ *   --panel-sheet-max-height    bottom sheet 最高，預設手機 70vh、平板 50vh
+ *   --panel-desktop-height      桌機面板高度，預設 calc(100vh - 140px)
+ *   --panel-desktop-min-height  桌機面板最低高度，預設 560px
  */
 
 /* ---------- 手機：bottom sheet ---------- */
@@ -33,12 +35,12 @@
 }
 
 .panel__frame {
+  --frame-bg: var(--color-surface);
+  --frame-border: var(--color-border);
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  /* 往上投一層陰影，跟場景分開 */
-  --pixel-border-extra: 0 calc(var(--border-width) * -3) 0 0 var(--color-shadow);
 }
 
 .panel__frame:focus {
@@ -50,7 +52,7 @@
   width: var(--space-7);
   height: var(--border-width);
   margin: var(--space-2) auto 0;
-  background: var(--color-border-muted);
+  background: var(--color-border-control);
 }
 
 .panel__header {
@@ -61,18 +63,20 @@
   gap: var(--space-3);
   min-height: var(--hit-min);
   padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
-  border-bottom: var(--border-width-thin) dashed var(--color-border-muted);
+  border-bottom: var(--border-width) solid var(--color-border-muted);
 }
 
 .panel__body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-3-5);
   min-height: 0;
   padding: var(--space-4);
   padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-control) transparent;
 }
 
 /* 內容超過高度時要捲動，不能讓 flex 把子元素壓扁（壓扁後文字會疊在一起） */
@@ -89,25 +93,24 @@
   }
 }
 
-/* ---------- 桌機：固定在場景右側 ---------- */
+/* ---------- 桌機：固定在場景右側，高度跟著視窗（設計稿 calc(100vh - 140px)、最低 560px） ---------- */
 @media (min-width: 1024px) {
   .panel,
   .panel[data-open="true"] {
     position: sticky;
-    top: var(--space-4);
+    top: var(--space-5);
     z-index: auto;
     width: var(--panel-width);
-    max-height: var(--panel-desktop-max-height, calc(100vh - var(--space-4) * 2));
+    height: var(--panel-desktop-height);
+    min-height: var(--panel-desktop-min-height);
+    max-height: none;
     padding: 0;
     transform: none;
     visibility: visible;
     transition: none;
   }
 
-  .panel__frame {
-    --pixel-border-extra: 0 0 0 0 transparent;
-  }
-
+  .panel__handle,
   .panel__close {
     display: none;
   }
