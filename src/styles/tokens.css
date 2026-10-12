@@ -56,7 +56,13 @@
 
   /* ---------- 字體 ---------- */
   --font-display: "Press Start 2P", ui-monospace, monospace;
-  --font-body: "Pixelify Sans", ui-monospace, monospace;
+  /* 內文：Atkinson Hyperlegible 為易讀性設計，l / I / 1、O / 0 容易分辨，適合看拼字 */
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* 按鈕、標籤等介面文字。想改回像素風時把這行改成 var(--font-display) */
+  --font-ui: var(--font-body);
+
+  --weight-regular: 400;
+  --weight-bold: 700;
 
   /* Press Start 2P 以 8px 為網格，用 8 的倍數才不會糊 */
   --text-display-sm: 0.75rem;  /* 12px，僅用於小標籤 */

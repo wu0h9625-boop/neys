@@ -65,7 +65,7 @@
 ## 5. 介面與視覺
 
 - **像素風**：場景用 SVG 繪製，邏輯解析度 192×108（16:9），`shape-rendering: crispEdges`，以整數倍放大。每個物件是一個 `<g>` 群組，群組本身就是點擊熱區，不需另外標座標。
-- **字體**：標題用 Press Start 2P；內文用 Pixelify Sans 或 VT323，確保 14px 以上可讀。
+- **字體**：標題用像素字體 Press Start 2P；內文、按鈕、標籤用易讀的 Atkinson Hyperlegible，確保 14px 以上可讀。
 - **色盤**：每個場景限制 16 色左右，配色像 GBA / SNES 時代。
 - **面板樣式**：像 RPG 對話框，黑底白字加像素邊框。
 - **RWD**：

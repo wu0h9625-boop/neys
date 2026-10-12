@@ -9,7 +9,7 @@
 
 - 純 HTML / CSS / JS，使用 ES modules，不需要 build，不引入框架。
 - 本機預覽要開伺服器，因為 `fetch` 和 ES modules 不能用雙擊開檔的方式執行：`python3 -m http.server 8000`
-- 外部資源只用 Google Fonts（Press Start 2P、Pixelify Sans）。其他資源都放在 repo 內。
+- 外部資源只用 Google Fonts（標題 Press Start 2P、內文 Atkinson Hyperlegible）。其他資源都放在 repo 內。
 - 部署目標：GitHub Pages，所以路徑一律用相對路徑。
 
 ## 資料夾

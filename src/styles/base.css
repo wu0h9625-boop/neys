@@ -27,7 +27,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-body-md);
   line-height: var(--leading-body);
-  -webkit-font-smoothing: none;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
@@ -38,6 +38,7 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 400;
+  -webkit-font-smoothing: none; /* 像素字體關掉反鋸齒才會銳利 */
   line-height: var(--leading-tight);
 }
 
