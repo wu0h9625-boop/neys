@@ -1,0 +1,87 @@
+/*
+ * button
+ * 外框來自 .pixel-border（pixel-frame.css）。底部厚度用 --pixel-border-extra 疊一層陰影，
+ * 按下時按鈕往下移 4px、厚度消失，看起來像實體按鍵被壓下去。
+ */
+
+.button {
+  --button-depth-offset: calc(var(--border-width) * 2);
+  --pixel-border-color: var(--button-border, var(--color-border));
+  --pixel-border-extra: 0 var(--button-depth-offset) 0 0 var(--button-depth, var(--color-shadow));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: var(--hit-min);
+  min-height: var(--hit-min);
+  /* 外框在元素外側 4px、底部厚度 8px，所以外距要留出來 */
+  margin: var(--border-width) var(--border-width) calc(var(--border-width) * 2);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  line-height: 1.4;
+  text-align: center;
+  color: var(--button-fg, var(--color-text));
+  background: var(--button-bg, var(--color-primary));
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    transform var(--duration-fast) var(--ease-pixel),
+    background-color var(--duration-fast) var(--ease-pixel);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--button-bg-hover, var(--color-primary-hover));
+}
+
+.button:active:not(:disabled) {
+  --button-depth-offset: var(--border-width);
+  transform: translateY(var(--border-width));
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  --button-bg: var(--color-surface);
+  --button-bg-hover: var(--color-surface);
+  --button-fg: var(--color-text-muted);
+  --button-border: var(--color-border-muted);
+}
+
+/* Variants */
+.button--secondary {
+  --button-bg: var(--color-surface);
+  --button-bg-hover: var(--color-surface-raised);
+}
+
+.button--ghost {
+  --button-bg: transparent;
+  --button-bg-hover: var(--color-surface);
+  --button-fg: var(--color-accent);
+  margin: 0;
+}
+
+.button--ghost:active:not(:disabled) {
+  transform: none;
+}
+
+.button--ghost:disabled {
+  --button-bg: transparent;
+  --button-bg-hover: transparent;
+}
+
+/* Shapes */
+.button--icon-only {
+  width: var(--hit-min);
+  padding: 0;
+}
+
+.button--block {
+  display: flex;
+  width: calc(100% - var(--border-width) * 2);
+}
+
+.button--ghost.button--block {
+  width: 100%;
+}

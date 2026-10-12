@@ -19,7 +19,7 @@
 | 元件 | 狀態 |
 |---|---|
 | `pixel-frame` | 完成 |
-| `button` | 未開始 |
+| `button` | 完成 |
 | `speak-button` | 未開始 |
 | `text-input` | 未開始 |
 | `feedback` | 未開始 |
@@ -141,3 +141,32 @@
     const speaker = createTag({ text: "A", tone: "info" });
 
 注意事項：tag 是純展示，不能點。要可以點的請用 `button`。
+
+### button
+
+用途：遊戲中所有按鈕。外框用 `.pixel-border`，底部有 8px 厚度，按下時往下移 4px。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| label | string | — | 必填。按鈕文字；`iconOnly` 時變成 `aria-label` 與 `title` |
+| variant | `"primary"` \| `"secondary"` \| `"ghost"` | `"primary"` | primary 藍底；secondary 深灰底；ghost 無外框、黃字 |
+| icon | string | — | `icon` 元件的圖示名稱，放在文字前 |
+| iconOnly | boolean | `false` | 只顯示圖示，按鈕為 44×44 的正方形 |
+| block | boolean | `false` | 撐滿父層寬度 |
+| disabled | boolean | `false` | 停用 |
+| type | `"button"` \| `"submit"` | `"button"` | 放在 form 裡當送出鈕時用 `"submit"` |
+| onClick | function | — | 點擊事件 |
+| className | string | `""` | 額外 class |
+| attrs | object | `{}` | 額外 HTML 屬性，例如 `aria-pressed` |
+
+更新用的函式：`setButtonLabel(button, label)`、`setButtonIcon(button, icon)`。
+
+可覆寫的 CSS 變數：`--button-bg`、`--button-bg-hover`、`--button-fg`、`--button-border`、`--button-depth`。
+
+範例：
+
+    import { createButton } from "../components/button.js";
+    const reveal = createButton({ label: "Reveal", variant: "secondary", onClick: showAnswer });
+    const close = createButton({ label: "Close", variant: "ghost", icon: "close", iconOnly: true, onClick: closePanel });
+
+注意事項：最小點擊範圍 44×44。非 ghost 的按鈕外側有 4px 外框與底部 8px 厚度，按鈕自帶外距，排版時不用另外留。

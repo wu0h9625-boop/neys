@@ -14,6 +14,7 @@
 // 給 panel 這類 position: fixed 的元件用。
 
 import { el } from "../lib/dom.js";
+import { createButton } from "../components/button.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
@@ -22,6 +23,20 @@ import { createTag } from "../components/tag.js";
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
 
 export const demos = [
+  {
+    name: "button",
+    description: "Every button in the game. Press it to see the 4px push-down. Ghost has no frame.",
+    variants: [
+      { label: "primary", render: () => createButton({ label: "Check" }) },
+      { label: "secondary", render: () => createButton({ label: "Reveal", variant: "secondary" }) },
+      { label: "ghost", render: () => createButton({ label: "Reset progress", variant: "ghost" }) },
+      { label: "with icon", render: () => createButton({ label: "Hint", variant: "secondary", icon: "bulb" }) },
+      { label: "icon-only", render: () => createButton({ label: "Close", variant: "secondary", icon: "close", iconOnly: true }) },
+      { label: "icon-only ghost", render: () => createButton({ label: "Play pronunciation", variant: "ghost", icon: "speaker", iconOnly: true }) },
+      { label: "disabled", render: () => createButton({ label: "Check", disabled: true }) },
+      { label: "block (full width)", wide: true, render: () => el("div", { attrs: { style: "width: 100%; max-width: 360px" } }, [createButton({ label: "Scene talk", icon: "chat", block: true })]) },
+    ],
+  },
   {
     name: "heading",
     description: "Pixel-font titles. level sets the HTML tag (h1–h4); size sets the look.",

@@ -21,7 +21,7 @@
 
 - [x] 共用 helper `src/lib/dom.js`（`el()`、`highlightWords()`）
 - [x] `pixel-frame`
-- [ ] `button`（primary / secondary / ghost / icon-only）
+- [x] `button`（primary / secondary / ghost，加上 iconOnly、block）
 - [ ] `speak-button`（依賴 `lib/speech.js`，可先用 stub）
 - [ ] `text-input`（default / almost / wrong / correct）
 - [ ] `feedback`
