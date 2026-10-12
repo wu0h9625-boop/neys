@@ -61,6 +61,8 @@
   --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   /* 按鈕、標籤等介面文字。想改回像素風時把這行改成 var(--font-display) */
   --font-ui: var(--font-body);
+  /* 等寬字，用在提示的字母格（s _ _ _ _），每格寬度一致才數得出字數 */
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --weight-regular: 400;
   --weight-bold: 700;

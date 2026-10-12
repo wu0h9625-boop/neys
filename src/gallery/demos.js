@@ -15,6 +15,7 @@
 
 import { el } from "../lib/dom.js";
 import { createButton } from "../components/button.js";
+import { createFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
@@ -43,6 +44,18 @@ export const demos = [
       { label: "icon-only ghost", render: () => createButton({ label: "Play pronunciation", variant: "ghost", icon: "speaker", iconOnly: true }) },
       { label: "disabled", render: () => createButton({ label: "Check", disabled: true }) },
       { label: "block (full width)", wide: true, render: () => el("div", { attrs: { style: "width: 100%; max-width: 360px" } }, [createButton({ label: "Scene talk", icon: "chat", block: true })]) },
+    ],
+  },
+  {
+    name: "feedback",
+    description: "Result message under the answer field. It is an aria-live region: create once, then update with setFeedback.",
+    variants: [
+      { label: "success", render: () => createFeedback({ tone: "success", message: "Nice! That's right." }) },
+      { label: "almost", render: () => createFeedback({ tone: "almost", message: "Almost!", detail: "It's spelled refrigerator." }) },
+      { label: "error", render: () => createFeedback({ tone: "error", message: "Not quite. Try again." }) },
+      { label: "hint", render: () => createFeedback({ tone: "hint", message: "s _ _ _ _ _ _ (7)" }) },
+      { label: "info", render: () => createFeedback({ tone: "info", message: "Type what you think it is." }) },
+      { label: "long message wraps", render: () => el("div", { attrs: { style: "max-width: 260px" } }, [createFeedback({ tone: "almost", message: "Almost!", detail: "Fridge and refrigerator are both correct. You typed refrigerater." })]) },
     ],
   },
   {

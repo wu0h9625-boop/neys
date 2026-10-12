@@ -22,7 +22,7 @@
 | `button` | 完成 |
 | `speak-button` | 完成 |
 | `text-input` | 完成 |
-| `feedback` | 未開始 |
+| `feedback` | 完成 |
 | `sentence-list` | 未開始 |
 | `dialogue` | 未開始 |
 | `progress-badge` | 未開始 |
@@ -223,3 +223,24 @@
     const answer = createTextInput({ onSubmit: (value) => setTextInputState(answer, check(value)) });
 
 注意事項：字級 20px，避免 iOS Safari 聚焦時自動放大畫面。關閉了自動大寫、自動修正、拼字檢查，避免瀏覽器幫使用者改答案。
+
+### feedback
+
+用途：作答結果訊息列，放在輸入框下方。是 `aria-live="polite"` 區域，要先建立一次、之後用 `setFeedback` 更新，螢幕閱讀器才會唸出變化。沒有訊息時不佔高度。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| tone | `"success"` \| `"almost"` \| `"error"` \| `"hint"` \| `"info"` | `"info"` | 顏色與圖示：綠勾、黃星、橘叉、青燈泡、灰色無圖示 |
+| message | string | `""` | 主訊息，粗體 |
+| detail | string | `""` | 補充說明，灰色 |
+| className | string | `""` | 額外 class |
+
+更新用的函式：`setFeedback(feedback, { tone, message, detail })`、`clearFeedback(feedback)`。
+
+範例：
+
+    import { createFeedback, setFeedback } from "../components/feedback.js";
+    const result = createFeedback();
+    setFeedback(result, { tone: "almost", message: "Almost!", detail: "It's spelled refrigerator." });
+
+注意事項：error 用 `--color-danger-text`（橘色），不用 `--color-danger`，因為紅色在深色背景上對比不足。hint 的主訊息用等寬字（`--font-mono`）加字距，字母格 `s _ _ _ _ _ _` 才數得出幾個字母。

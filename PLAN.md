@@ -24,7 +24,7 @@
 - [x] `button`（primary / secondary / ghost，加上 iconOnly、block）
 - [x] `speak-button`
 - [x] `text-input`（default / almost / wrong / correct）
-- [ ] `feedback`
+- [x] `feedback`
 - [ ] `sentence-list`
 - [ ] `dialogue`
 - [ ] `progress-badge`

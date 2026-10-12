@@ -1,0 +1,44 @@
+/* feedback */
+
+.feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-height: 1lh;
+  color: var(--feedback-color, var(--color-text-muted));
+}
+
+.feedback--empty {
+  min-height: 0;
+}
+
+.feedback__icon {
+  /* 圖示跟第一行文字置中對齊 */
+  margin-top: calc((1lh - 1em) / 2);
+}
+
+.feedback__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.feedback__message {
+  font-weight: var(--weight-bold);
+}
+
+.feedback__detail {
+  color: var(--color-text-muted);
+}
+
+.feedback--success { --feedback-color: var(--color-success); }
+.feedback--almost { --feedback-color: var(--color-almost); }
+.feedback--error { --feedback-color: var(--color-danger-text); }
+.feedback--hint { --feedback-color: var(--color-info); }
+
+/* 提示通常是字母格（s _ _ _ _ _ _），用等寬字加字距才數得出幾個字母 */
+.feedback--hint .feedback__message {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+}
