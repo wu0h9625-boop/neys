@@ -9,6 +9,8 @@
 
 - 純 HTML / CSS / JS，使用 ES modules，不需要 build，不引入框架。
 - 本機預覽要開伺服器，因為 `fetch` 和 ES modules 不能用雙擊開檔的方式執行：`python3 -m http.server 8000`
+- 跑測試：`npm test`（需要 Node 18 以上）。`package.json` 只用來宣告 ES module 與測試指令，沒有任何相依套件。
+- `src/lib/` 的純邏輯改動都要補測試，commit 前跑過 `npm test`。
 - 外部資源只用 Google Fonts（標題 Press Start 2P、內文 Atkinson Hyperlegible）。其他資源都放在 repo 內。
 - 部署目標：GitHub Pages，所以路徑一律用相對路徑。
 
@@ -20,6 +22,7 @@ src/views/        頁面，只負責組裝元件和排版
 src/lib/          邏輯與共用工具：答案判定、發音、進度保存；dom.js 是建立元素的 helper，所有地方都用它
 src/styles/       main.css（樣式總入口，HTML 只載入這支）、tokens.css（設計變數）、base.css（reset 與全域字體）
 scenes/           每個場景一組 <id>.json + <id>.svg
+tests/            src/lib 的單元測試（Node 內建 node:test，不需要安裝套件）
 src/gallery/      元件展示頁的程式；demos.js 是展示清單
 docs/             components.md（元件用法）
 components.html   元件展示頁，可切換 375 / 768 / 1024 / 1440 寬度預覽
