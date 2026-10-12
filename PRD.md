@@ -77,25 +77,46 @@
 
 ## 6. 資料結構
 
-每個場景一個 JSON 檔：
+`scenes/index.json` 列出要顯示的場景，順序就是首頁的順序：
+
+```json
+{ "scenes": ["office", "sidewalk", "studio"] }
+```
+
+每個場景一組 `<id>.json` + `<id>.svg`：
 
 ```json
 {
   "id": "office",
   "title": "Office",
-  "sceneDialogues": [{ "title": "Borrowing a stapler", "lines": [{ "speaker": "A", "text": "..." }] }],
+  "description": "Desks, screens and a lot of coffee.",
+  "speakers": { "A": "You", "B": "Coworker" },
+  "sceneDialogues": [{ "title": "First day at the office", "lines": [{ "speaker": "A", "text": "..." }] }],
   "objects": [{
     "id": "stapler",
     "word": "stapler",
     "pos": "noun",
     "accept": ["stapler"],
-    "selfTalk": ["...", "...", "..."],
+    "highlight": ["staple"],
+    "selfTalk": [
+      { "tag": "Describe", "text": "..." },
+      { "tag": "Act", "text": "..." },
+      { "tag": "Feel", "text": "..." }
+    ],
     "dialogue": [{ "speaker": "A", "text": "..." }]
   }]
 }
 ```
 
-SVG 裡的 `<g data-object="stapler">` 對應 JSON 的 `objects[].id`。
+| 欄位 | 說明 |
+|---|---|
+| `speakers` | 對話說話者的顯示名稱，場景內所有對話共用 |
+| `accept` | 所有算答對的寫法，必須包含 `word` 本身 |
+| `highlight` | 選填。例句裡要標色、但不算答案的字形，例如 stapler 的 staple |
+| `selfTalk` | 3 句，依序是描述（Describe）、動作（Act）、感受或計畫（Feel） |
+| `dialogue` | 4–6 句，至少一句用到這個單字 |
+
+SVG 裡的 `<g data-object="stapler">` 對應 JSON 的 `objects[].id`，兩邊的順序要相同（決定鍵盤 Tab 順序與「Object 3 of 15」的編號）。以上規則由 `npm test` 自動檢查（`tests/scenes.test.js`）。
 
 ## 7. 進度保存
 

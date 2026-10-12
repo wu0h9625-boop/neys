@@ -45,7 +45,7 @@
 ## M3 單一場景跑通（Office）
 
 - [x] `scenes/office.svg`：15 個 `<g data-object>` 物件（PRD 的 14 個加上 window）
-- [ ] `scenes/office.json`：每個物件 3 句 self-talk、1 段 4–6 句對話；至少 1 段場景對話
+- [x] `scenes/office.json`：每個物件 3 句 self-talk、1 段 4–6 句對話；至少 1 段場景對話
 - [ ] `src/views/home.js`：場景卡片列表與進度
 - [ ] `src/views/scene.js`：hover / tap 高亮 → 作答 → 揭曉 → 例句 → 發音
 - [ ] 鍵盤操作：Tab 逐一聚焦物件、Enter 打開

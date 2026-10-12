@@ -1,5 +1,7 @@
 // 建立 DOM 的共用 helper。元件、頁面、展示頁都用這裡，不各自寫一份。
 
+import { buildTermPattern } from "./text.js";
+
 /**
  * el("button", { className: "button", text: "OK", attrs: { type: "button" }, on: { click } }, [child])
  * children 可放 Node、字串；null / undefined / false 會被略過。
@@ -33,24 +35,18 @@ export function append(parent, children) {
   return parent;
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 /**
  * 把句子裡的目標單字包成 <mark>，回傳 DocumentFragment。
  * 不分大小寫，也會標出 -s / -es / -ed / -ing 變化。
  */
 export function highlightWords(text, words = []) {
   const fragment = document.createDocumentFragment();
-  const terms = words.filter(Boolean).map(escapeRegExp);
-  if (terms.length === 0) {
+  const pattern = buildTermPattern(words);
+  if (!pattern) {
     fragment.append(text);
     return fragment;
   }
 
-  terms.sort((a, b) => b.length - a.length);
-  const pattern = new RegExp(`\\b(?:${terms.join("|")})(?:s|es|ed|ing)?\\b`, "gi");
   let last = 0;
   for (const match of text.matchAll(pattern)) {
     fragment.append(text.slice(last, match.index));
