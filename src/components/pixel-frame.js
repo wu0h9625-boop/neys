@@ -1,5 +1,5 @@
-// pixel-frame：RPG 風格的像素外框。面板、卡片、對話框的外框都用它。
-// 同一支 CSS 也提供 .pixel-border，給按鈕、輸入框這類只需要外框線的元件用。
+// pixel-frame：2px 平面框線容器（名稱沿用早期的像素框）。面板、卡片、對話框的框線都用它。
+// 同一支 CSS 也提供 .pixel-border，給按鈕、輸入框這類只需要框線的元件用。
 
 import { el } from "../lib/dom.js";
 

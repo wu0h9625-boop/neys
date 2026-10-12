@@ -50,7 +50,7 @@
    - 答錯：顯示 `Not quite`，可以再試，或按 `Hint`（顯示首字母和字母數，例：`s _ _ _ _ _ _ (7)`）。
    - 隨時可按 `Reveal` 直接看答案。
 4. **揭曉**：
-   - 顯示單字、詞性、同義詞。
+   - 顯示單字卡：詞性、單字、IPA 音標（美式）、其他算答對的說法（Also OK）。
    - 🔊 按鈕播放發音（Web Speech API，en-US）。答對或按 Reveal 時自動念一次。
    - 物件記為「已發現」，頁首進度 +1。場景上平常不標示已發現；hover 或選取時，已發現的物件右上角是綠色 ✓，未發現的是黃色「?」。
 5. **學怎麼用**（揭曉後同一面板往下，順序由單字的聯想、到完整句子、到情境對話）：
@@ -69,9 +69,14 @@
 ## 5. 介面與視覺
 
 - **像素風**：場景用 SVG 繪製，邏輯解析度 192×108（16:9），`shape-rendering: crispEdges`，以整數倍放大。每個物件是一個 `<g>` 群組，群組本身就是點擊熱區，不需另外標座標。
-- **字體**：標題用像素字體 Press Start 2P；內文、按鈕、標籤用易讀的 Atkinson Hyperlegible，確保 14px 以上可讀。
-- **色盤**：每個場景限制 16 色左右，配色像 GBA / SNES 時代。
-- **面板樣式**：像 RPG 對話框，黑底白字加像素邊框。
+- **視覺規格**：依 Claude Design 的 Office 視覺提案（`design_handoff_office_scene/`）。
+- **頁面主題**：淺色米白。頁面 `#f3ead6`、面板 `#fffaf0`、卡片白底；主要文字 `#1b1e2e`，強調色是黃 `#ffc94d`、橘字 `#b3440a`、青 `#1f7383`。沒有陰影、沒有圓角、沒有粗黑框，框線一律 2px。
+- **字體**：像素標題與小標籤用 Silkscreen（頁面標題 32px、卡片標題 13px、標籤 10–12px）；單字與所有閱讀文字用易讀的 Atkinson Hyperlegible（14–34px）。
+- **場景圖色盤**：場景圖本身維持深色 Sweetie 16（16 色，配色像 GBA / SNES 時代），放在 2px 米色框裡。
+- **場景頁版面**：
+  - 頁首：左邊是 Scenes 返回、分隔線、頁面標題；右邊是「FOUND n/15」與每個物件一格的進度條（已找到青色、目前選取黃色、未找到米灰色），以及 Scene talk 按鈕。
+  - 場景下方：步驟標籤「1 Tap / 2 Say it / 3 Open」、提示文字、Reset progress 按鈕。
+  - 揭曉面板由上往下：黃色單字卡（詞性、單字、IPA、發音鈕、Also OK）→ Word picture → Say it to yourself → Mini dialogue（聊天泡泡：You 靠右青色、Coworker 靠左米色，點泡泡播放）→ Next object。
 - **RWD**：
   - ≥ 1024px：場景在左，作答面板固定在右側。
   - 768–1023px：場景滿寬，面板也是底部 bottom sheet，最高佔 50% 螢幕，直式平板上不會蓋到場景。（從右側滑出會蓋住場景右半邊，使用者看不到正在命名的物件。）
@@ -100,6 +105,7 @@
     "id": "stapler",
     "word": "stapler",
     "pos": "noun",
+    "ipa": "/ˈsteɪplər/",
     "accept": ["stapler"],
     "highlight": ["staple"],
     "wordPicture": {
@@ -120,6 +126,7 @@
 | 欄位 | 說明 |
 |---|---|
 | `speakers` | 對話說話者的顯示名稱，場景內所有對話共用 |
+| `ipa` | 美式 IPA 音標，寫成 `/.../` |
 | `accept` | 所有算答對的寫法，必須包含 `word` 本身 |
 | `highlight` | 選填。例句裡要標色、但不算答案的字形，例如 stapler 的 staple |
 | `selfTalk` | 3 句，依序是描述（Describe）、動作（Act）、感受或計畫（Feel），每句至少 10 個字 |
@@ -148,7 +155,7 @@ SVG 裡的 `<g data-object="stapler">` 對應 JSON 的 `objects[].id`，兩邊�
 
 - 3 個場景、每個場景 ≥ 12 個物件都能點擊、作答、揭曉。
 - 判定：`Fridge`、`a fridge`、`refrigerater`（拼錯 1 字）都判定為答對 refrigerator。
-- 每個物件都有 3 組文字畫面（每組 3–5 個）、3 句至少 10 個字的 self-talk、1 段 4–6 句對話；每個場景有 ≥ 1 段場景對話。
+- 每個物件都有 IPA 音標、3 組文字畫面（每組 3–5 個）、3 句至少 10 個字的 self-talk、1 段 4–6 句對話；每個場景有 ≥ 1 段場景對話。
 - 在 iPhone Safari 375px、iPad 768px、桌機 1440px 寬度都能完成整個流程，沒有水平捲動。
 - 重新整理頁面後進度還在。
 - Chrome、Safari 都能播放發音。
