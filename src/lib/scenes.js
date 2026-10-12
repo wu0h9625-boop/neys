@@ -8,6 +8,12 @@ export const SCENE_RULES = {
   minObjects: 12,
   maxObjects: 15,
   selfTalkCount: 3,
+  // B1–B2 的例句：至少 10 個字，避免退回「This is a mug.」這種短句
+  selfTalkMinWords: 10,
+  // 文字畫面（Word picture）：外觀、動作、相關的東西，每組 3–5 個
+  wordPictureGroups: ["looks", "actions", "goesWith"],
+  wordPictureMin: 3,
+  wordPictureMax: 5,
   dialogueMin: 4,
   dialogueMax: 6,
   minSceneDialogues: 1,
@@ -63,9 +69,28 @@ export function validateScene(data, svgIds) {
     }
     selfTalk.forEach((sentence, i) => {
       const text = typeof sentence === "string" ? sentence : sentence?.text;
-      if (!text) problems.push(`${at}: selfTalk[${i}] is empty`);
-      else if (!containsTerm(text, terms)) problems.push(`${at}: selfTalk[${i}] does not use the word`);
+      if (!text) {
+        problems.push(`${at}: selfTalk[${i}] is empty`);
+        return;
+      }
+      if (!containsTerm(text, terms)) problems.push(`${at}: selfTalk[${i}] does not use the word`);
+      const words = text.trim().split(/\s+/).length;
+      if (words < SCENE_RULES.selfTalkMinWords) {
+        problems.push(`${at}: selfTalk[${i}] has ${words} words, expected at least ${SCENE_RULES.selfTalkMinWords}`);
+      }
     });
+
+    const picture = object.wordPicture;
+    if (!picture || typeof picture !== "object") {
+      problems.push(`${at}: missing wordPicture`);
+    } else {
+      for (const group of SCENE_RULES.wordPictureGroups) {
+        const items = Array.isArray(picture[group]) ? picture[group].filter(Boolean) : [];
+        if (items.length < SCENE_RULES.wordPictureMin || items.length > SCENE_RULES.wordPictureMax) {
+          problems.push(`${at}: wordPicture.${group} has ${items.length} items, expected ${SCENE_RULES.wordPictureMin}–${SCENE_RULES.wordPictureMax}`);
+        }
+      }
+    }
 
     const dialogue = Array.isArray(object.dialogue) ? object.dialogue : [];
     if (dialogue.length < SCENE_RULES.dialogueMin || dialogue.length > SCENE_RULES.dialogueMax) {

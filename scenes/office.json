@@ -7,23 +7,23 @@
     {
       "title": "First day at the office",
       "lines": [
-        { "speaker": "A", "text": "Hi, I'm new. Is this my desk?" },
-        { "speaker": "B", "text": "Yes, welcome! Your monitor and keyboard are already set up." },
-        { "speaker": "A", "text": "Great. Where's the printer?" },
-        { "speaker": "B", "text": "In the corner, next to the water dispenser." },
-        { "speaker": "A", "text": "And where can I get some coffee?" },
-        { "speaker": "B", "text": "Bring a mug. The kitchen is down the hall." }
+        { "speaker": "A", "text": "Hi, I'm new here. Is this going to be my desk?" },
+        { "speaker": "B", "text": "Yes, welcome aboard! IT has already set up your monitor and keyboard." },
+        { "speaker": "A", "text": "That's great. Where's the nearest printer, by the way?" },
+        { "speaker": "B", "text": "It's in the corner, right next to the water dispenser." },
+        { "speaker": "A", "text": "And is there somewhere I can make coffee?" },
+        { "speaker": "B", "text": "The kitchen's down the hall. Bring your own mug, though. The office ones always go missing." }
       ]
     },
     {
       "title": "Tidying up on Friday",
       "lines": [
-        { "speaker": "A", "text": "Let's tidy up before we leave." },
-        { "speaker": "B", "text": "Okay. I'll erase the whiteboard." },
-        { "speaker": "A", "text": "I'll put these files back in the filing cabinet." },
-        { "speaker": "B", "text": "Don't forget to water the plant." },
-        { "speaker": "A", "text": "And you should take your mug home this time." },
-        { "speaker": "B", "text": "Fine, fine. I'll take it." }
+        { "speaker": "A", "text": "Shall we tidy up a bit before we head home?" },
+        { "speaker": "B", "text": "Sure. I'll take a photo of the whiteboard and then erase it." },
+        { "speaker": "A", "text": "Great. I'll put these folders back in the filing cabinet." },
+        { "speaker": "B", "text": "Could you also water the plant? It's looking a bit droopy." },
+        { "speaker": "A", "text": "Will do. And you should finally take your mug home this weekend." },
+        { "speaker": "B", "text": "Fine, fine. I'll wash it first, I promise." }
       ]
     }
   ],
@@ -34,17 +34,22 @@
       "pos": "noun",
       "accept": ["whiteboard", "white board", "dry-erase board", "board"],
       "highlight": ["board"],
+      "wordPicture": {
+        "looks": ["white", "glossy", "wall-mounted", "covered in notes"],
+        "actions": ["write on", "wipe off", "erase", "take a photo of"],
+        "goesWith": ["markers", "eraser", "brainstorming", "meeting"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "The whiteboard is still covered with notes from yesterday's meeting." },
-        { "tag": "Act", "text": "Let me erase the whiteboard before the team comes in." },
-        { "tag": "Feel", "text": "I hate it when the whiteboard markers run out of ink." }
+        { "tag": "Describe", "text": "The whiteboard is still covered with diagrams from yesterday's meeting that nobody bothered to erase." },
+        { "tag": "Act", "text": "Before the team comes in, I'll take a photo of the whiteboard and then wipe it clean." },
+        { "tag": "Feel", "text": "It drives me crazy when every marker next to the whiteboard has already run out of ink." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Can I wipe the whiteboard?" },
-        { "speaker": "B", "text": "Wait, let me take a photo of it first." },
-        { "speaker": "A", "text": "Sure. Is that the project timeline?" },
-        { "speaker": "B", "text": "Yes, we spent an hour drawing it on the board." },
-        { "speaker": "A", "text": "Then I'll definitely wait." }
+        { "speaker": "A", "text": "Is it okay if I wipe the whiteboard? I need it for a quick brainstorm." },
+        { "speaker": "B", "text": "Hang on, let me take a picture first. That's the project timeline we spent an hour on." },
+        { "speaker": "A", "text": "Oh, good thing I asked. I almost erased the whole thing." },
+        { "speaker": "B", "text": "Go ahead now. Just leave the deadlines in the corner of the board, if you can." },
+        { "speaker": "A", "text": "No problem, I'll work around them." }
       ]
     },
     {
@@ -52,16 +57,21 @@
       "word": "window",
       "pos": "noun",
       "accept": ["window", "office window"],
+      "wordPicture": {
+        "looks": ["wide", "sunny", "double-paned", "slightly dusty"],
+        "actions": ["open", "close", "look out of", "pull down the blinds"],
+        "goesWith": ["fresh air", "view", "blinds", "windowsill"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "Through the window, I can see the buildings across the street." },
-        { "tag": "Act", "text": "Let me open the window and get some fresh air." },
-        { "tag": "Feel", "text": "I'm lucky my desk is so close to a window." }
+        { "tag": "Describe", "text": "From the window next to my desk, I can see the coffee shop across the street getting busy." },
+        { "tag": "Act", "text": "It's so stuffy in here that I'm going to open the window for ten minutes." },
+        { "tag": "Feel", "text": "Ever since I moved closer to the window, I've felt a lot less tired in the afternoons." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Mind if I open the window?" },
-        { "speaker": "B", "text": "Go ahead. It's really stuffy in here." },
-        { "speaker": "A", "text": "Is it too windy now?" },
-        { "speaker": "B", "text": "No, it's perfect. Leave the window open." }
+        { "speaker": "A", "text": "Would you mind if I opened the window? It's getting really stuffy in here." },
+        { "speaker": "B", "text": "Not at all. I was just about to ask the same thing." },
+        { "speaker": "A", "text": "Let me know if it gets too cold or windy for you." },
+        { "speaker": "B", "text": "I will. Just remember to close the window before you leave, or the cleaners will complain." }
       ]
     },
     {
@@ -70,16 +80,22 @@
       "pos": "noun",
       "accept": ["filing cabinet", "file cabinet", "cabinet"],
       "highlight": ["cabinet"],
+      "wordPicture": {
+        "looks": ["grey", "metal", "three-drawer", "locked"],
+        "actions": ["file away", "pull open", "lock", "sort through"],
+        "goesWith": ["folders", "invoices", "contracts", "key"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "The filing cabinet has three drawers, and the top one is locked." },
-        { "tag": "Act", "text": "I need to put these contracts in the filing cabinet." },
-        { "tag": "Feel", "text": "I'm a little scared of what's in the bottom drawer of that filing cabinet." }
+        { "tag": "Describe", "text": "The grey filing cabinet in the corner has three drawers, and the top one has been locked for weeks." },
+        { "tag": "Act", "text": "I need to put these signed contracts in the filing cabinet before I forget where I left them." },
+        { "tag": "Feel", "text": "Honestly, I'm a little afraid of what I'll find if I ever clean out the bottom drawer of that cabinet." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Where do we keep the old invoices?" },
-        { "speaker": "B", "text": "In the filing cabinet, second drawer." },
-        { "speaker": "A", "text": "The cabinet is locked. Do you have the key?" },
-        { "speaker": "B", "text": "Ask Sam. He keeps it on his keychain." }
+        { "speaker": "A", "text": "Do you know where we keep last year's invoices?" },
+        { "speaker": "B", "text": "They should be in the filing cabinet, second drawer from the top." },
+        { "speaker": "A", "text": "I just tried it, but the cabinet seems to be locked." },
+        { "speaker": "B", "text": "Ah, Sam has the key. He usually keeps it on his keychain." },
+        { "speaker": "A", "text": "Okay, I'll ask him when he gets back from lunch." }
       ]
     },
     {
@@ -88,16 +104,21 @@
       "pos": "noun",
       "accept": ["potted plant", "plant", "houseplant", "house plant", "office plant", "pot plant"],
       "highlight": ["plant"],
+      "wordPicture": {
+        "looks": ["green", "leafy", "healthy", "a bit droopy"],
+        "actions": ["water", "repot", "move into the sun", "trim"],
+        "goesWith": ["soil", "terracotta pot", "watering can", "sunlight"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "There's a potted plant next to the filing cabinet." },
-        { "tag": "Act", "text": "I'll water the plant before I leave today." },
-        { "tag": "Feel", "text": "That plant makes the office feel a lot less boring." }
+        { "tag": "Describe", "text": "The potted plant next to the filing cabinet is the only thing in this office that's actually thriving." },
+        { "tag": "Act", "text": "Since nobody else ever remembers, I'll water the plant on my way out this evening." },
+        { "tag": "Feel", "text": "Having a plant nearby makes the office feel a lot less like a dentist's waiting room." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Who's been watering this plant?" },
-        { "speaker": "B", "text": "I think it's Mia. She waters it every Friday." },
-        { "speaker": "A", "text": "It looks a lot healthier than the plant on my desk at home." },
-        { "speaker": "B", "text": "She talks to it too, apparently." }
+        { "speaker": "A", "text": "Who's been looking after this plant? It looks so much healthier than last month." },
+        { "speaker": "B", "text": "That's Mia. She waters it every Friday and turns it toward the window." },
+        { "speaker": "A", "text": "I wish I had her skills. Every plant I've owned has died within a few weeks." },
+        { "speaker": "B", "text": "She says the secret is not to water it too often." }
       ]
     },
     {
@@ -105,16 +126,21 @@
       "word": "desk",
       "pos": "noun",
       "accept": ["desk", "office desk", "work desk", "workstation"],
+      "wordPicture": {
+        "looks": ["wooden", "wide", "cluttered", "orange-brown"],
+        "actions": ["tidy up", "clear off", "sit at", "book"],
+        "goesWith": ["drawers", "paperwork", "desk lamp", "hot-desking"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "My desk is covered in papers again." },
-        { "tag": "Act", "text": "Let me clear some space on my desk before the meeting." },
-        { "tag": "Feel", "text": "I wish my desk were a little bigger." }
+        { "tag": "Describe", "text": "My desk is so cluttered with paperwork that I can barely find space for my laptop." },
+        { "tag": "Act", "text": "Let me clear off my desk before the meeting so I don't look completely disorganized." },
+        { "tag": "Feel", "text": "I'd probably be more productive if my desk were next to the window instead of the hallway." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Is anyone sitting at this desk today?" },
-        { "speaker": "B", "text": "No, it's free. We don't have assigned desks anymore." },
-        { "speaker": "A", "text": "Great. Do I need to book it?" },
-        { "speaker": "B", "text": "Just write your name on the sheet by the door." }
+        { "speaker": "A", "text": "Is anyone sitting at this desk today, or is it free?" },
+        { "speaker": "B", "text": "It's free. We switched to hot-desking last month, so nobody has an assigned desk anymore." },
+        { "speaker": "A", "text": "Oh, I didn't know that. Do I need to book it somewhere?" },
+        { "speaker": "B", "text": "Normally you'd use the app, but for today just write your name on the sheet by the door." }
       ]
     },
     {
@@ -123,16 +149,21 @@
       "pos": "noun",
       "accept": ["monitor", "computer monitor", "screen", "computer screen", "display"],
       "highlight": ["screen"],
+      "wordPicture": {
+        "looks": ["wide", "flat", "bright", "smudged"],
+        "actions": ["turn on", "tilt", "adjust the brightness", "plug in"],
+        "goesWith": ["cable", "laptop", "spreadsheets", "eye strain"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "There's a smudge right in the middle of my monitor." },
-        { "tag": "Act", "text": "Let me tilt the monitor down a little. My neck hurts." },
-        { "tag": "Feel", "text": "I'd love a second monitor for all these spreadsheets." }
+        { "tag": "Describe", "text": "There's a fingerprint right in the middle of my monitor, and now I can't stop noticing it." },
+        { "tag": "Act", "text": "I'll tilt the monitor down a little and lower the brightness, because my eyes are getting tired." },
+        { "tag": "Feel", "text": "If I had a second monitor, I wouldn't have to keep switching between all these spreadsheets." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "My monitor just went black." },
-        { "speaker": "B", "text": "Did you check the cable at the back?" },
-        { "speaker": "A", "text": "Oh, it was loose. The screen is working now." },
-        { "speaker": "B", "text": "That happens to my monitor every Monday." }
+        { "speaker": "A", "text": "My monitor suddenly went black in the middle of a call." },
+        { "speaker": "B", "text": "Have you checked whether the cable at the back has come loose?" },
+        { "speaker": "A", "text": "Oh, you're right. It was hanging out. The screen's working again." },
+        { "speaker": "B", "text": "That happens to me all the time. Someone keeps kicking the cables under the desk." }
       ]
     },
     {
@@ -141,16 +172,22 @@
       "pos": "noun",
       "accept": ["sticky note", "post-it", "post-it note", "note"],
       "highlight": ["note"],
+      "wordPicture": {
+        "looks": ["yellow", "square", "small", "handwritten"],
+        "actions": ["jot down", "stick on", "peel off", "leave a note"],
+        "goesWith": ["reminder", "pen", "to-do list", "phone number"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "There's a yellow sticky note on the corner of my monitor." },
-        { "tag": "Act", "text": "I'll write the meeting time on a sticky note so I don't forget." },
-        { "tag": "Feel", "text": "I have way too many sticky notes. I can't find the important ones." }
+        { "tag": "Describe", "text": "Someone has stuck a yellow sticky note on the corner of my monitor with a phone number on it." },
+        { "tag": "Act", "text": "I'll jot the meeting time down on a sticky note so I don't double-book myself again." },
+        { "tag": "Feel", "text": "My desk is covered in so many sticky notes that I can't tell which ones still matter." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "What's this sticky note on my screen?" },
-        { "speaker": "B", "text": "Oh, that's from me. Your client called while you were out." },
-        { "speaker": "A", "text": "Did they leave a number?" },
-        { "speaker": "B", "text": "It's on the back of the note." }
+        { "speaker": "A", "text": "Do you know who left this sticky note on my screen?" },
+        { "speaker": "B", "text": "That was me. Your client called while you were in the meeting." },
+        { "speaker": "A", "text": "Thanks. Did they say what it was about?" },
+        { "speaker": "B", "text": "Not really, but they left a number. It's on the back of the note." },
+        { "speaker": "A", "text": "Got it. I'll call them back right after lunch." }
       ]
     },
     {
@@ -158,16 +195,21 @@
       "word": "keyboard",
       "pos": "noun",
       "accept": ["keyboard", "computer keyboard"],
+      "wordPicture": {
+        "looks": ["light grey", "mechanical", "noisy", "a bit sticky"],
+        "actions": ["type", "press a key", "plug in", "shake out crumbs"],
+        "goesWith": ["keys", "mouse", "shortcuts", "wrist rest"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "A couple of keys on my keyboard are sticking." },
-        { "tag": "Act", "text": "I'm going to clean my keyboard. It's full of crumbs." },
-        { "tag": "Feel", "text": "My keyboard is so loud. I hope it doesn't bother anyone." }
+        { "tag": "Describe", "text": "A few keys on my keyboard have started sticking, probably because of all the crumbs underneath them." },
+        { "tag": "Act", "text": "During my break, I'm going to turn my keyboard upside down and shake out the crumbs." },
+        { "tag": "Feel", "text": "My new keyboard is so loud that I'm worried it's distracting everyone around me." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Is that your keyboard making all that noise?" },
-        { "speaker": "B", "text": "Yeah, sorry. It's a mechanical keyboard." },
-        { "speaker": "A", "text": "It sounds like rain on a roof." },
-        { "speaker": "B", "text": "Ha. I'll try to type more quietly." }
+        { "speaker": "A", "text": "Is that your keyboard making all that clicking? It sounds like rain on a roof." },
+        { "speaker": "B", "text": "Sorry, it's a mechanical one. I got it because it's easier on my wrists." },
+        { "speaker": "A", "text": "No worries, I'm just curious. Is it really that much better to type on?" },
+        { "speaker": "B", "text": "For me, yes. Try my keyboard after lunch if you like, and see what you think." }
       ]
     },
     {
@@ -175,16 +217,22 @@
       "word": "mouse",
       "pos": "noun",
       "accept": ["mouse", "computer mouse"],
+      "wordPicture": {
+        "looks": ["white", "wireless", "small", "smooth"],
+        "actions": ["click", "scroll", "drag", "charge"],
+        "goesWith": ["cursor", "mouse pad", "batteries", "keyboard"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "My mouse is right next to the keyboard." },
-        { "tag": "Act", "text": "Let me charge my mouse during lunch." },
-        { "tag": "Feel", "text": "This mouse is way too small for my hand." }
+        { "tag": "Describe", "text": "My wireless mouse is sitting right next to the keyboard, but its battery light has started flashing." },
+        { "tag": "Act", "text": "I'd better charge my mouse during lunch, or it'll die in the middle of my presentation." },
+        { "tag": "Feel", "text": "This mouse is way too small for my hand, so my wrist starts aching by the afternoon." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "My cursor keeps freezing." },
-        { "speaker": "B", "text": "Maybe your mouse needs new batteries." },
-        { "speaker": "A", "text": "Good idea. Do we have any spare batteries for my mouse?" },
-        { "speaker": "B", "text": "Check the supply cabinet by the printer." }
+        { "speaker": "A", "text": "My cursor keeps freezing, and I can't figure out why." },
+        { "speaker": "B", "text": "Have you tried changing the batteries in your mouse?" },
+        { "speaker": "A", "text": "Not yet. Do we have any spare batteries around here?" },
+        { "speaker": "B", "text": "There's a box in the supply cabinet next to the printer." },
+        { "speaker": "A", "text": "Thanks, I'll grab a couple and see if that fixes it." }
       ]
     },
     {
@@ -193,16 +241,21 @@
       "pos": "noun",
       "accept": ["headset", "headphones", "headphone"],
       "highlight": ["headphones"],
+      "wordPicture": {
+        "looks": ["black", "padded", "adjustable", "with a mic"],
+        "actions": ["put on", "plug in", "mute", "adjust the mic"],
+        "goesWith": ["video call", "microphone", "ears", "background noise"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "My headset is lying next to my keyboard." },
-        { "tag": "Act", "text": "Let me put on my headset. The call starts in two minutes." },
-        { "tag": "Feel", "text": "Wearing this headset all day makes my ears hurt." }
+        { "tag": "Describe", "text": "My headset is lying next to the keyboard, still tangled up from yesterday's back-to-back calls." },
+        { "tag": "Act", "text": "Let me put on my headset and test the mic, because the call starts in two minutes." },
+        { "tag": "Feel", "text": "After wearing this headset all day, my ears feel sore and a little squashed." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Can you hear me okay?" },
-        { "speaker": "B", "text": "You're a bit quiet. Is your headset plugged in?" },
-        { "speaker": "A", "text": "Oh, I was using the laptop mic. How about now?" },
-        { "speaker": "B", "text": "Much better. The headset sounds great." }
+        { "speaker": "A", "text": "Can you hear me okay? I feel like I'm shouting." },
+        { "speaker": "B", "text": "You sound pretty quiet, actually. Is your headset plugged in?" },
+        { "speaker": "A", "text": "Oops, I've been using the laptop mic this whole time. How about now?" },
+        { "speaker": "B", "text": "Much better. I can hear you loud and clear." }
       ]
     },
     {
@@ -210,16 +263,21 @@
       "word": "mug",
       "pos": "noun",
       "accept": ["mug", "coffee mug", "cup", "coffee cup"],
+      "wordPicture": {
+        "looks": ["white", "ceramic", "chipped", "half-empty"],
+        "actions": ["refill", "rinse out", "wash up", "sip from"],
+        "goesWith": ["coffee", "tea", "kitchen", "coaster"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "My mug still has some cold coffee in it." },
-        { "tag": "Act", "text": "Let me rinse my mug and make a fresh cup of tea." },
-        { "tag": "Feel", "text": "I always leave my mug on my desk over the weekend." }
+        { "tag": "Describe", "text": "My mug still has some cold coffee at the bottom from this morning that I completely forgot about." },
+        { "tag": "Act", "text": "I'm going to rinse out my mug and make a fresh cup of tea before the next meeting." },
+        { "tag": "Feel", "text": "I always leave my mug on my desk over the weekend and feel guilty about it on Monday." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Is this your mug in the sink?" },
-        { "speaker": "B", "text": "Oh, sorry. I'll wash it now." },
-        { "speaker": "A", "text": "No worries. It's a cute mug." },
-        { "speaker": "B", "text": "Thanks. My niece painted it for me." }
+        { "speaker": "A", "text": "Is this your mug in the sink? It's been there since Tuesday." },
+        { "speaker": "B", "text": "Oh no, sorry! I meant to wash it and totally forgot." },
+        { "speaker": "A", "text": "No worries. It's a really cute mug, by the way." },
+        { "speaker": "B", "text": "Thanks! My niece painted it for my birthday, so I should probably take better care of it." }
       ]
     },
     {
@@ -228,16 +286,22 @@
       "pos": "noun",
       "accept": ["stapler"],
       "highlight": ["staple"],
+      "wordPicture": {
+        "looks": ["red", "metal", "heavy", "spring-loaded"],
+        "actions": ["staple pages together", "jam", "refill", "pull out a staple"],
+        "goesWith": ["staples", "staple remover", "handouts", "paper clips"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "There's a red stapler on the corner of my desk." },
-        { "tag": "Act", "text": "Let me staple these pages together before I forget." },
-        { "tag": "Feel", "text": "This stapler keeps jamming. I should ask for a new one." }
+        { "tag": "Describe", "text": "The red stapler on the corner of my desk is the only one in the office that still works properly." },
+        { "tag": "Act", "text": "Before I hand in the report, I'd better staple the pages together so none of them get lost." },
+        { "tag": "Feel", "text": "If this stapler jams one more time, I'm going to ask the office manager to order a new one." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Hey, do you have a stapler I could borrow?" },
-        { "speaker": "B", "text": "Sure, it's in the top drawer." },
-        { "speaker": "A", "text": "Thanks! My stapler keeps jamming." },
-        { "speaker": "B", "text": "Just bring it back when you're done." }
+        { "speaker": "A", "text": "Sorry to bother you, but could I borrow your stapler for a sec?" },
+        { "speaker": "B", "text": "Sure, it's in the top drawer. Just be careful, it's been jamming lately." },
+        { "speaker": "A", "text": "Thanks. Mine ran out of staples halfway through the handouts." },
+        { "speaker": "B", "text": "There should be a fresh box in the supply cabinet if you need a refill." },
+        { "speaker": "A", "text": "Perfect. I'll grab one and bring yours right back." }
       ]
     },
     {
@@ -246,16 +310,21 @@
       "pos": "noun",
       "accept": ["swivel chair", "office chair", "desk chair", "rolling chair", "chair"],
       "highlight": ["chair"],
+      "wordPicture": {
+        "looks": ["navy blue", "padded", "adjustable", "squeaky"],
+        "actions": ["lean back", "spin around", "raise", "roll over"],
+        "goesWith": ["wheels", "armrests", "backrest", "posture"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "My swivel chair squeaks every time I lean back." },
-        { "tag": "Act", "text": "Let me raise my chair a little so I'm not hunching over." },
-        { "tag": "Feel", "text": "Sometimes I spin around in my chair when I'm thinking." }
+        { "tag": "Describe", "text": "My swivel chair squeaks every time I lean back, which is pretty embarrassing in quiet meetings." },
+        { "tag": "Act", "text": "I should raise my chair a little so I'm not hunching over the keyboard all day." },
+        { "tag": "Feel", "text": "When I'm stuck on a problem, I sometimes spin around in my chair until an idea comes." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Can I borrow your chair for the meeting?" },
+        { "speaker": "A", "text": "Mind if I borrow your chair for the meeting? There aren't enough in the conference room." },
         { "speaker": "B", "text": "Sure, just roll it back when you're done." },
-        { "speaker": "A", "text": "Will do. My chair has a broken wheel." },
-        { "speaker": "B", "text": "You should tell the office manager about that." }
+        { "speaker": "A", "text": "Thanks. Mine has a broken wheel, so it keeps tipping to one side." },
+        { "speaker": "B", "text": "You should report that chair to the office manager before someone falls off it." }
       ]
     },
     {
@@ -264,17 +333,22 @@
       "pos": "noun",
       "accept": ["water dispenser", "water cooler", "dispenser"],
       "highlight": ["water cooler", "dispenser"],
+      "wordPicture": {
+        "looks": ["white", "tall", "half-full", "with hot and cold taps"],
+        "actions": ["fill up", "press the tap", "change the bottle", "refill"],
+        "goesWith": ["water bottle", "paper cups", "hot water", "coffee break"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "The water dispenser has both hot and cold water." },
-        { "tag": "Act", "text": "I'm going to refill my bottle at the water dispenser." },
-        { "tag": "Feel", "text": "I should visit the water dispenser more often. I've only had one cup today." }
+        { "tag": "Describe", "text": "The water dispenser by the window has a red tap for hot water and a blue one for cold." },
+        { "tag": "Act", "text": "I'm going to fill up my bottle at the water dispenser so I don't have to keep getting up." },
+        { "tag": "Feel", "text": "I really should visit the water dispenser more often, since I've only had one cup today." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Is the water dispenser empty again?" },
-        { "speaker": "B", "text": "Yeah, the bottle needs changing." },
-        { "speaker": "A", "text": "Should I call someone?" },
-        { "speaker": "B", "text": "No, I can do it. It's heavy, though." },
-        { "speaker": "A", "text": "I'll help you lift it onto the dispenser." }
+        { "speaker": "A", "text": "Is the water dispenser empty again? Nothing's coming out." },
+        { "speaker": "B", "text": "Looks like it. The bottle needs changing." },
+        { "speaker": "A", "text": "Should I call someone from facilities?" },
+        { "speaker": "B", "text": "No need, I can do it myself. It's pretty heavy, though." },
+        { "speaker": "A", "text": "Here, I'll help you lift it onto the dispenser." }
       ]
     },
     {
@@ -283,17 +357,22 @@
       "pos": "noun",
       "accept": ["printer", "copier", "photocopier", "copy machine"],
       "highlight": ["print"],
+      "wordPicture": {
+        "looks": ["large", "grey", "noisy", "out of paper"],
+        "actions": ["print out", "scan", "load paper", "clear a paper jam"],
+        "goesWith": ["toner", "paper tray", "copies", "documents"]
+      },
       "selfTalk": [
-        { "tag": "Describe", "text": "The printer is in the corner, next to the water dispenser." },
-        { "tag": "Act", "text": "I need to print the report and pick it up from the printer." },
-        { "tag": "Feel", "text": "The printer is out of paper again. Why does this always happen to me?" }
+        { "tag": "Describe", "text": "The printer in the corner is so old and noisy that you can hear it from the other side of the office." },
+        { "tag": "Act", "text": "I need to print out the report and pick it up before anyone else takes it by mistake." },
+        { "tag": "Feel", "text": "Whenever I'm in a hurry, the printer seems to run out of paper or jam on purpose." }
       ],
       "dialogue": [
-        { "speaker": "A", "text": "Is the printer working?" },
-        { "speaker": "B", "text": "It says there's a paper jam." },
-        { "speaker": "A", "text": "Ugh. Do you know how to fix the printer?" },
-        { "speaker": "B", "text": "Open the side panel and pull the paper out slowly." },
-        { "speaker": "A", "text": "Got it. Thanks!" }
+        { "speaker": "A", "text": "Is the printer working? My document hasn't come out yet." },
+        { "speaker": "B", "text": "It's showing a paper jam error again." },
+        { "speaker": "A", "text": "Ugh. Do you know how to fix it?" },
+        { "speaker": "B", "text": "Open the side panel and slowly pull out the stuck paper. Don't yank it, or it'll tear." },
+        { "speaker": "A", "text": "Got it. Thanks, you're a lifesaver." }
       ]
     }
   ]

@@ -21,7 +21,7 @@
 
 ## 2. 目標使用者
 
-- 自學英文、想把英文帶進日常生活的人，程度約 B1–B2（**推測**，未經使用者確認）。
+- 自學英文、想把英文帶進日常生活的人，程度約 B1–B2。例句與對話以這個程度撰寫：日常職場與生活中會聽到的自然句子，使用關係子句、條件句、現在完成式、片語動詞等結構，不寫只有主詞加動詞的短句。
 - 練習情境是一個人：通勤、上班、在家時自己默念。所以內容偏重「自己講給自己聽」的句子，對話範本次之。
 
 ## 3. 內容範圍
@@ -53,11 +53,15 @@
    - 顯示單字、詞性、同義詞。
    - 🔊 按鈕播放發音（Web Speech API，en-US）。答對或按 Reveal 時自動念一次。
    - 物件記為「已發現」，頁首進度 +1。場景上平常不標示已發現；hover 或選取時，已發現的物件右上角是綠色 ✓，未發現的是黃色「?」。
-5. **學怎麼用**（揭曉後同一面板往下）：
-   - **Say it to yourself**：3 句自言自語例句，對應 naming 練習的三個層次：
-     - 描述：`There's a stapler on the edge of my desk.`
-     - 動作：`Let me staple these pages together.`
-     - 感受或計畫：`I should get a new stapler; this one keeps jamming.`
+5. **學怎麼用**（揭曉後同一面板往下，順序由單字的聯想、到完整句子、到情境對話）：
+   - **Word picture**（文字畫面）：跟這個物件相關的字，分三組，每組 3–5 個，每組可整列播放：
+     - Looks（外觀）：`red, metal, heavy, spring-loaded`
+     - Actions（動作）：`staple pages together, jam, refill, pull out a staple`
+     - Goes with（相關的東西）：`staples, staple remover, handouts, paper clips`
+   - **Say it to yourself**：3 句自言自語例句，每句至少 10 個字，對應 naming 練習的三個層次：
+     - 描述：`The red stapler on the corner of my desk is the only one in the office that still works properly.`
+     - 動作：`Before I hand in the report, I'd better staple the pages together so none of them get lost.`
+     - 感受或計畫：`If this stapler jams one more time, I'm going to ask the office manager to order a new one.`
    - **Mini dialogue**：一段 4–6 句、兩人一來一往的生活對話，用到這個單字。
    - 每一句旁邊都有 🔊 可單句播放。
 6. **場景對話**：場景畫面角落有 `Scene talk` 按鈕，打開 1–2 段以整個場景為主題的對話（例：在辦公室跟同事借東西），不綁定單一物件。
@@ -98,6 +102,11 @@
     "pos": "noun",
     "accept": ["stapler"],
     "highlight": ["staple"],
+    "wordPicture": {
+      "looks": ["red", "metal", "heavy", "spring-loaded"],
+      "actions": ["staple pages together", "jam", "refill", "pull out a staple"],
+      "goesWith": ["staples", "staple remover", "handouts", "paper clips"]
+    },
     "selfTalk": [
       { "tag": "Describe", "text": "..." },
       { "tag": "Act", "text": "..." },
@@ -113,7 +122,8 @@
 | `speakers` | 對話說話者的顯示名稱，場景內所有對話共用 |
 | `accept` | 所有算答對的寫法，必須包含 `word` 本身 |
 | `highlight` | 選填。例句裡要標色、但不算答案的字形，例如 stapler 的 staple |
-| `selfTalk` | 3 句，依序是描述（Describe）、動作（Act）、感受或計畫（Feel） |
+| `selfTalk` | 3 句，依序是描述（Describe）、動作（Act）、感受或計畫（Feel），每句至少 10 個字 |
+| `wordPicture` | 文字畫面，`looks`（外觀）、`actions`（動作）、`goesWith`（相關的東西）三組，每組 3–5 個 |
 | `dialogue` | 4–6 句，至少一句用到這個單字 |
 
 SVG 裡的 `<g data-object="stapler">` 對應 JSON 的 `objects[].id`，兩邊的順序要相同（決定鍵盤 Tab 順序與「Object 3 of 15」的編號）。以上規則由 `npm test` 自動檢查（`tests/scenes.test.js`）。
@@ -138,14 +148,13 @@ SVG 裡的 `<g data-object="stapler">` 對應 JSON 的 `objects[].id`，兩邊�
 
 - 3 個場景、每個場景 ≥ 12 個物件都能點擊、作答、揭曉。
 - 判定：`Fridge`、`a fridge`、`refrigerater`（拼錯 1 字）都判定為答對 refrigerator。
-- 每個物件都有 3 句 self-talk 和 1 段 4–6 句對話；每個場景有 ≥ 1 段場景對話。
+- 每個物件都有 3 組文字畫面（每組 3–5 個）、3 句至少 10 個字的 self-talk、1 段 4–6 句對話；每個場景有 ≥ 1 段場景對話。
 - 在 iPhone Safari 375px、iPad 768px、桌機 1440px 寬度都能完成整個流程，沒有水平捲動。
 - 重新整理頁面後進度還在。
 - Chrome、Safari 都能播放發音。
 
 ## 10. 待決事項
 
-- 使用者程度（目前假設 B1–B2）。
 - 是否要「場景計時挑戰」或「隨機出題」作為第二版功能。
 - 例句是否需要中文翻譯開關（目前全英文）。
 

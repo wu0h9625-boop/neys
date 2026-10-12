@@ -25,7 +25,12 @@ const makeObject = (id) => ({
   id,
   word: id,
   accept: [id],
-  selfTalk: [`I see a ${id}.`, `I use the ${id}.`, `I like this ${id}.`],
+  wordPicture: { looks: ["red", "small", "new"], actions: ["use", "move", "clean"], goesWith: ["desk", "paper", "office"] },
+  selfTalk: [
+    `There is a ${id} on the table that I have never seen before today.`,
+    `I am going to use the ${id} after lunch so I can finish my work.`,
+    `If the ${id} breaks again, I will have to ask my manager for help.`,
+  ],
   dialogue: [line("A", `Where is the ${id}?`), line("B", "Over there."), line("A", "Thanks."), line("B", "Sure.")],
 });
 const makeScene = (count = 12) => ({
@@ -52,6 +57,23 @@ test("例句不是 3 句、或沒用到單字", () => {
   const problems = validateScene(scene).join("\n");
   assert.match(problems, /thinga: has 2 selfTalk/);
   assert.match(problems, /thingb: selfTalk\[0\] does not use the word/);
+});
+
+test("例句太短（少於 10 個字）", () => {
+  const scene = makeScene();
+  scene.objects[0].selfTalk[1] = `I see a ${scene.objects[0].id}.`;
+  assert.match(validateScene(scene).join(), /thinga: selfTalk\[1\] has 4 words, expected at least 10/);
+});
+
+test("文字畫面缺少或數量不對", () => {
+  const scene = makeScene();
+  delete scene.objects[0].wordPicture;
+  scene.objects[1].wordPicture.actions = ["use"];
+  scene.objects[2].wordPicture.goesWith = ["a", "b", "c", "d", "e", "f"];
+  const problems = validateScene(scene).join("\n");
+  assert.match(problems, /thinga: missing wordPicture/);
+  assert.match(problems, /thingb: wordPicture.actions has 1 items/);
+  assert.match(problems, /thingc: wordPicture.goesWith has 6 items/);
 });
 
 test("對話不是 4–6 句", () => {
