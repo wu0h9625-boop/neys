@@ -264,7 +264,7 @@
     import { createSentenceList } from "../components/sentence-list.js";
     const selfTalk = createSentenceList({ sentences: object.selfTalk, highlight: object.accept });
 
-注意事項：例句字級 20px，方便跟著唸。標色用全域的 `mark` 樣式（`base.css`），由 `src/lib/dom.js` 的 `highlightWords()` 產生。
+注意事項：例句字級 20px，方便跟著唸。標色用全域的 `mark` 樣式（`base.css`），由 `src/lib/dom.js` 的 `highlightWords()` 產生。場景頁的文字畫面（Word picture）也用這個元件：每組一列，`tag` 是 Looks / Actions / Goes with，文字用逗號串起來，發音時才有停頓。
 
 ### dialogue
 

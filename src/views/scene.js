@@ -204,11 +204,27 @@ export async function renderScene(root, sceneId) {
         ]),
         others.length > 0 ? createText({ text: `Also OK: ${others.join(", ")}`, size: "sm", tone: "muted" }) : null,
         message ? createFeedback(message) : null,
+        object.wordPicture ? createSentenceList({ title: "Word picture", sentences: wordPictureRows(object.wordPicture) }) : null,
         createSentenceList({ sentences: object.selfTalk, highlight: terms }),
         createDialogue({ lines: object.dialogue, speakers: data.speakers, highlight: terms }),
         next ? createButton({ label: "Next object", icon: "play", block: true, onClick: () => select(next) }) : null,
       ],
     });
+  }
+
+  /**
+   * 文字畫面（Word picture）：每組一列，沿用 sentence-list 的「標籤 + 一行文字 + 發音」。
+   * 用逗號分隔，語音念起來才會有停頓。
+   */
+  function wordPictureRows(picture) {
+    const groups = [
+      ["looks", "Looks"],
+      ["actions", "Actions"],
+      ["goesWith", "Goes with"],
+    ];
+    return groups
+      .filter(([key]) => Array.isArray(picture[key]) && picture[key].length > 0)
+      .map(([key, tag]) => ({ tag, text: picture[key].join(", ") }));
   }
 
   /** 依編號往後找下一個還沒找到的物件，找完一輪都找到了回傳 null。 */
