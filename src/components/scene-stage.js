@@ -20,7 +20,7 @@ const states = new WeakMap();
  *   objectIds: ["whiteboard", ...],
  *   found: new Set(["mug"]),
  *   getLabel: (id, isFound) => "Object 3 of 15",   // 螢幕閱讀器讀的名稱，未找到前不能寫出答案
- *   onSelect: (id) => {},
+ *   onSelect: (id, { via }) => {},  // via："touch" | "pointer" | "keyboard"
  * })
  */
 export function createSceneStage({ svg, objectIds = [], found = new Set(), getLabel = (id) => id, onSelect, className = "" } = {}) {
@@ -92,7 +92,7 @@ export function createSceneStage({ svg, objectIds = [], found = new Set(), getLa
       return;
     }
     setArmed(state, null);
-    onSelect?.(id);
+    onSelect?.(id, { via: touchLike ? "touch" : "pointer" });
   });
 
   svg.addEventListener("pointerover", (event) => {
@@ -124,7 +124,7 @@ export function createSceneStage({ svg, objectIds = [], found = new Set(), getLa
     const id = idOf(event.target);
     if (!id || (event.key !== "Enter" && event.key !== " ")) return;
     event.preventDefault();
-    onSelect?.(id);
+    onSelect?.(id, { via: "keyboard" });
   });
 
   // 點擊範圍與標記位置要在 SVG 實際顯示後才量得到（getBBox），之後每次尺寸改變都重算點擊範圍

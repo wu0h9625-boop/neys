@@ -437,7 +437,7 @@
 | objectIds | string[] | `[]` | 要變成可點的物件 id；SVG 裡找不到的會在 console 警告 |
 | found | Set | 空 | 已找到的物件 |
 | getLabel | `(id, isFound) => string` | 回傳 id | 物件的 `aria-label`。未找到前不能寫出答案，例如 `"Object 3 of 15"` |
-| onSelect | `(id) => void` | — | 選取物件時呼叫 |
+| onSelect | `(id, { via }) => void` | — | 選取物件時呼叫。`via` 是 `"touch"`、`"pointer"` 或 `"keyboard"`，頁面可依此決定要不要自動聚焦輸入框（觸控時聚焦會跳出手機鍵盤蓋住場景） |
 | className | string | `""` | 額外 class |
 
 控制用的函式：`setStageSelected(stage, id \| null)`、`setStageFound(stage, id)`、`resetStageFound(stage)`、`focusStageObject(stage, id)`。
