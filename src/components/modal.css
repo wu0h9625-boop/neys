@@ -53,6 +53,11 @@
   overscroll-behavior: contain;
 }
 
+/* 內容超過高度時要捲動，不能讓 flex 把子元素壓扁 */
+.modal__body > * {
+  flex-shrink: 0;
+}
+
 .modal__actions {
   flex-shrink: 0;
   display: flex;
