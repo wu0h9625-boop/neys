@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Name It · Components</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="stylesheet" href="src/gallery/gallery.css" />
+  </head>
+  <body class="gallery-shell">
+    <header class="gallery-shell__bar">
+      <h1 class="gallery-shell__title">Components</h1>
+      <label class="gallery-shell__control">
+        <span>Width</span>
+        <select id="gallery-width">
+          <option value="fill">Fill</option>
+          <option value="375">375 · Mobile</option>
+          <option value="768">768 · Tablet</option>
+          <option value="1024">1024 · Desktop</option>
+          <option value="1440">1440 · Wide</option>
+        </select>
+      </label>
+      <span id="gallery-size" class="gallery-shell__size" aria-live="polite"></span>
+    </header>
+    <div class="gallery-shell__stage">
+      <iframe id="gallery-frame" class="gallery-shell__frame" src="src/gallery/frame.html" title="Component previews"></iframe>
+    </div>
+    <script type="module" src="src/gallery/shell.js"></script>
+  </body>
+</html>

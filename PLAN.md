@@ -12,12 +12,12 @@
 - [x] `src/styles/tokens.css`：色盤、字級、間距、像素邊框粗細、斷點（768px、1024px）
 - [x] `src/styles/base.css`：reset、Google Fonts、body 背景（字體由 `main.css` 載入）
 - [x] `index.html` 骨架：載入 `main.css` 與 `src/app.js`
-- [ ] `components.html` 展示頁骨架：每個元件一區，可切換 375 / 768 / 1440 寬度預覽
+- [x] `components.html` 展示頁骨架：每個元件一區，可切換 375 / 768 / 1440 寬度預覽
 - [ ] `docs/components.md` 骨架
 
 ## M1 元件庫
 
-每個元件完成的定義：`.js` + `.css` 寫好、放進 `components.html`、`docs/components.md` 補上用法、三種寬度檢查過。
+每個元件完成的定義：`.js` + `.css` 寫好、加進 `src/gallery/demos.js`、`docs/components.md` 補上用法、三種寬度檢查過。
 
 - [ ] `pixel-frame`
 - [ ] `button`（primary / secondary / ghost / icon-only）

@@ -1,0 +1,116 @@
+/*
+ * 元件展示頁的樣式（開發工具，不會出現在遊戲裡）。
+ * 遊戲用的外觀不可以寫在這裡；這裡只排列展示區塊。
+ */
+
+/* ---------- components.html 外框 ---------- */
+
+.gallery-shell {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-shell__bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-panel);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--gutter);
+  background: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-shadow);
+}
+
+.gallery-shell__title {
+  font-size: var(--text-display-md);
+}
+
+.gallery-shell__control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-body-md);
+}
+
+.gallery-shell__control select {
+  min-height: var(--hit-min);
+  padding: 0 var(--space-2);
+  background: var(--color-bg);
+  border: var(--border-width-thin) solid var(--color-border-muted);
+  border-radius: var(--radius);
+}
+
+.gallery-shell__size {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm);
+}
+
+.gallery-shell__stage {
+  overflow-x: auto;
+  padding: var(--space-4) var(--gutter);
+}
+
+.gallery-shell__frame {
+  display: block;
+  max-width: none;
+  min-height: 50vh;
+  margin-inline: auto;
+  /* 用 outline 不用 border：border 會吃掉 iframe 內部寬度，讓斷點預覽不準 */
+  border: 0;
+  outline: var(--border-width-thin) dashed var(--color-border-muted);
+  background: var(--color-bg);
+}
+
+/* ---------- iframe 內的展示區 ---------- */
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding: var(--space-5) var(--gutter);
+}
+
+.gallery__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.gallery__name {
+  font-size: var(--text-display-md);
+  color: var(--color-accent);
+}
+
+.gallery__description,
+.gallery__empty {
+  color: var(--color-text-muted);
+}
+
+.gallery__variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.gallery__variant {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.gallery__variant-label {
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.gallery__variant-stage {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gallery__error {
+  color: var(--color-danger);
+}

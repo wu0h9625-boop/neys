@@ -20,8 +20,9 @@ src/views/        頁面，只負責組裝元件和排版
 src/lib/          純邏輯，不碰 DOM：答案判定、發音、進度保存
 src/styles/       main.css（樣式總入口，HTML 只載入這支）、tokens.css（設計變數）、base.css（reset 與全域字體）
 scenes/           每個場景一組 <id>.json + <id>.svg
+src/gallery/      元件展示頁的程式；demos.js 是展示清單
 docs/             components.md（元件用法）
-components.html   元件展示頁，列出所有元件的所有 variant
+components.html   元件展示頁，可切換 375 / 768 / 1024 / 1440 寬度預覽
 index.html        遊戲入口
 ```
 
@@ -37,7 +38,7 @@ index.html        遊戲入口
 - `src/views/*.css` 只能寫版面排列（grid、flex、間距、斷點）。按鈕、框線、字色、陰影這類外觀只能寫在元件 CSS。
 - 顏色、字級、間距、像素邊框粗細一律用 `src/styles/tokens.css` 的 CSS 變數，不寫死數值。
 - 斷點只用 `tokens.css` 開頭註解列的兩個值：`@media (min-width: 768px)`、`@media (min-width: 1024px)`。CSS 變數不能用在 media query 條件裡，所以這兩個值直接寫數字。
-- 新增或修改元件時，同一次修改內要更新 `components.html` 展示頁，並在 `docs/components.md` 補上參數和用法。
+- 新增或修改元件時，同一次修改內要在 `src/gallery/demos.js` 加入或更新展示項目（`components.html` 會自動列出），並在 `docs/components.md` 補上參數和用法。
 
 ### 元件清單
 
