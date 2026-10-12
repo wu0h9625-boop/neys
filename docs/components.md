@@ -26,7 +26,7 @@
 | `sentence-list` | 完成 |
 | `dialogue` | 完成 |
 | `progress-badge` | 完成 |
-| `scene-card` | 未開始 |
+| `scene-card` | 完成 |
 | `panel` | 未開始 |
 | `modal` | 未開始 |
 | `tag` | 完成 |
@@ -304,3 +304,24 @@
     setProgress(progress, { found: 5, total: 14 });
 
 注意事項：純展示。要讓螢幕閱讀器知道進度變化，把它放在有 `aria-live` 的區域，或在 `feedback` 裡另外說明。
+
+### scene-card
+
+用途：首頁的場景卡片。整張卡是一個 `<a>`，內含 16:9 縮圖、標題、說明、`progress-badge`。外框用 `pixel-frame`（muted），hover 或鍵盤聚焦時框線變黃色並往上浮 4px。
+
+| 參數 | 型別 | 預設 | 說明 |
+|---|---|---|---|
+| title | string | — | 場景名稱 |
+| description | string | `""` | 一句說明 |
+| href | string | `"#"` | 連結，例如 `"#/scene/office"` |
+| thumbnail | Element | — | 縮圖（SVG 或 img）；省略時顯示棋盤格 |
+| found / total | number | `0` | 進度 |
+| headingLevel | 1–4 | `2` | 標題的 HTML 層級 |
+| className | string | `""` | 額外 class |
+
+範例：
+
+    import { createSceneCard } from "../components/scene-card.js";
+    const card = createSceneCard({ title: "Office", href: "#/scene/office", thumbnail: officeSvg, found: 4, total: 14 });
+
+注意事項：卡片寬度由外層排版決定（例如首頁的 grid），卡片本身會撐滿。整張卡片只有一個連結，裡面不要再放按鈕。

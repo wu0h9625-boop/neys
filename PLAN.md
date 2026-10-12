@@ -28,7 +28,7 @@
 - [x] `sentence-list`
 - [x] `dialogue`
 - [x] `progress-badge`
-- [ ] `scene-card`
+- [x] `scene-card`
 - [ ] `panel`（三種斷點行為）
 - [ ] `modal`
 - [x] `tag`（新增，原清單外）

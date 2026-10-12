@@ -1,0 +1,66 @@
+/* scene-card：外框來自 pixel-frame，hover / 聚焦時框線變黃色並往上浮 4px */
+
+.scene-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-pixel);
+}
+
+.scene-card:hover,
+.scene-card:focus-visible {
+  transform: translateY(calc(var(--border-width) * -1));
+}
+
+/* 黃色框線本身就是焦點提示，不再疊 outline */
+.scene-card:focus-visible {
+  outline: none;
+}
+
+.scene-card:hover .scene-card__frame,
+.scene-card:focus-visible .scene-card__frame {
+  --frame-border: var(--color-accent);
+}
+
+.scene-card__frame {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - var(--border-width) * 2);
+  overflow: hidden;
+}
+
+.scene-card__thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.scene-card__thumb > svg,
+.scene-card__thumb > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+/* 沒有縮圖時的棋盤格 */
+.scene-card__thumb--placeholder {
+  background-color: var(--color-surface);
+  background-image:
+    linear-gradient(45deg, var(--color-surface-raised) 25%, transparent 25%, transparent 75%, var(--color-surface-raised) 75%),
+    linear-gradient(45deg, var(--color-surface-raised) 25%, transparent 25%, transparent 75%, var(--color-surface-raised) 75%);
+  background-position: 0 0, var(--space-2) var(--space-2);
+  background-size: var(--space-4) var(--space-4);
+}
+
+.scene-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.scene-card__description {
+  color: var(--color-text-muted);
+}

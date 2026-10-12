@@ -21,12 +21,24 @@ import { createHeading } from "../components/heading.js";
 import { createIcon, ICON_NAMES } from "../components/icon.js";
 import { createPixelFrame } from "../components/pixel-frame.js";
 import { createProgressBadge, setProgress } from "../components/progress-badge.js";
+import { createSceneCard } from "../components/scene-card.js";
 import { createSentenceList } from "../components/sentence-list.js";
 import { createSpeakButton } from "../components/speak-button.js";
 import { createTag } from "../components/tag.js";
 import { createTextInput, setTextInputState, setTextInputReadOnly } from "../components/text-input.js";
 
 const sampleText = (text = "There's a stapler on my desk.") => el("p", { text });
+
+// 縮圖示意：用幾個色塊畫出辦公室，實際場景圖在 scenes/*.svg
+const sampleThumb = () => {
+  const rects = [
+    [0, 0, 192, 72, "#333c57"], [0, 72, 192, 36, "#566c86"], [20, 12, 44, 30, "#41a6f6"], [20, 26, 44, 2, "#f4f4f4"],
+    [90, 56, 80, 6, "#ef7d57"], [96, 62, 4, 30, "#b13e53"], [160, 62, 4, 30, "#b13e53"], [112, 32, 32, 22, "#1a1c2c"],
+    [114, 34, 28, 16, "#73eff7"], [124, 54, 8, 2, "#1a1c2c"], [70, 46, 10, 26, "#38b764"], [72, 66, 6, 6, "#5d275d"],
+  ];
+  const body = rects.map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`).join("");
+  return new DOMParser().parseFromString(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 108" shape-rendering="crispEdges">${body}</svg>`, "image/svg+xml").documentElement;
+};
 
 const withState = (state, value) => {
   const input = createTextInput({ value });
@@ -144,6 +156,15 @@ export const demos = [
           return el("div", { attrs: { style: "display: flex; align-items: center; gap: 12px" } }, [badge, next]);
         },
       },
+    ],
+  },
+  {
+    name: "scene-card",
+    description: "Home-screen card for a scene. The whole card is a link; hover or focus turns the frame yellow.",
+    variants: [
+      { label: "with thumbnail", render: () => el("div", { attrs: { style: "width: 300px" } }, [createSceneCard({ title: "Office", description: "Desks, printers and coffee mugs.", thumbnail: sampleThumb(), found: 4, total: 14 })]) },
+      { label: "placeholder thumbnail", render: () => el("div", { attrs: { style: "width: 300px" } }, [createSceneCard({ title: "Sidewalk", description: "Your walk to work.", found: 0, total: 12 })]) },
+      { label: "complete", render: () => el("div", { attrs: { style: "width: 300px" } }, [createSceneCard({ title: "Studio apartment", thumbnail: sampleThumb(), found: 12, total: 12 })]) },
     ],
   },
   {
