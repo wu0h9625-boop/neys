@@ -9,7 +9,7 @@
 
 ## M0 基礎
 
-- [ ] `src/styles/tokens.css`：色盤、字級、間距、像素邊框粗細、斷點（768px、1024px）
+- [x] `src/styles/tokens.css`：色盤、字級、間距、像素邊框粗細、斷點（768px、1024px）
 - [ ] `src/styles/base.css`：reset、Google Fonts、body 背景
 - [ ] `index.html` 骨架：載入 base.css 與 `src/app.js`
 - [ ] `components.html` 展示頁骨架：每個元件一區，可切換 375 / 768 / 1440 寬度預覽

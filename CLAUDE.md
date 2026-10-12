@@ -35,7 +35,8 @@ index.html        遊戲入口
   - `.js` 匯出一個工廠函式，命名為 `create<Name>`，例如 `createButton({ label, variant, onClick })`，回傳 DOM 元素。
   - CSS class 用元件名稱當前綴，例如 `.button`、`.button--primary`，避免跟其他元件撞名。
 - `src/views/*.css` 只能寫版面排列（grid、flex、間距、斷點）。按鈕、框線、字色、陰影這類外觀只能寫在元件 CSS。
-- 顏色、字級、間距、像素邊框粗細、斷點一律用 `src/styles/tokens.css` 的 CSS 變數，不寫死數值。
+- 顏色、字級、間距、像素邊框粗細一律用 `src/styles/tokens.css` 的 CSS 變數，不寫死數值。
+- 斷點只用 `tokens.css` 開頭註解列的兩個值：`@media (min-width: 768px)`、`@media (min-width: 1024px)`。CSS 變數不能用在 media query 條件裡，所以這兩個值直接寫數字。
 - 新增或修改元件時，同一次修改內要更新 `components.html` 展示頁，並在 `docs/components.md` 補上參數和用法。
 
 ### 元件清單
