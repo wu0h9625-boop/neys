@@ -1,0 +1,16 @@
+/*
+ * 樣式總入口：HTML 只載入這一支。
+ * 新增元件時，在「Components」區塊加一行 @import。
+ * @import 必須全部放在檔案最前面。
+ */
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Press+Start+2P&display=swap");
+
+/* Foundation */
+@import url("./tokens.css");
+@import url("./base.css");
+
+/* Components（依字母排序）*/
+
+/* Views */

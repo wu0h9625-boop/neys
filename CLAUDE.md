@@ -18,7 +18,7 @@
 src/components/   元件庫，每個元件一組 <name>.js + <name>.css
 src/views/        頁面，只負責組裝元件和排版
 src/lib/          純邏輯，不碰 DOM：答案判定、發音、進度保存
-src/styles/       tokens.css（設計變數）、base.css（reset 與全域字體）
+src/styles/       main.css（樣式總入口，HTML 只載入這支）、tokens.css（設計變數）、base.css（reset 與全域字體）
 scenes/           每個場景一組 <id>.json + <id>.svg
 docs/             components.md（元件用法）
 components.html   元件展示頁，列出所有元件的所有 variant
