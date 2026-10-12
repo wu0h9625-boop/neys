@@ -12,11 +12,59 @@ export function isSpeechSupported() {
   return Boolean(synth) && typeof window.SpeechSynthesisUtterance === "function";
 }
 
+// ---------- 語音挑選 ----------
+//
+// 瀏覽器的語音清單裡混了很多特效聲（macOS 的 Albert、Bad News、Bubbles……），
+// 直接拿清單前面的會唸出機器人或怪聲，所以依品質排序後再挑。
+
+// macOS 內建的特效聲，完全不用
+const NOVELTY = /^(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|junior|organ|superstar|trinoids|whisper|wobble|zarvox|deranged|hysterical|pipe organ)\b/i;
+
+// 各平台常見、聽起來自然的英文語音（名稱開頭比對）
+const NATURAL = [
+  // Apple（macOS / iOS）
+  "samantha", "alex", "ava", "allison", "susan", "tom", "evan", "zoe", "nathan", "nicky", "joelle", "noelle", "aaron",
+  "daniel", "karen", "moira", "tessa", "rishi", "serena", "kate", "oliver", "arthur", "martha", "catherine", "gordon",
+  // Chrome
+  "google us english", "google uk english",
+  // Windows / Edge
+  "microsoft aria", "microsoft jenny", "microsoft guy", "microsoft ana", "microsoft christopher", "microsoft eric",
+  "microsoft michelle", "microsoft roger", "microsoft steffan", "microsoft sonia", "microsoft ryan", "microsoft libby",
+];
+
+// 合成感較重的舊語音：可以用，但排在自然人聲後面
+const ROBOTIC = /^(fred|ralph|kathy|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b/i;
+
+const HIGH_QUALITY = /(enhanced|premium|natural|neural|siri)/i;
+
+function voiceScore(voice) {
+  const name = String(voice.name ?? "").toLowerCase();
+  const lang = String(voice.lang ?? "").replace("_", "-").toLowerCase();
+  let score = 0;
+  if (lang === "en-us") score += 30;
+  if (HIGH_QUALITY.test(name)) score += 40;
+  if (NATURAL.some((prefix) => name.startsWith(prefix))) score += 50;
+  if (ROBOTIC.test(name)) score -= 40;
+  if (voice.default) score += 5;
+  return score;
+}
+
+/**
+ * 把語音清單排成「最適合唸英文例句」在前。特效聲與非英文語音會被濾掉。
+ * 純函式，tests/speech.test.js 用假的語音清單測試。
+ */
+export function rankVoices(list = []) {
+  return list
+    .filter((voice) => String(voice.lang ?? "").toLowerCase().startsWith("en"))
+    .filter((voice) => !NOVELTY.test(String(voice.name ?? "")))
+    .map((voice, index) => ({ voice, index, score: voiceScore(voice) }))
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .map(({ voice }) => voice);
+}
+
 function loadVoices() {
   if (!isSpeechSupported()) return;
-  voices = synth.getVoices().filter((voice) => voice.lang?.toLowerCase().startsWith("en"));
-  // en-US 排前面，其次是其他英文口音
-  voices.sort((a, b) => Number(b.lang === LANG) - Number(a.lang === LANG) || Number(b.localService) - Number(a.localService));
+  voices = rankVoices(synth.getVoices());
 }
 
 if (isSpeechSupported()) {
