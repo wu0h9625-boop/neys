@@ -10,7 +10,6 @@
 .progress-badge__label {
   font-family: var(--font-display);
   font-size: var(--text-body-sm);
-  -webkit-font-smoothing: none;
   color: var(--color-text-muted);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
