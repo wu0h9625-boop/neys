@@ -170,6 +170,13 @@ export const demos = [
             createCard({ title: "Mini dialogue", actions: [createButton({ label: "Play all", size: "sm", icon: "play" })], children: [el("p", { attrs: { style: "padding: 16px" }, text: "Card body" })] }),
           ]),
       },
+      {
+        label: "long title + action (title wraps, button stays one line)",
+        render: () =>
+          el("div", { attrs: { style: "width: 320px" } }, [
+            createCard({ title: "First day at the office", actions: [createButton({ label: "Play all", size: "sm", icon: "play" })], children: [el("p", { attrs: { style: "padding: 16px" }, text: "Card body" })] }),
+          ]),
+      },
     ],
   },
   {

@@ -19,7 +19,13 @@
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
 }
 
+/* 標題太長時讓標題換行，右側按鈕維持原寬，不會被擠成兩行（例：First day at the office + Play all） */
+.card__header > .heading {
+  min-width: 0;
+}
+
 .card__actions {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: var(--space-2);

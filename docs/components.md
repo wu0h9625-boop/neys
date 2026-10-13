@@ -476,7 +476,7 @@
 | 參數 | 型別 | 預設 | 說明 |
 |---|---|---|---|
 | title | string | — | 標題；不給就沒有標題列 |
-| actions | Node[] | `[]` | 標題列右側的按鈕，例如 Play all |
+| actions | Node[] | `[]` | 標題列右側的按鈕，例如 Play all。按鈕維持原寬不換行，標題太長時由標題換行 |
 | children | Node[] | `[]` | 內容；卡片本身沒有內距，由內容自己決定 |
 | headingLevel | 1–4 | `3` | 標題的 HTML 層級 |
 | tag | string | `"section"` | 外層 HTML 標籤 |
