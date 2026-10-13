@@ -18,3 +18,10 @@
   grid-template-columns: repeat(auto-fill, minmax(min(var(--card-min-width), 100%), 1fr));
   gap: var(--space-5);
 }
+
+/* 第一版固定 3 個場景，桌機一排剛好放 3 張；auto-fill 在 1440px 會排出 4 欄、右邊空一格 */
+@media (min-width: 1024px) {
+  .home__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
