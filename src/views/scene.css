@@ -72,6 +72,16 @@
   gap: var(--space-1);
 }
 
+/* 提示與作答結果兩行疊在一起；空的那行高度是 0，不能用 gap，否則會多出一段空白 */
+.scene-view__feedback {
+  display: flex;
+  flex-direction: column;
+}
+
+.scene-view__feedback > :not(.feedback--empty) + :not(.feedback--empty) {
+  margin-top: var(--space-2);
+}
+
 .scene-view__actions {
   display: flex;
   flex-wrap: wrap;

@@ -134,6 +134,8 @@ export async function renderScene(root, sceneId) {
   function showQuestion(object, { focusInput }) {
     let attempts = 0;
     const feedback = createFeedback();
+    // 提示獨立一行，答錯時不會被錯誤訊息蓋掉
+    const hint = createFeedback();
     const input = createTextInput({ onSubmit: check, onInput: clearResult });
 
     // 答錯後開始改答案，紅框與錯誤訊息就拿掉，輸入框回到聚焦的藍框
@@ -179,13 +181,13 @@ export async function renderScene(root, sceneId) {
             variant: "secondary",
             icon: "bulb",
             onClick: () => {
-              setFeedback(feedback, { tone: "hint", message: buildHint(object.word) });
+              setFeedback(hint, { tone: "hint", message: buildHint(object.word) });
               focusTextInput(input);
             },
           }),
           createButton({ label: "Reveal", variant: "secondary", onClick: () => complete(object, { result: "revealed" }) }),
         ]),
-        feedback,
+        el("div", { className: "scene-view__feedback" }, [hint, feedback]),
       ],
     });
 
