@@ -4,8 +4,9 @@
 
 ## 目前進度
 
-- 最後完成：M3.5「頁面介面與版面調整」（延伸設計的作答狀態、面板空狀態、modal、首頁、手機 bottom sheet 已由使用者確認，`npm test` 41 項通過）
-- 下一步：M3.5 其餘項目（收集試玩意見、抽查 IPA、改完重新驗證）；M4 先不要開始
+- 最後完成：M4 Sidewalk 場景（12 個物件，`npm test` 42 項通過）
+- 下一步：M4 Studio apartment
+- 暫緩：M3.5 其餘項目（收集試玩意見、抽查 IPA、改完重新驗證），使用者決定先做 M4。抽查 IPA 時發現 office 的 potted plant、swivel chair、filing cabinet 重音可能標錯，待使用者查字典確認
 
 ## M0 基礎
 
@@ -68,7 +69,7 @@
 
 ## M4 其餘場景
 
-- [ ] Sidewalk（commute）：SVG + JSON
+- [x] Sidewalk（commute）：SVG + JSON（12 個物件；說話者 You / Neighbor）
 - [ ] Studio apartment：SVG + JSON
 
 ## M5 驗收與部署

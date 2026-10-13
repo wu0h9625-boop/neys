@@ -1,0 +1,309 @@
+{
+  "id": "sidewalk",
+  "title": "Sidewalk",
+  "description": "Your walk to work, rain or shine.",
+  "speakers": { "A": "You", "B": "Neighbor" },
+  "sceneDialogues": [
+    {
+      "title": "Running for the bus",
+      "lines": [
+        { "speaker": "A", "text": "Morning! Has the 8:15 come yet?" },
+        { "speaker": "B", "text": "Not yet. The screen at the bus stop says it's five minutes late." },
+        { "speaker": "A", "text": "Thank goodness. I ran all the way from the crosswalk." },
+        { "speaker": "B", "text": "You should have waited for the traffic light. That van almost hit you." },
+        { "speaker": "A", "text": "I know, I know. I'll be more careful tomorrow." },
+        { "speaker": "B", "text": "Here it comes. Have you got your bus pass ready?" }
+      ]
+    },
+    {
+      "title": "Caught in the rain",
+      "lines": [
+        { "speaker": "A", "text": "Wow, it's really coming down now." },
+        { "speaker": "B", "text": "Come and stand under my umbrella until it eases off." },
+        { "speaker": "A", "text": "Thanks. Let's wait under the store sign over there. It's a bit drier." },
+        { "speaker": "B", "text": "Good idea. And watch out for that puddle by the curb." },
+        { "speaker": "A", "text": "Too late. My shoes are already soaked." },
+        { "speaker": "B", "text": "Let's grab a hot coffee inside while we wait." }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "store-sign",
+      "word": "store sign",
+      "pos": "noun",
+      "ipa": "/ˈstɔːr saɪn/",
+      "accept": ["store sign", "sign", "shop sign", "convenience store sign", "convenience store"],
+      "wordPicture": {
+        "looks": ["bright green", "glowing", "above the door", "easy to spot"],
+        "actions": ["light up", "look for", "walk past", "point to"],
+        "goesWith": ["convenience store", "snacks", "open 24 hours", "coffee"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The store sign on the corner is so bright that I can see it from the end of the block." },
+        { "tag": "Act", "text": "If I'm early, I'll stop at the convenience store under that sign and grab a coffee." },
+        { "tag": "Feel", "text": "I've walked past that store sign every morning for a year, and I still don't know what the logo means." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is the convenience store under that green sign open this early?" },
+        { "speaker": "B", "text": "It's open 24 hours. The sign stays on all night." },
+        { "speaker": "A", "text": "Great, I need to pick up some breakfast on the way to work." },
+        { "speaker": "B", "text": "Try the egg sandwiches. They've just added them to the menu." }
+      ]
+    },
+    {
+      "id": "bike-lane",
+      "word": "bike lane",
+      "pos": "noun",
+      "ipa": "/ˈbaɪk leɪn/",
+      "accept": ["bike lane", "bicycle lane", "cycle lane", "bikeway"],
+      "wordPicture": {
+        "looks": ["green", "painted", "narrow", "marked with a bike symbol"],
+        "actions": ["ride in", "stay in", "block", "share"],
+        "goesWith": ["cyclists", "helmet", "bike bell", "rush hour"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The bike lane is painted bright green so that drivers can't pretend they didn't see it." },
+        { "tag": "Act", "text": "I'm going to ride in the bike lane today instead of squeezing between the buses." },
+        { "tag": "Feel", "text": "It really annoys me when delivery vans park in the bike lane and I have to swerve into traffic." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Do you cycle to work now? I saw you in the bike lane yesterday." },
+        { "speaker": "B", "text": "Yeah, ever since they opened the new bike lane, it's actually faster than the bus." },
+        { "speaker": "A", "text": "Isn't it dangerous during rush hour?" },
+        { "speaker": "B", "text": "Not really. As long as cars stay out of it, I feel pretty safe." }
+      ]
+    },
+    {
+      "id": "curb",
+      "word": "curb",
+      "pos": "noun",
+      "ipa": "/kɜːrb/",
+      "accept": ["curb", "kerb", "curbstone"],
+      "wordPicture": {
+        "looks": ["concrete", "raised", "chipped", "wet"],
+        "actions": ["step off", "trip over", "pull up to", "park along"],
+        "goesWith": ["gutter", "sidewalk", "puddle", "parking"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The curb on this side of the street is so high that people with suitcases always struggle with it." },
+        { "tag": "Act", "text": "I'll wait on the curb until the light changes instead of stepping into the road too early." },
+        { "tag": "Feel", "text": "I almost tripped over the curb this morning because I was looking at my phone instead of the street." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Watch out, the curb is really high right here." },
+        { "speaker": "B", "text": "Thanks! I nearly twisted my ankle on it last week." },
+        { "speaker": "A", "text": "It's even worse when it rains, because the gutter fills up with water." },
+        { "speaker": "B", "text": "I usually cross a bit further down, where the curb is lower." }
+      ]
+    },
+    {
+      "id": "streetlight",
+      "word": "streetlight",
+      "pos": "noun",
+      "ipa": "/ˈstriːtlaɪt/",
+      "accept": ["streetlight", "street light", "street lamp", "lamppost", "lamp post"],
+      "wordPicture": {
+        "looks": ["tall", "metal", "dim", "flickering"],
+        "actions": ["turn on", "flicker", "light up the street", "go out"],
+        "goesWith": ["dusk", "pole", "sidewalk", "late nights"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The streetlight outside my building is still on, even though the sun came up an hour ago." },
+        { "tag": "Act", "text": "I'm going to report the broken streetlight so the city can fix it before winter." },
+        { "tag": "Feel", "text": "Walking home is a lot less scary now that they've put a new streetlight on this corner." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Have you noticed that the streetlight by the bus stop keeps flickering?" },
+        { "speaker": "B", "text": "Yes, it's been like that for weeks. It went out completely last night." },
+        { "speaker": "A", "text": "Someone should call the city about it." },
+        { "speaker": "B", "text": "I already did. They said they'd send someone to replace the bulb by Friday." }
+      ]
+    },
+    {
+      "id": "bus-stop",
+      "word": "bus stop",
+      "pos": "noun",
+      "ipa": "/ˈbʌs stɑːp/",
+      "accept": ["bus stop", "bus shelter"],
+      "wordPicture": {
+        "looks": ["glass", "covered", "crowded", "with a bench"],
+        "actions": ["wait at", "run for", "get off at", "miss the bus"],
+        "goesWith": ["timetable", "bus pass", "bench", "route number"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The bus stop on my street has a glass roof, but the rain still blows in from the side." },
+        { "tag": "Act", "text": "I'd better leave five minutes early so I can get to the bus stop before the 8:15 comes." },
+        { "tag": "Feel", "text": "I always feel a little anxious at the bus stop when the screen says the next bus is delayed." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Does the number 12 still stop here? The bus stop sign looks new." },
+        { "speaker": "B", "text": "They moved it last month. The 12 stops across the street now." },
+        { "speaker": "A", "text": "Oh, no wonder I've been waiting for twenty minutes." },
+        { "speaker": "B", "text": "Lots of people have made the same mistake. They should really put up a notice." }
+      ]
+    },
+    {
+      "id": "traffic-light",
+      "word": "traffic light",
+      "pos": "noun",
+      "ipa": "/ˈtræfɪk laɪt/",
+      "accept": ["traffic light", "traffic lights", "traffic signal", "stoplight", "stop light"],
+      "wordPicture": {
+        "looks": ["red", "yellow", "green", "on a pole"],
+        "actions": ["turn green", "change", "wait for", "run a red light"],
+        "goesWith": ["crosswalk", "walk signal", "intersection", "drivers"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The traffic light at this corner stays red for so long that people start crossing anyway." },
+        { "tag": "Act", "text": "I'll press the button and wait until the traffic light turns green before I cross." },
+        { "tag": "Feel", "text": "Whenever a traffic light changes just as I reach it, I feel like the whole city is against me." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "This traffic light takes forever, doesn't it?" },
+        { "speaker": "B", "text": "It does. I think it's timed for cars, not for people on foot." },
+        { "speaker": "A", "text": "Should we just cross? There aren't any cars coming." },
+        { "speaker": "B", "text": "I'd rather wait. There's a police officer right over there." }
+      ]
+    },
+    {
+      "id": "trash-can",
+      "word": "trash can",
+      "pos": "noun",
+      "ipa": "/ˈtræʃ kæn/",
+      "accept": ["trash can", "garbage can", "garbage bin", "litter bin", "rubbish bin", "bin"],
+      "wordPicture": {
+        "looks": ["green", "metal", "overflowing", "smelly"],
+        "actions": ["throw away", "empty", "toss into", "overflow"],
+        "goesWith": ["litter", "coffee cups", "recycling", "garbage truck"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The trash can next to the bus stop is overflowing again because nobody emptied it over the weekend." },
+        { "tag": "Act", "text": "I'll hold on to my coffee cup until I find a trash can that isn't completely full." },
+        { "tag": "Feel", "text": "It drives me crazy when people leave their garbage on the ground right next to an empty trash can." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is there a trash can around here? I need to throw away this wrapper." },
+        { "speaker": "B", "text": "There's one by the bus stop, but it's probably full." },
+        { "speaker": "A", "text": "Ugh, it always is in the mornings." },
+        { "speaker": "B", "text": "The garbage truck doesn't come until noon, so it fills up fast." }
+      ]
+    },
+    {
+      "id": "umbrella",
+      "word": "umbrella",
+      "pos": "noun",
+      "ipa": "/ʌmˈbrelə/",
+      "accept": ["umbrella", "brolly"],
+      "wordPicture": {
+        "looks": ["red", "wet", "dripping", "folding"],
+        "actions": ["open", "fold up", "share", "shake off"],
+        "goesWith": ["rain", "raincoat", "weather forecast", "puddles"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The man next to me is holding a huge red umbrella that's big enough for two people." },
+        { "tag": "Act", "text": "I'm going to keep a folding umbrella in my bag, so I'm never caught in the rain again." },
+        { "tag": "Feel", "text": "If I leave my umbrella on the bus one more time, I'm going to stop buying nice ones." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Oh no, it's starting to pour, and I left my umbrella at home." },
+        { "speaker": "B", "text": "Here, you can share mine. It's big enough for both of us." },
+        { "speaker": "A", "text": "Are you sure? I don't want you to get wet." },
+        { "speaker": "B", "text": "It's fine. We're walking the same way anyway." },
+        { "speaker": "A", "text": "Thanks, you're a lifesaver. I'll buy you a coffee next time." }
+      ]
+    },
+    {
+      "id": "fire-hydrant",
+      "word": "fire hydrant",
+      "pos": "noun",
+      "ipa": "/ˈfaɪər haɪdrənt/",
+      "accept": ["fire hydrant", "hydrant", "fireplug"],
+      "wordPicture": {
+        "looks": ["red", "short", "metal", "chunky"],
+        "actions": ["park in front of", "open", "spray water", "block"],
+        "goesWith": ["firefighters", "hose", "parking ticket", "sidewalk"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "There's a short red fire hydrant on the sidewalk that I've bumped into at least twice." },
+        { "tag": "Act", "text": "I'll park a little further down, because I don't want a ticket for blocking the fire hydrant." },
+        { "tag": "Feel", "text": "As a kid, I loved summer days when the firefighters opened the hydrant and we all played in the water." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "You can't park there. That's right in front of a fire hydrant." },
+        { "speaker": "B", "text": "Really? I didn't even see it behind those bags." },
+        { "speaker": "A", "text": "Yeah, my brother got a huge ticket for doing the same thing." },
+        { "speaker": "B", "text": "Thanks for warning me. I'll find another spot." }
+      ]
+    },
+    {
+      "id": "scooter",
+      "word": "scooter",
+      "pos": "noun",
+      "ipa": "/ˈskuːtər/",
+      "accept": ["scooter", "moped", "motor scooter", "electric scooter"],
+      "wordPicture": {
+        "looks": ["orange", "shiny", "compact", "parked on the sidewalk"],
+        "actions": ["ride", "park", "charge", "start up"],
+        "goesWith": ["helmet", "traffic", "parking space", "license"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "Someone has parked an orange scooter right in the middle of the sidewalk, so everyone has to walk around it." },
+        { "tag": "Act", "text": "Once I get my license, I'm going to ride a scooter to work instead of waiting for the bus." },
+        { "tag": "Feel", "text": "I get a bit nervous when a scooter zooms past me on the sidewalk without slowing down." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is that your new scooter? It looks great." },
+        { "speaker": "B", "text": "Thanks! I bought it last month, and it's already saved me so much time." },
+        { "speaker": "A", "text": "Isn't it hard to find parking downtown?" },
+        { "speaker": "B", "text": "Not at all. That's the best thing about a scooter. It fits almost anywhere." }
+      ]
+    },
+    {
+      "id": "crosswalk",
+      "word": "crosswalk",
+      "pos": "noun",
+      "ipa": "/ˈkrɔːswɔːk/",
+      "accept": ["crosswalk", "zebra crossing", "pedestrian crossing", "crossing"],
+      "wordPicture": {
+        "looks": ["striped", "black and white", "faded", "wide"],
+        "actions": ["cross at", "wait at", "stop for", "use"],
+        "goesWith": ["pedestrians", "traffic light", "walk signal", "school kids"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The stripes on this crosswalk have faded so much that some drivers don't notice it at all." },
+        { "tag": "Act", "text": "I'm going to walk to the crosswalk instead of running across the road like I usually do." },
+        { "tag": "Feel", "text": "I feel a lot safer when drivers actually stop and wait for me at the crosswalk." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Let's cross here. It's quicker." },
+        { "speaker": "B", "text": "I'd rather use the crosswalk. The cars come around that corner really fast." },
+        { "speaker": "A", "text": "You're right. It's only a few more steps anyway." },
+        { "speaker": "B", "text": "And the walk signal is already on, so we won't have to wait." }
+      ]
+    },
+    {
+      "id": "manhole-cover",
+      "word": "manhole cover",
+      "pos": "noun",
+      "ipa": "/ˈmænhoʊl kʌvər/",
+      "accept": ["manhole cover", "manhole", "sewer cover", "utility cover"],
+      "wordPicture": {
+        "looks": ["round", "heavy", "metal", "rusty"],
+        "actions": ["step over", "lift", "rattle", "drive over"],
+        "goesWith": ["sewer", "road workers", "steam", "underground pipes"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "There's a round metal manhole cover in the road that rattles loudly every time a truck drives over it." },
+        { "tag": "Act", "text": "I'll step around the manhole cover, because it gets really slippery when it rains." },
+        { "tag": "Feel", "text": "I've always wondered what's under a manhole cover, but I'm not brave enough to find out." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Did you hear that loud clank just now?" },
+        { "speaker": "B", "text": "It's that manhole cover. Every bus that goes over it makes the same noise." },
+        { "speaker": "A", "text": "It's a bit loose, isn't it? Someone could get hurt." },
+        { "speaker": "B", "text": "I think road workers are coming to fix it next week." }
+      ]
+    }
+  ]
+}
