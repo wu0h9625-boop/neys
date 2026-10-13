@@ -4,8 +4,8 @@
 
 ## 目前進度
 
-- 最後完成：M3（Office 場景完整可玩，`npm test` 34 項通過）
-- 下一步：M3.5，等使用者確認新視覺（特別是設計稿沒畫的作答狀態、modal、首頁、手機版）與抽查 IPA；M4 先不要開始
+- 最後完成：M3.5「頁面介面與版面調整」（延伸設計的作答狀態、面板空狀態、modal、首頁、手機 bottom sheet 已由使用者確認，`npm test` 41 項通過）
+- 下一步：M3.5 其餘項目（收集試玩意見、抽查 IPA、改完重新驗證）；M4 先不要開始
 
 ## M0 基礎
 
@@ -57,10 +57,10 @@
 ## M3.5 Office 調整（M4 之前）
 
 - [ ] 收集使用者試玩意見（頁面介面與版面、例句與對話內容）
-- [ ] 頁面介面與版面調整
+- [x] 頁面介面與版面調整
   - [x] 套用 Claude Design 的 Office 視覺提案（`docs/design/design_handoff_office_scene/`）：淺色米白主題、Silkscreen、2px 平面框線、黃色單字卡、15 格進度條、聊天泡泡對話、步驟標籤；新增 card / word-card / divider 元件
   - [x] 每個物件加 IPA 美式音標（`ipa` 欄位，`npm test` 檢查格式）
-  - [ ] 使用者確認設計稿沒畫、依同一套 tokens 延伸的部分：作答狀態、面板空狀態、modal、首頁、手機 bottom sheet
+  - [x] 使用者確認設計稿沒畫、依同一套 tokens 延伸的部分：作答狀態、面板空狀態、modal、首頁、手機 bottom sheet
 - [ ] 例句與對話內容調整
   - [x] 例句與對話提高到 B1–B2：用關係子句、條件句、現在完成式、片語動詞、因果連接詞，避免只有單一短句
   - [x] 每個物件加「文字畫面」（Word picture）關聯詞：外觀、動作、相關的東西，揭曉面板顯示（新欄位 `wordPicture`，沿用 sentence-list 元件，`npm test` 檢查）

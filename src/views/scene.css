@@ -66,12 +66,6 @@
 }
 
 /* 面板內 */
-.scene-view__steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
 /* 提示與作答結果兩行疊在一起；空的那行高度是 0，不能用 gap，否則會多出一段空白 */
 .scene-view__feedback {
   display: flex;

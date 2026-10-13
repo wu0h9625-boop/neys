@@ -88,12 +88,8 @@ export async function renderScene(root, sceneId) {
 
   function emptyContent() {
     return [
+      // 三個步驟已經寫在場景下方的步驟標籤，這裡不再重複
       createText({ text: "Look at the scene and name everything you can see, out loud." }),
-      el("ol", { className: "scene-view__steps" }, [
-        el("li", {}, [createText({ text: "1. Point at something (tap it on a phone)." })]),
-        el("li", {}, [createText({ text: "2. Say what it is in English." })]),
-        el("li", {}, [createText({ text: "3. Click it (or tap again) and type the word." })]),
-      ]),
       createText({ text: "Keyboard: Tab moves between objects, Enter opens one.", size: "sm", tone: "muted" }),
     ];
   }
