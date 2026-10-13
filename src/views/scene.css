@@ -78,11 +78,22 @@
   gap: var(--space-2);
 }
 
+/* 手機：sheet 打開時頁面底部留出 sheet 的高度，頁面才捲得到讓場景圖貼齊頂端的位置（scene.js 的 keepStageAboveSheet） */
+.scene-view--sheet-open {
+  padding-bottom: var(--sheet-max-height);
+}
+
 /* Scene complete 的星星與進度 */
 .scene-view__complete {
   display: flex;
   align-items: center;
   gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .scene-view--sheet-open {
+    padding-bottom: 0;
+  }
 }
 
 @media (min-width: 1024px) {

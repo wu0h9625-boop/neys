@@ -51,6 +51,7 @@ export async function renderScene(root, sceneId) {
     getLabel: labelOf,
     onSelect: (id, { via }) => select(id, { focusInput: via !== "touch" }),
   });
+  const stageFrame = createPixelFrame({ padding: "none", children: [stage] });
 
   // ---------- 頁首 ----------
 
@@ -81,6 +82,7 @@ export async function renderScene(root, sceneId) {
       setStageSelected(stage, null);
       updateProgress();
       stopSpeaking();
+      view.classList.remove("scene-view--sheet-open");
     },
   });
 
@@ -113,6 +115,18 @@ export async function renderScene(root, sceneId) {
     if (found.has(id)) showRevealed(object, { result: "found" });
     else showQuestion(object, { focusInput });
     openPanel(panel, { focus: !focusInput || found.has(id) });
+    keepStageAboveSheet();
+  }
+
+  // 手機的 sheet 最高 70%，揭曉後會蓋住場景。把頁面捲到場景圖貼齊頂端，
+  // 375×812 時場景圖約 193px，sheet 上方還剩 244px，整張場景都露得出來。
+  // 平板的 sheet 只到 50%，不會蓋到場景，不用捲。
+  function keepStageAboveSheet() {
+    if (matchMedia("(min-width: 768px)").matches) return;
+    view.classList.add("scene-view--sheet-open");
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const top = stageFrame.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
   }
 
   // ---------- 作答 ----------
@@ -290,12 +304,11 @@ export async function renderScene(root, sceneId) {
 
   // ---------- 組裝 ----------
 
-  root.replaceChildren(
-    el("section", { className: "scene-view" }, [
+  const view = el("section", { className: "scene-view" }, [
       header,
       el("div", { className: "scene-view__main" }, [
         el("div", { className: "scene-view__stage" }, [
-          createPixelFrame({ padding: "none", children: [stage] }),
+          stageFrame,
           // 重設很少用，放在場景下方，手機上頁首才不會多佔一行
           el("div", { className: "scene-view__footer" }, [
             el("div", { className: "scene-view__steps-row" }, [
@@ -311,8 +324,8 @@ export async function renderScene(root, sceneId) {
         ]),
         panel,
       ]),
-    ]),
-  );
+    ]);
+  root.replaceChildren(view);
 
   return () => {
     stopSpeaking();
