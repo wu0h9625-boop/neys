@@ -210,7 +210,7 @@ export async function renderScene(root, sceneId) {
         object.wordPicture ? createSentenceList({ title: "Word picture", sentences: wordPictureRows(object.wordPicture) }) : null,
         createSentenceList({ sentences: object.selfTalk, highlight: terms }),
         createDialogue({ lines: object.dialogue, speakers: data.speakers, highlight: terms }),
-        next ? createButton({ label: "Next object", icon: "play", block: true, onClick: () => select(next) }) : null,
+        next ? createButton({ label: "Next object", block: true, onClick: () => select(next) }) : null,
       ],
     });
   }
