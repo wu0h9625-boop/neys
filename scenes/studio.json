@@ -1,0 +1,308 @@
+{
+  "id": "studio",
+  "title": "Studio apartment",
+  "description": "One room for sleeping, cooking and everything else.",
+  "speakers": { "A": "You", "B": "Friend" },
+  "sceneDialogues": [
+    {
+      "title": "A friend comes over",
+      "lines": [
+        { "speaker": "A", "text": "Come on in! Sorry, it's a bit small." },
+        { "speaker": "B", "text": "Small but cozy. I love how much light you get through the blinds." },
+        { "speaker": "A", "text": "Thanks. Make yourself at home. You can sit on the bed." },
+        { "speaker": "B", "text": "Wow, you've got a rice cooker and an induction cooktop. That's a whole kitchen." },
+        { "speaker": "A", "text": "Pretty much. The mini fridge is the only thing that's really too small." },
+        { "speaker": "B", "text": "Well, it's perfect for one person. Honestly, I'm a little jealous." }
+      ]
+    },
+    {
+      "title": "A hot night",
+      "lines": [
+        { "speaker": "A", "text": "Is it just me, or is it really hot tonight?" },
+        { "speaker": "B", "text": "It's not just you. Can we turn on the air conditioner?" },
+        { "speaker": "A", "text": "Sure. The remote is next to the desk lamp." },
+        { "speaker": "B", "text": "Got it. Should I close the blinds too?" },
+        { "speaker": "A", "text": "Yes, please. And could you plug my phone into the power strip?" },
+        { "speaker": "B", "text": "Done. Now let's hope we can actually get some sleep." }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "air-conditioner",
+      "word": "air conditioner",
+      "pos": "noun",
+      "ipa": "/ˈer kəndɪʃənər/",
+      "accept": ["air conditioner", "air conditioning", "air con", "aircon", "AC"],
+      "wordPicture": {
+        "looks": ["white", "wall-mounted", "humming", "dusty"],
+        "actions": ["turn on", "turn down", "set the timer", "clean the filter"],
+        "goesWith": ["remote", "heat wave", "electricity bill", "filter"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The air conditioner above the counter makes a humming noise that I only notice when I'm trying to sleep." },
+        { "tag": "Act", "text": "I'm going to clean the air conditioner filter this weekend, because it's starting to smell dusty." },
+        { "tag": "Feel", "text": "If my electricity bill is this high again, I'll have to use the air conditioner a lot less." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "It's so hot in here. Do you mind if I turn on the air conditioner?" },
+        { "speaker": "B", "text": "Go ahead. The remote's on the bed." },
+        { "speaker": "A", "text": "Thanks. Is seventy-five degrees okay for you?" },
+        { "speaker": "B", "text": "Perfect. Just set the timer so it doesn't run all night." }
+      ]
+    },
+    {
+      "id": "blinds",
+      "word": "blinds",
+      "pos": "noun",
+      "ipa": "/blaɪndz/",
+      "accept": ["blinds", "blind", "window blinds", "venetian blinds", "shades"],
+      "wordPicture": {
+        "looks": ["white", "plastic", "half-open", "slatted"],
+        "actions": ["pull up", "close", "tilt", "let the light in"],
+        "goesWith": ["window", "cord", "sunlight", "privacy"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The blinds in my apartment are half-open, so thin stripes of sunlight fall across the floor." },
+        { "tag": "Act", "text": "Before I start work, I'll pull up the blinds and let some natural light into the room." },
+        { "tag": "Feel", "text": "I feel a bit exposed when the blinds are open at night, because the neighbors can see right in." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "It's really bright in here this afternoon." },
+        { "speaker": "B", "text": "Do you want me to close the blinds a little?" },
+        { "speaker": "A", "text": "Yes, please. I can't see my laptop screen at all." },
+        { "speaker": "B", "text": "There you go. If you tilt them like this, you still get some light." }
+      ]
+    },
+    {
+      "id": "wardrobe",
+      "word": "wardrobe",
+      "pos": "noun",
+      "ipa": "/ˈwɔːrdroʊb/",
+      "accept": ["wardrobe", "closet", "armoire", "clothes closet"],
+      "wordPicture": {
+        "looks": ["wooden", "tall", "stuffed", "two-door"],
+        "actions": ["hang up", "open", "squeeze into", "clear out"],
+        "goesWith": ["hangers", "coats", "winter clothes", "mirror"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "My wardrobe is so full of clothes that the doors won't close properly anymore." },
+        { "tag": "Act", "text": "I'm going to clear out my wardrobe and give away everything I haven't worn in a year." },
+        { "tag": "Feel", "text": "Every time I open the wardrobe, I feel like I have nothing to wear, even though it's packed." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Can I hang my coat somewhere?" },
+        { "speaker": "B", "text": "Sure, there's space in the wardrobe, I think." },
+        { "speaker": "A", "text": "Are you sure? It looks like it's about to burst." },
+        { "speaker": "B", "text": "Okay, maybe just put it on the back of the door. I really need to sort it out." }
+      ]
+    },
+    {
+      "id": "door-lock",
+      "word": "door lock",
+      "pos": "noun",
+      "ipa": "/ˈdɔːr lɑːk/",
+      "accept": ["door lock", "lock", "smart lock", "keypad lock", "deadbolt"],
+      "wordPicture": {
+        "looks": ["black", "electronic", "with a keypad", "beeping"],
+        "actions": ["lock", "unlock", "enter the code", "double-check"],
+        "goesWith": ["keys", "code", "landlord", "front door"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The door lock on my apartment has a keypad, so I don't have to carry my keys around anymore." },
+        { "tag": "Act", "text": "I'll change the code on the door lock, because I gave the old one to the plumber." },
+        { "tag": "Feel", "text": "Even when I know I've locked the door, I sometimes go back just to check the door lock again." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Hey, your door lock keeps beeping. Is the battery dying?" },
+        { "speaker": "B", "text": "Probably. It's been doing that for a few days." },
+        { "speaker": "A", "text": "You should replace it soon. What if it stops working while you're out?" },
+        { "speaker": "B", "text": "Good point. I'd be locked out of my own apartment." }
+      ]
+    },
+    {
+      "id": "mini-fridge",
+      "word": "mini fridge",
+      "pos": "noun",
+      "ipa": "/ˈmɪni frɪdʒ/",
+      "accept": ["mini fridge", "minifridge", "fridge", "small fridge", "refrigerator", "mini refrigerator"],
+      "wordPicture": {
+        "looks": ["small", "white", "humming", "half-empty"],
+        "actions": ["stock up", "defrost", "grab a drink from", "clean out"],
+        "goesWith": ["leftovers", "cold drinks", "freezer", "groceries"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "My mini fridge is so small that a carton of milk and some leftovers take up all the space." },
+        { "tag": "Act", "text": "I'm going to clean out the mini fridge tonight, because something in there smells terrible." },
+        { "tag": "Feel", "text": "I'd love a bigger fridge, but there's no space for one in a studio this tiny." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is there anything to drink in your mini fridge?" },
+        { "speaker": "B", "text": "There should be some sparkling water on the bottom shelf." },
+        { "speaker": "A", "text": "Found it. Wow, you really don't keep much food in here." },
+        { "speaker": "B", "text": "I know. I buy groceries every couple of days because it fills up so quickly." }
+      ]
+    },
+    {
+      "id": "rice-cooker",
+      "word": "rice cooker",
+      "pos": "noun",
+      "ipa": "/ˈraɪs kʊkər/",
+      "accept": ["rice cooker", "rice maker", "cooker"],
+      "wordPicture": {
+        "looks": ["round", "cream-colored", "steaming", "shiny"],
+        "actions": ["cook rice", "keep warm", "rinse the rice", "press start"],
+        "goesWith": ["rice", "measuring cup", "dinner", "bowl"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The rice cooker sitting on top of the fridge is the only kitchen appliance I use every day." },
+        { "tag": "Act", "text": "Before I leave for work, I'll rinse the rice and set the rice cooker so dinner is ready when I get home." },
+        { "tag": "Feel", "text": "I can't imagine living without my rice cooker, since it makes perfect rice without any effort." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Something smells good. Is that the rice cooker?" },
+        { "speaker": "B", "text": "Yes, I put some rice on about half an hour ago." },
+        { "speaker": "A", "text": "Do you ever cook anything other than rice in it?" },
+        { "speaker": "B", "text": "Sometimes I make soup or steam vegetables. It's surprisingly useful." }
+      ]
+    },
+    {
+      "id": "induction-cooktop",
+      "word": "induction cooktop",
+      "pos": "noun",
+      "ipa": "/ɪnˈdʌkʃn ˈkʊktɑːp/",
+      "accept": ["induction cooktop", "cooktop", "induction stove", "stove", "hot plate", "induction hob", "hob"],
+      "wordPicture": {
+        "looks": ["black", "flat", "glass", "glowing"],
+        "actions": ["turn up", "heat up", "wipe down", "switch off"],
+        "goesWith": ["frying pan", "pot", "noodles", "timer"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The induction cooktop on my counter is just one flat black panel, but it boils water incredibly fast." },
+        { "tag": "Act", "text": "I'll wipe down the induction cooktop after dinner so the stains don't burn on tomorrow." },
+        { "tag": "Feel", "text": "I was nervous about using an induction cooktop at first, but now I prefer it to a gas stove." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "How do I turn on this cooktop? There are no knobs." },
+        { "speaker": "B", "text": "Just touch the power button and then press plus to turn up the heat." },
+        { "speaker": "A", "text": "Oh, it's already hot. That was quick." },
+        { "speaker": "B", "text": "Be careful, though. It only works with certain pans, so use the black one." }
+      ]
+    },
+    {
+      "id": "drying-rack",
+      "word": "drying rack",
+      "pos": "noun",
+      "ipa": "/ˈdraɪɪŋ ræk/",
+      "accept": ["drying rack", "clothes drying rack", "clothes rack", "laundry rack", "clothes horse", "airer"],
+      "wordPicture": {
+        "looks": ["metal", "foldable", "crowded", "by the window"],
+        "actions": ["hang out", "fold up", "take down", "dry"],
+        "goesWith": ["laundry", "socks", "towels", "clothespins"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The drying rack by the window is covered with socks and towels that still feel a bit damp." },
+        { "tag": "Act", "text": "I'll fold up the drying rack before my friends come over, so the room doesn't look so messy." },
+        { "tag": "Feel", "text": "I'd rather use a drying rack than a dryer, because my clothes last longer that way." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Sorry, can I move your drying rack? I need to get to the window." },
+        { "speaker": "B", "text": "Of course. Just be careful, the shirts on top are still wet." },
+        { "speaker": "A", "text": "Don't your clothes take forever to dry in here?" },
+        { "speaker": "B", "text": "Not in summer. In winter, though, I sometimes have to wait two days." }
+      ]
+    },
+    {
+      "id": "desk-lamp",
+      "word": "desk lamp",
+      "pos": "noun",
+      "ipa": "/ˈdesk læmp/",
+      "accept": ["desk lamp", "lamp", "reading lamp", "table lamp", "bedside lamp"],
+      "wordPicture": {
+        "looks": ["yellow", "bendable", "bright", "warm"],
+        "actions": ["switch on", "adjust", "angle", "dim"],
+        "goesWith": ["light bulb", "nightstand", "book", "late nights"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The desk lamp on my nightstand has a bendable arm, so I can point the light right at my book." },
+        { "tag": "Act", "text": "I'm going to switch off the desk lamp and finally get some sleep before midnight." },
+        { "tag": "Feel", "text": "I love reading in bed with just the desk lamp on, because the whole room feels warm and quiet." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is my lamp too bright for you? I'm trying to finish this chapter." },
+        { "speaker": "B", "text": "It's okay, but could you angle it away from my side a bit?" },
+        { "speaker": "A", "text": "Sure. How's that?" },
+        { "speaker": "B", "text": "Much better, thanks. Don't stay up too late, though." }
+      ]
+    },
+    {
+      "id": "bed",
+      "word": "bed",
+      "pos": "noun",
+      "ipa": "/bed/",
+      "accept": ["bed", "single bed", "double bed", "twin bed"],
+      "wordPicture": {
+        "looks": ["unmade", "cozy", "narrow", "covered in pillows"],
+        "actions": ["make", "lie down on", "get out of", "change the sheets"],
+        "goesWith": ["pillow", "blanket", "sheets", "alarm clock"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "My bed takes up almost half of the apartment, so it's also where I eat, read and work." },
+        { "tag": "Act", "text": "I'm going to make my bed as soon as I get up, because it makes the whole room look tidier." },
+        { "tag": "Feel", "text": "On cold mornings, getting out of bed is honestly the hardest part of my whole day." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Where should I sit? There's only one chair." },
+        { "speaker": "B", "text": "Just sit on the bed. Everyone does." },
+        { "speaker": "A", "text": "It's really comfortable. No wonder you never want to get up." },
+        { "speaker": "B", "text": "I know. That's why I set three alarms every morning." }
+      ]
+    },
+    {
+      "id": "laundry-basket",
+      "word": "laundry basket",
+      "pos": "noun",
+      "ipa": "/ˈlɔːndri bæskɪt/",
+      "accept": ["laundry basket", "laundry hamper", "hamper", "clothes basket", "basket"],
+      "wordPicture": {
+        "looks": ["plastic", "light gray", "overflowing", "full of socks"],
+        "actions": ["fill up", "carry", "empty", "sort"],
+        "goesWith": ["dirty clothes", "washing machine", "detergent", "laundry room"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "The laundry basket in front of my wardrobe is overflowing, so I definitely need to do laundry tonight." },
+        { "tag": "Act", "text": "I'll carry the laundry basket down to the washing machine before anyone else takes it." },
+        { "tag": "Feel", "text": "I always feel a bit embarrassed when guests see my laundry basket piled high with dirty clothes." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Do you want me to move this laundry basket off the floor?" },
+        { "speaker": "B", "text": "Oh, sorry! I was going to do the laundry this morning, but I ran out of time." },
+        { "speaker": "A", "text": "No problem. Is there a laundry room in the building?" },
+        { "speaker": "B", "text": "Yes, in the basement, but there's always a line on weekends." }
+      ]
+    },
+    {
+      "id": "power-strip",
+      "word": "power strip",
+      "pos": "noun",
+      "ipa": "/ˈpaʊər strɪp/",
+      "accept": ["power strip", "extension cord", "power bar", "surge protector", "plug board"],
+      "wordPicture": {
+        "looks": ["white", "plastic", "crowded", "with a red switch"],
+        "actions": ["plug in", "unplug", "switch off", "overload"],
+        "goesWith": ["chargers", "outlet", "cables", "laptop"]
+      },
+      "selfTalk": [
+        { "tag": "Describe", "text": "Every socket on my power strip is taken by a charger, so there's no room left for my laptop." },
+        { "tag": "Act", "text": "I'll switch off the power strip before I leave, so nothing is wasting electricity all day." },
+        { "tag": "Feel", "text": "I get a little worried when I see how many cables are plugged into one cheap power strip." }
+      ],
+      "dialogue": [
+        { "speaker": "A", "text": "Is there anywhere I can charge my phone?" },
+        { "speaker": "B", "text": "There's a power strip on the floor by the rack. You might have to unplug something." },
+        { "speaker": "A", "text": "Can I unplug this one? I'm not sure what it's for." },
+        { "speaker": "B", "text": "That's the lamp, so go ahead. I'll plug it back in later." }
+      ]
+    }
+  ]
+}
