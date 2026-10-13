@@ -223,6 +223,7 @@
 | hideLabel | boolean | `false` | 標籤只給螢幕閱讀器讀 |
 | autofocus | boolean | `false` | 自動聚焦 |
 | onSubmit | function(value) | — | 按 Enter 時呼叫；輸入法選字中的 Enter 不算 |
+| onInput | function(value) | — | 內容每次改變時呼叫，例如答錯後重新打字時切回 default 狀態 |
 | className | string | `""` | 額外 class |
 
 更新用的函式：

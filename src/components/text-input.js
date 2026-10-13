@@ -8,6 +8,7 @@ let idCounter = 0;
 /**
  * createTextInput({ label: "What's this called?", onSubmit: (value) => check(value) })
  * 按 Enter 會呼叫 onSubmit（輸入法選字中按 Enter 不算）。
+ * 每次內容改變會呼叫 onInput，例如答錯後重新打字時把紅框清掉。
  */
 export function createTextInput({
   label = "What's this called?",
@@ -17,6 +18,7 @@ export function createTextInput({
   hideLabel = false,
   autofocus = false,
   onSubmit,
+  onInput,
   className = "",
 } = {}) {
   idCounter += 1;
@@ -47,6 +49,8 @@ export function createTextInput({
       }
     });
   }
+
+  if (onInput) field.addEventListener("input", () => onInput(field.value));
 
   return el("div", { className: ["text-input", className].filter(Boolean).join(" "), dataset: { state: "default" } }, [
     el("label", { className: hideLabel ? "visually-hidden" : "text-input__label", text: label, attrs: { for: id } }),

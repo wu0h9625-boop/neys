@@ -13,7 +13,7 @@ import { speak, stopSpeaking } from "../lib/speech.js";
 import { createButton } from "../components/button.js";
 import { createDialogue } from "../components/dialogue.js";
 import { createDivider } from "../components/divider.js";
-import { createFeedback, setFeedback } from "../components/feedback.js";
+import { createFeedback, setFeedback, clearFeedback } from "../components/feedback.js";
 import { createHeading } from "../components/heading.js";
 import { createIcon } from "../components/icon.js";
 import { createModal, openModal, closeModal } from "../components/modal.js";
@@ -134,7 +134,14 @@ export async function renderScene(root, sceneId) {
   function showQuestion(object, { focusInput }) {
     let attempts = 0;
     const feedback = createFeedback();
-    const input = createTextInput({ onSubmit: check });
+    const input = createTextInput({ onSubmit: check, onInput: clearResult });
+
+    // 答錯後開始改答案，紅框與錯誤訊息就拿掉，輸入框回到聚焦的藍框
+    function clearResult() {
+      if (input.dataset.state === "default") return;
+      setTextInputState(input, "default");
+      clearFeedback(feedback);
+    }
 
     function check() {
       const typed = getTextInputValue(input);

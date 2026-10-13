@@ -377,6 +377,14 @@ export const demos = [
       { label: "default (focus it)", render: () => createTextInput({ onSubmit: (value) => console.log("submit", value) }) },
       { label: "almost", render: () => withState("almost", "refrigerater") },
       { label: "wrong (shakes when set)", render: () => withState("wrong", "freezer") },
+      {
+        label: "wrong, back to default when you type (onInput)",
+        render: () => {
+          const input = createTextInput({ value: "freezer", onInput: () => setTextInputState(input, "default") });
+          setTextInputState(input, "wrong");
+          return input;
+        },
+      },
       { label: "correct + read-only", render: () => { const input = withState("correct", "fridge"); setTextInputReadOnly(input, true); return input; } },
       { label: "hidden label", render: () => createTextInput({ hideLabel: true }) },
     ],
