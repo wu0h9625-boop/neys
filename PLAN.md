@@ -5,7 +5,7 @@
 ## 目前進度
 
 - 最後完成：M4（Sidewalk、Studio apartment 各 12 個物件，三個場景都可玩，`npm test` 43 項通過）
-- 下一步：M5 驗收與部署
+- 下一步：M5 驗收與部署。PRD 第 9 節已對照，剩真機項目待使用者測：iPhone Safari 走完流程、Chrome 與 Safari 發音
 - 暫緩：M3.5 其餘項目（收集試玩意見、抽查 IPA、改完重新驗證），使用者決定先做 M4。抽查 IPA 時發現 office 的 potted plant、swivel chair、filing cabinet 重音可能標錯，待使用者查字典確認
 
 ## M0 基礎
@@ -75,6 +75,6 @@
 ## M5 驗收與部署
 
 - [ ] 逐條對照 `PRD.md` 第 9 節驗收標準
-- [ ] 檢查 views 的 CSS 沒有定義元件外觀、沒有寫死顏色或數值
+- [x] 檢查 views 的 CSS 沒有定義元件外觀、沒有寫死顏色或數值（只用 display、gap、flex、grid、間距，數值都來自 tokens）
 - [ ] Chrome、Safari（含 iPhone）測試發音
 - [ ] 部署到 GitHub Pages
