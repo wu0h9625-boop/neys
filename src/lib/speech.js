@@ -3,22 +3,40 @@
 // iOS Safari 只允許在使用者點擊的同一個事件裡呼叫 speak()，
 // 所以 speak() 是同步呼叫 synth.speak()，不能先 await 任何東西。
 //
-// 不指定語音名稱，只設定語言 en-US，讓瀏覽器使用作業系統預設的美式聲音。
-// 網頁能用名稱選到的語音（例如 macOS 的 Samantha）是品質較差的版本，
-// 系統預設聲音通常是高品質的 Siri 聲音，但網頁無法用名稱指定它。
+// 聲音：指定 Chrome 內建的「Google US English」（使用者在試聽頁選定的自然美式女聲）。
 // 單字、例句、對話的兩個人都用同一個聲音，說話者靠泡泡位置與顏色區分。
+// 沒有這個語音的瀏覽器（Safari、Firefox、離線的 Chrome）不指定語音，只設 en-US。
+// 注意：macOS Chrome 在「只設 en-US」時會用清單第一個美式語音 Albert（特效聲），
+// 但 macOS Chrome 都有 Google US English，所以實際不會走到這個情況。
 
 const LANG = "en-US";
+export const PREFERRED_VOICE = "Google US English";
 
 const synth = typeof window !== "undefined" ? window.speechSynthesis : undefined;
+let preferred = null;
 
 export function isSpeechSupported() {
   return Boolean(synth) && typeof window.SpeechSynthesisUtterance === "function";
 }
 
+/** 從語音清單找指定的語音，找不到回傳 null。純函式，tests/speech.test.js 測試。 */
+export function findPreferredVoice(voices = [], name = PREFERRED_VOICE) {
+  return voices.find((voice) => voice.name === name) ?? null;
+}
+
+function loadVoices() {
+  preferred = findPreferredVoice(synth.getVoices());
+}
+
+if (isSpeechSupported()) {
+  loadVoices();
+  synth.addEventListener?.("voiceschanged", loadVoices);
+}
+
 function createUtterance(text, rate) {
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = LANG;
+  if (preferred) utterance.voice = preferred;
+  utterance.lang = preferred?.lang || LANG;
   utterance.rate = rate;
   return utterance;
 }

@@ -208,7 +208,7 @@
     import { createSpeakButton } from "../components/speak-button.js";
     const listen = createSpeakButton({ text: sentence });
 
-注意事項：發音邏輯在 `src/lib/speech.js`。不指定語音名稱，只設 `en-US`，使用作業系統預設的美式聲音（通常是高品質的 Siri 聲音）；網頁能用名稱選到的語音（例如 macOS 的 Samantha）品質較差，清單前面還混有 Albert、Bad News 這類特效聲。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
+注意事項：發音邏輯在 `src/lib/speech.js`。不指定語音時 macOS Chrome 會用清單第一個美式語音 Albert（特效聲），網頁能用名稱選到的 Samantha 品質也較差，所以指定 Chrome 內建的「Google US English」（`PREFERRED_VOICE`），單字、例句、對話兩人都用它；瀏覽器沒有這個語音時（Safari、Firefox、離線的 Chrome）只設 `en-US`。iOS Safari 只允許在點擊事件裡直接發音，所以不要在 click 之後先 `await` 別的東西再呼叫 `speak()`。唸的時候 `aria-pressed="true"`。
 
 ### text-input
 
